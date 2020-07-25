@@ -425,7 +425,7 @@ function case8a() {
 
   # Check if VM exists
 
-i if [[ $state == "" ]]
+  if [[  $state == "" ]]
   then
     echo "Such VM doesn't exist! Exiting to main menu..."
 
@@ -714,7 +714,7 @@ function case9bb() {
     val1=$(cat temp | grep $HOST | awk '{print $3}')
     val2=$(cat temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "Wrapper" && "$val1" == "$HOST" && "$val2" == "$HOST"]]
+    if [[ "$val" == "Wrapper" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
