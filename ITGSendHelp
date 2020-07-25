@@ -1,0 +1,203 @@
+ITGSend version 2.8.1 (r1023)
+Compile-time options: sctp dccp bursty multiport
+
+ITGSend - Sender component of D-ITG platform
+
+ Working modes
+
+   ITGSend can work in three different modes:
+
+     - Single-flow: reads from the command line the traffic flow to generate
+     - Multi-flow:  reads from a script file the traffic flows to generate
+     - Daemon:      runs as a daemon to be remotely controlled using the ITGapi
+
+ Synopsis
+
+   * Single-flow mode *
+
+           ./ITGSend [log_opts] [sig_opts] [flow_opts] [misc_opts]
+                     [ [idt_opts] [ps_opts] | [app_opts] ]
+
+   * Multi-flow mode *
+
+           ./ITGSend <script_file> [log_opts]
+
+     where each line of the script file contains the single-flow mode options.
+
+   * Daemon mode *
+
+           ./ITGSend -Q [log_opts]
+
+ Options
+
+   Log options (log_opts):
+
+     -l [logfile]              Generate sender-side log file (default: /tmp/ITGSend.log).
+
+     -L [log_server_address]   Generate sender-side log file on a remote ITGLog instance
+        [logging_protocol]     (default: <127.0.0.1> <UDP>).
+
+     -x [receiver_logfile]     Ask ITGRecv to generate receiver-side log file (default: /tmp/ITGRecv.log).
+
+     -X [log_server_address]   Ask ITGRecv to generate receiver-side log file on a remote ITGLog instance
+        [logging_protocol]     (default: <127.0.0.1> <UDP>).
+
+     -q <log_buffer_size>      Number of packets to push to the log at once (default: 50).
+
+
+  Signaling options (sig_opts):
+
+     -Sda  <signaling_dest_addr>   Set the destination address for the signaling channel
+                                   (default: equal to -a <dest_address>).
+
+     -Sdp  <signaling_dest_port>   Set the destination port for the signaling channel
+                                   (default: 9000).
+
+     -Ssa  <signaling_src_addr>    Set the source address for the signaling channel
+                                   (default: Set by O.S.).
+
+     -Ssp  <signaling_src_port>    Set the source port for the signaling channel
+                                   (default: Set by O.S.).
+
+     -Si  <signaling_interface>    Set the network interface for the signaling channel.
+
+
+  Flow options (flow_opts):
+
+     -H                      Enable NAT traversal: FTP-like passive mode
+                             (please, refer to the manual for further details).
+
+     -m  <meter>             Set the type of meter (default: owdm):
+                             - owdm (one-way delay meter)
+                             - rttm (round-trip time meter)
+
+     -t  <duration>          Set the generation duration in ms (default: 10000 ms).
+
+     -z  <#_of_packets>      Set the number of packets to generate
+
+     -k  <#_of_KBytes>       Set the number of KBytes to generate
+
+     -d  <delay>             Start the generation after the specified delay in ms (default: 0 ms).
+
+     -b <DS_byte>            Set the DS byte for QoS tests (default: 0).
+
+     -f <TTL byte>           Set the IP Time To Live (default:  64).
+
+     -a  <dest_address>      Set the destination address (default: 127.0.0.1).
+
+     -sa <src_address>       Set the source address (default: Set by O.S.).
+
+     -rp <dest_port>         Set the destination port (default: 8999).
+
+     -sp <src_port>          Set the source port (default: Set by O.S.).
+
+     -i <interface>          Bind to the given interface (default: don't bind to any interface).
+
+     -p <payload_metadata>   Select the metadata sent in the payload of each packet (default: 2).
+                             (please, refer to the manual for further details).
+
+     -T <protocol>           Layer 4 protocol (default: UDP):
+                             - UDP                   (User Datagram Protocol)
+                             - TCP                   (Transport Control Protocol)
+                             - ICMP [type]           (Internet Control Messaging Protocol)
+                             - SCTP <association_id> (Session Control Transport Protocol)
+                                    <max_streams>
+                             - DCCP                  (Datagram Congestion Control Protocol)
+
+     -D                      Disable TCP Nagle algorithm.
+
+
+  Inter-departure time options (idt_opts):
+
+     -C  <rate>                 Constant (default: 1000 pkts/s).
+
+     -U  <min_rate>             Uniform distribution.
+         <max_rate>
+
+     -E  <mean_rate>            Exponential distribution.
+
+     -N  <mean> <std_dev>       Normal distribution.
+
+     -O  <mean>                 Poisson distribution.
+
+     -V  <shape> <scale>        Pareto distribution.
+
+     -Y  <shape> <scale>        Cauchy distribution.
+
+     -G  <shape> <scale>        Gamma distribution.
+
+     -W  <shape> <scale>        Weibull distribution.
+
+     -Ft <filename>             Read IDTs from file.
+
+     -B  <onDistro> <params>    Generate bursty traffic:
+         <offDistro> <params>   - set the duration of both ON and OFF periods according to a
+                                  supported random distribution (e.g. -B C 1000 C 1000).
+
+
+  Packet size options (ps_opts):
+
+     -c  <pkt_size>           Constant (default: 512 bytes).
+
+     -u  <min_pkt_size>       Uniform distribution.
+         <max_pkt_size>
+
+     -e  <average_pkt_size>   Exponential distribution.
+
+     -n  <mean> <std_dev>     Normal distribution.
+
+     -o  <mean>               Poisson distribution.
+
+     -v  <shape> <scale>      Pareto distribution.
+
+     -y  <shape> <scale>      Cauchy distribution.
+
+     -g  <shape> <scale>      Gamma distribution.
+
+     -w  <shape> <scale>      Weibull distribution.
+
+     -Fs <filename>           Read payload sizes from file.
+
+
+ Application layer options (app_opts):
+
+     -Fp <filename>        Read payload content from file.
+
+     Telnet                Emulate¹ Telnet traffic.
+
+     DNS                   Emulate¹ DNS traffic.
+
+     Quake3                Emulate¹ Quake 3 traffic.
+
+     CSa                   Emulate¹ Counterstrike traffic - active player.
+
+     CSi                   Emulate¹ Counterstrike traffic - idle player.
+
+     VoIP                  Emulate¹ Voice-over-IP traffic.
+          -x <codec>       VoIP sub-option: audio codec (default: G.711.1):
+                             - G.711.<1 or 2> (samples per pkt)
+                             - G.729.<2 or 3> (samples per pkt)
+                             - G.723.1
+          -h <protocol>    VoIP sub-option: audio transfer protocol (default: RTP).
+                             - RTP:  Real Time Protocol (default)
+                             - CRTP: Real Time Protocol with header compression
+          -VAD             VoIP sub-option: enable voice activity detection
+
+   ¹ Emulation is obtained by properly replicating packet sizes and IDTs.
+
+
+  Misc options (misc_opts):
+
+     -h | --help          Display this help and exit.
+
+     -s  <seed>           Set the seed used for generating distributions (default: random).
+
+     -poll                Use busy-wait loop for IDTs shorter than 1 msec.
+
+     -j  <0|1>            Guarantee the mean packet rate (default: 1):
+                          - 0 (disable)
+                          - 1 (enable)
+
+     -sk <serial_iface>   Raise a signal on the serial interface when sending packets.
+
+     -rk <serial_iface>   Ask ITGRecv to raise a signal on the serial interface when receiving packets.

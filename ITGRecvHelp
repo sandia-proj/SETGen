@@ -1,0 +1,31 @@
+ITGRecv version 2.8.1 (r1023)
+Compile-time options: sctp dccp bursty multiport
+
+ITGRecv - Receiver component of D-ITG platform
+
+ Synopsis
+
+    ./ITGRecv [options]
+
+ Options
+
+    -a <bind_address>        Bind data channels to a specific address.
+
+    -i <interface>           Bind data channels to a specific network interface.
+
+    -Si <interface>          Bind signaling channels to a specific network interface.
+
+    -Sp <port>               Signaling channel port number (default: 9000).
+
+    -l [logfile]             Enable logging to file (default filename: /tmp/ITGRecv.log).
+
+    -L                       Enable remote logging to a remote ITGLog server.
+       [a:<address>]         ITGLog server address (default: 127.0.0.1).
+       [p:<port>]            ITGLog server signaling port (default: 9001).
+       [P:<protocol>]        ITGLog server transport protocol (default: UDP).
+
+    -q <log_buffer_size>     Number of packets to push to the log at once (default: 50).
+
+    -H <ITGSend_address>     Enable "Passive Mode" toward the specified ITGSend instance.
+
+    -n <num_pkt>             Number of outgoing packets used for UDP NAT traversal.

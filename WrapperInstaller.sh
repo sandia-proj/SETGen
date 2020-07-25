@@ -4,15 +4,62 @@ if [ "$EUID" -ne 0 ]
 then echo "Please run as root"
 	exit
 fi
+
+echo
+echo "UPDATING"
+echo
+
 apt update
+
+echo
+echo "INSTALLING ARIA2C"
+echo
 echo "y" | apt install aria2
+
+echo
+echo "INSTALLING GCC"
+echo
 echo "y" | apt-get install build-essential
-echo "y" | apt-get install python3
+
+
+echo
+echo "INSTALLING PYTHON-PIP"
+echo
 echo "y" | apt-get install python3-pip
-pip3 install psutil
-apt install net-tools
-apt-get install tcpreplay
-apt install d-itg
+
+echo
+echo "INSTALLING PSUTIL"
+echo
+echo "y" | pip3 install psutil
+
+echo
+echo "INSTALLING NET-TOOLS"
+echo
+echo "y" | apt install net-tools
+
+echo
+echo "INSTALLING TCPREPLAY"
+echo
+echo "y" | apt-get install tcpreplay
+
+echo
+echo "INSTALLING D-ITG"
+echo
+echo "y" | apt install d-itg
+
+echo
+echo "INSTALLING GIT"
+echo
+echo "y" | apt install git
+
+echo
+echo "INSTALLING TMUX"
+echo
+echo "y" | apt-get install tmux
+
+rm -rf NetworkWrapper
+git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/NetworkWrapper.git
+
 #aria2c -x10 http://traffic.comics.unina.it/software/ITG/codice/D-ITG-2.8.1-r1023-src.zip
 #unzip D-ITG-2.8.1-r1023-src.zip
 #rm D-ITG-2.8.1-r1023-src.zip
