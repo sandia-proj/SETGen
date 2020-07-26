@@ -652,7 +652,7 @@ function case9ba() {
             tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface\" Enter
             " > NTGStart.sh
 
-        # Copy the script to ehte VM
+        # Copy the script to the VM
 
         sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStart.sh $USERNAME@$HOST:
 
@@ -1847,6 +1847,8 @@ function case9cd() {
   fi
 }
 
+
+
 # Function that handles Cross-VM Traffic Generation
 
 function case9c() {
@@ -1885,7 +1887,134 @@ function case9c() {
   fi
 }
 
-# Function that deals with Traffic Generation
+# Function that deals with Replaying PCAP Files in a VM
+
+function case9d() {
+
+  # Prompt for VM's IP address
+  echo "Please enter the VM's IP address where you would like to replay PCAP file:"
+  read ip
+
+  #Re-prompt until valid input
+  while ! [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered! Please try again."
+    echo
+    echo "Please enter the VM's IP address where you would like to generate traffic using D-ITG:"
+    read ip
+  done
+  
+  # Get State of VM
+  state=$(minimega -e vm info | grep $ip | awk '{print $7}')
+
+  # Check if VM Exists or not
+  if [[ $state == "" ]]
+  then
+    echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
+
+  # If not RUNNING, exit to main menu
+  elif [[ $state != "RUNNING" ]]
+  then
+    echo -e "${RED}The VM is not Running!${NC} Exiting to main menu..."
+
+  else
+    
+    # Check if VM already generating traffic or replaying
+    val=$(cat temp | grep $ip | awk '{print $9}')
+    if [[ "$val" != "N/A" ]]; then
+      echo "The VM is already generating traffic/replaying PCAP file. Exiting to main menu..."
+      return
+    fi 
+
+    # Prompt for Username
+    echo "Please enter the VM's username:"
+    read username
+
+    # If Username empty, re-prompt
+    while [[ -z "$username" ]]; do
+      echo "Username can't be empty! Please try again."
+      echo
+      echo "Please enter the VM's username:"
+      read username
+    done
+
+    # Prompt for Password
+    echo "Please enter the VM's password:"
+    read password
+
+    # If Password empty, re-prompt
+    while [[ -z "$password" ]]; do
+      echo "Password can't be empty! Please try again."
+      echo
+      echo "Please enter the VM's password:"
+      read password
+    done
+
+    # Check SSH connection
+    sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "exit"
+
+    # If SSH invalid, exit to main menu
+    if ! [[ $? -eq 0 ]]; then
+      echo -e "${RED}Invalid Username/Password entered for${NC} $ip. Exiting to main menu..."
+      return
+    fi
+
+    # Prompt for path to PCAP
+    echo "Please enter the path to PCAP file:"
+    read path
+
+    # Re-prompt
+    while ! [[ -f $path ]]; do
+      echo "Inavlid File. Please try again!"
+      echo
+      echo "Please enter the path to PCAP file:"
+      read path
+    done
+      
+    echo "Copying the PCAP file to $ip..."
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $path $username@$ip:
+
+    # Print the interfaces and prompt
+    echo "The VM has the following network interfaces:"
+    echo
+    sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "ifconfig"
+    echo
+    echo "Please enter the interface: "
+    read interface
+
+    # If Interface empty, re-prompt
+    while [[ -z "$interface" ]]; do
+      echo "Password can't be empty! Please try again."
+      echo
+      echo "Please enter the interface: "
+      read interface
+    done
+
+    # Build the script
+    scriptname=$(basename $path)
+    echo "#!/bin/bash
+        tmux new-session -d -s ReplayPCAP \; send-keys \"python3 /home/$username/NetworkWrapper/wrap.py $interface --replay /home/$username/$scriptname \" Enter
+        " > ReplayPCAP.sh
+
+    # Copy the script to the VM
+
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ReplayPCAP.sh $username@$ip:
+
+    echo "Replaying PCAP file in $ip"
+    SCRIPT="chmod +x ReplayPCAP.sh; echo $password | sudo -S ./ReplayPCAP.sh"
+    sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
+
+    # Update the temp file
+    sed -i "/\b${ip}\b/d" temp
+    str=$ip
+    str+="		|		---		|		---		|		$interface		|   ReplayPCAP"
+    echo $str >> temp
+
+    echo "Started"
+  fi
+
+}
+
+# Function that deals with Traffic Generation 
 
 function case9() {
 
@@ -1896,7 +2025,8 @@ function case9() {
   echo "1- Network Traffic Generation Status"
   echo "2- VM Network Traffic Generation"
   echo "3- Cross-VM Network Traffic Generation"
-  echo "4- Exit to main menu"
+  echo "4- Replay PCAP file in a VM"
+  echo "5- Exit to main menu"
   echo "--------------------------------------"
   echo "Please enter your choice:"
   echo -n "---> "
@@ -1911,6 +2041,9 @@ function case9() {
   then
     case9c
   elif [[ $choice == 4 ]]
+  then
+    case9d
+  elif [[ $choice == 5 ]]
   then
     echo "Exiting to main menu..."
     return

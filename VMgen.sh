@@ -216,5 +216,5 @@ echo "Starting the VMs..."
 	for (( i=1; i <= $numOfVMs; i++ ))
 	do
           minimega -e vm start vm$i
-        done
+    done
 echo "The VMs have started. Please install the ISOs and proceed to the next step!"
