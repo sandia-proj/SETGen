@@ -54,7 +54,7 @@ then
   then 
     echo 
     echo "The number of Usernames and Passwords are mismatched. Please verify the files."
-    echo "Exiting..."
+    echo "Exiting to main menu..."
     exit
   fi
   for (( i=1; i <= $numU; i++ ))
@@ -78,7 +78,7 @@ then
     then 
       sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -t -l ${USERNAME} ${HOST} "${SCRIPT}"
     else
-      echo "Invalid Username/Password. Exiting..."
+      echo "Invalid Username/Password. Exiting to main menu..."
       exit
     fi
   done
@@ -105,7 +105,8 @@ then
     then
       echo
     else
-      echo "Invalid Username/Password for $HOST"
+      echo "Invalid Username/Password for $HOST. Exiting to main menu..."
+      exit
     fi
   done
   exit
@@ -129,12 +130,13 @@ then
     scriptname=$(basename $3)
     USERNAME=$(echo vm$i)
     SCRIPT="chmod +x $scriptname; echo $USERNAME | sudo -S ./$scriptname"
-    sshpass -p "$USERNAME" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  $3 $USERNAME@$HOST:
+    sshpass -p "$USERNAME" scp  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  $3 $USERNAME@$HOST:
     if [[ $? -eq 0 ]]
     then
-      sshpass -p "$USERNAME" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+      sshpass -p "$USERNAME" ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
     else
-      echo "Invalid Username/Password for $HOST"
+      echo "Invalid Username/Password for $HOST. Exiting to main menu..."
+      exit
     fi
   done
   exit
@@ -171,7 +173,8 @@ then
     then
       echo
     else
-      echo "Invalid Username/Password for $HOST"
+      echo "Invalid Username/Password for $HOST. Exiting to main menu..."
+      exit
     fi
   done
   exit
@@ -180,8 +183,8 @@ fi
 
 if [[ $# == 4 && $1 == "-run" ]]
 then
-  numU=$(wc -l < $1)
-  numP=$(wc -l < $2)
+  numU=$(wc -l < $3)
+  numP=$(wc -l < $4)
   if [[ $numU != $numP ]]
   then 
     echo 
@@ -203,15 +206,19 @@ then
     echo "Running the script in $HOST"
     echo
     scriptname=$(basename $2)
-    USERNAME=$(cat $1 | awk 'NR=='$i'{print $1}')
-    PASSWORD=$(cat $2 | awk 'NR=='$i'{print $1}')
+    echo $scriptname
+    USERNAME=$(cat $3 | awk 'NR=='$i'{print $1}')
+    PASSWORD=$(cat $4 | awk 'NR=='$i'{print $1}')
+    echo $USERNAME
+    echo $PASSWORD
     SCRIPT="chmod +x $scriptname; echo $PASSWORD | sudo -S ./$scriptname"
     sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  $2 $USERNAME@$HOST:
     if [[ $? -eq 0 ]]
     then 
       sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -t -l ${USERNAME} ${HOST} "${SCRIPT}"
     else
-      echo "Invalid Username/Password for $HOST"
+      echo "Invalid Username/Password for $HOST. Exiting to main menu..."
+      exit
     fi
   done
   exit

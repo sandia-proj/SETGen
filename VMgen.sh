@@ -1,45 +1,150 @@
 #!/bin/bash
 
+# Scipt that Deals with Creating VMs
+
+# Checking if the user is root or not
+
 if [ "$EUID" -ne 0 ]
-then echo "Please run as root"
-exit
+then 
+  echo "Please run as root"
+  exit
 fi
 
-run=$(ps -aux | grep minimega\ -nostdin | wc -l)
-	if [[ $run == 1 ]]
-	then
-	echo "Please run \"minimega -nostdin &\" and try again!"
-	exit
+run=$(ps -aux | grep minimega | wc -l)
+
+# Checking if Minimega is running or not
+
+if [[ $run == 1 ]]
+then
+  echo "Please run \"minimega\" and try again!"
+  exit
+fi
+
+# Function that will get the basic parameters
+
+function init () {
+	# Prompt for #VMs to generate
+	echo "Please specify the number of VMs to create:"
+	read numOfVMs
+
+    # Re-prompt
+	while ! [[ "$numOfVMs" =~ ^[0-9]+$ ]]; do
+      echo "Invalid input. Please try again!"
+      echo
+      echo "Please specify the number of VMs to create:"
+	  read numOfVMs
+    done
+
+	if [[ $numOfVMs -lt 1 ]]; then
+	  echo "The number of VMs can't be less than 1. Exiting to main menu..."
+	  exit
 	fi
 
-	echo "Minimega controller"
-	echo
+	echo "Please specify the number of CPUs for each VM:"
+	read numCPUs
 
-	init () {
-		echo "Please specify the number of VMs to create:"
-			read numOfVMs
-			echo "Please specify the number of CPUs for each VM:"
-			read numCPUs
-			echo "Please specify the size of memory for each VM:"
-			read mem
-			echo "Please specify the prefix name of the VHDs:"
-			read name
-			echo "Please specify the VLAN number:"
-			read vlan     
-			echo "Please specify the path to directory where the VHDs were generated, with '/' in the end"
-			read path
-			echo "Please specify the path to the iso:"
-			read isopath
-			cd $path
-			int=$(ip route | grep default | sed -e "s/^.*dev.//" -e "s/.proto.*//")
-			echo "The detected interface is $int. Is this correct? Y/N"
-			read ans
-			if [[ $ans == "N" ]]
-				then
-					echo "Please specify the interface:"
-					read int
-					fi
-	}
+    # Re-prompt
+    while ! [[ "$numCPUs" =~ ^[0-9]+$ ]]; do
+      echo "Invalid input. Please try again!"
+      echo
+      echo "Please specify the number of CPUs for each VM:"
+	  read numCPUs
+    done
+
+	if [[ $numCPUs -lt 1 ]]; then
+	  echo "The number of CPUs can't be less than 1. Exiting to main menu..."
+	  exit
+	fi
+
+	echo "Please specify the size of memory for each VM:"
+	read mem
+
+	# Re-prompt
+    while ! [[ "$mem" =~ ^[0-9]+$ ]]; do
+      echo "Invalid input. Please try again!"
+      echo
+      echo "Please specify the size of memory for each VM:"
+	  read mem
+    done
+
+	if [[ $mem -lt 1024 ]]; then
+	  echo "The amount of memory can't be less than 1024. Exiting to main menu..."
+	  exit
+	fi
+
+	echo "Please specify the prefix name of the VHDs:"
+	read name
+
+    # Re-prompt
+    while [[ -z $name ]]; do
+      echo "The prefix can't be empty. Please try again!"
+      echo
+      echo "Please specify the prefix name of the VHDs:"
+	  read name
+	done
+
+    echo "Please specify the path to directory where the VHDs were generated:"
+	read path
+
+    # Re-prompt
+    while ! [[ -d $path ]]; do
+      echo "Invalid directory. Please try again!"
+      echo
+      echo "Please specify the path to directory where the VHDs were generated:"
+      read path
+    done
+ 
+    # Get the number of VHDs with the prefix
+	count=$(ls $path | grep "$name[0-9]*.img" | wc -l)
+
+    if [[ $count -lt $numOfVMs ]]; then
+      echo "There are not many VHD(s) to run $numOfVMs VMs!"
+      echo
+      sleep 0.5
+      echo "Exiting to main menu..."
+      exit
+    fi
+
+	echo "Please specify the VLAN number:"
+	read vlan
+    
+    # Re-prompt
+    while ! [[ "$vlan" =~ ^[0-9]+$ ]]; do
+      echo "Invalid input. Please try again!"
+      echo
+      echo "Please specify the VLAN number:"
+	  read vlan
+    done
+
+    if [[ $vlan -lt 1 || $vlan -gt 4094 ]]; then
+	  echo "The VLAN range is 1-4094. Exiting to main menu..."
+	  exit
+	fi
+	
+	echo "Please specify the path to the iso file:"
+	read isopath
+
+	while ! [[ -f $isopath ]]; do
+	  echo "Invalid input. Please try again!"
+      echo
+      echo "Please specify the path to the iso file:"
+	  read isopath
+    done
+
+	cd $path
+	path=$(pwd)
+
+    # Prompt for interface
+
+	int=$(ip route | grep default | sed -e "s/^.*dev.//" -e "s/.proto.*//")
+	echo "The detected interface is $int. Is this correct? Y/N"
+	read ans
+	if [[ $ans == "N" ]]
+	then
+	    echo "Please specify the interface:"
+		read int
+	fi
+}
 init
 print_config() {
 	echo
@@ -77,9 +182,10 @@ pwd=$(pwd)
 	  minimega -e vm config cdrom $isopath
 	  minimega -e vm config net $vlan
 	  minimega -e vm config vcpus $numCPUs
-          diskpath=$(echo $path$name$i.img)
+          diskpath=$(echo $path/$name$i.img)
 	  minimega -e vm config disk $diskpath
 	  minimega -e vm launch kvm vm$i
+          echo $diskpath
 	done
 
 echo
