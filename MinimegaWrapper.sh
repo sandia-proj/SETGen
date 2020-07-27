@@ -9,7 +9,6 @@ GREEN=$'\e[0;32m'
 NC='\033[0m'
 
 
-clear
 echo
 echo "------------------------------------------------------------------"
 echo -e "---------------------- ${CYAN}MINIMEGA WRAPPER${NC} --------------------------"
@@ -118,7 +117,7 @@ function case6() {
   echo "----------------------------------------------------------"
   echo "1- Run with default username/password i.e. vm<no.>/vm<no.>"
   echo "2- Provide username file and password file"
-  echo "3- Exit to Main menu"
+  echo "3- Exit to main menu"
   echo "----------------------------------------------------------"
   echo "Please enter your choice:"
   echo -n "---> "
@@ -230,7 +229,7 @@ function case7a() {
   state=$(minimega -e vm info | grep $ip | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
 
@@ -249,7 +248,7 @@ function case7a() {
     then
       echo -e "${GREEN}Copying finished.${NC} Exiting to main menu..."
     else
-      echo -e "${RED}Invalid Username/Password.${NC} Exiting to main menu"
+      echo -e "${RED}Invalid Username/Password.${NC} Exiting to main menu..."
     fi
   fi
 }
@@ -278,7 +277,7 @@ function case7b() {
   while ! [[ -f $path ]]; do
       echo "This is an invalid file/a directory. Please try again!"
       echo
-      echo "Please enter the path to file containing the Username of the VM(s)"
+      echo "Please specify the path to the file you wish to copy:"
       read path
   done
 
@@ -346,7 +345,7 @@ function case7() {
   echo "-------------------------------------"
   echo "1- Copy the file to a specific VM"
   echo "2- Copy the file to all running VM(s)"
-  echo "3- Exit to Main Menu"
+  echo "3- Exit to main menu"
   echo "-------------------------------------"
   echo "Please enter your choice:"
   echo -n "---> "
@@ -425,7 +424,7 @@ function case8a() {
 
   # Check if VM exists
 
-  if [[  $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo "Such VM doesn't exist! Exiting to main menu..."
 
@@ -437,14 +436,12 @@ function case8a() {
   
   else
 
-    # Run the script
+    # Extracing the script name from the path
+    scriptname=$(basename $path)
 
+    # Run the script
     echo "Running the script in $ip..."
     sshpass -p "$passwd" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $path $uname@$ip:
-
-    # Extracing the script name from the path
-
-    scriptname=$(basename $path)
 
     # Check if Authentication success
 
@@ -455,7 +452,7 @@ function case8a() {
       sshpass -p "$passwd" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${uname} ${ip} "${SCRIPT}"
       echo "Done. Exiting to main menu..."
     else
-      echo "${RED}Invalid Username/Password.${NC} Exiting to main menu"
+      echo -e "${RED}Invalid Username/Password.${NC} Exiting to main menu..."
     fi
   fi
 }
@@ -475,8 +472,18 @@ function case8b() {
   echo "Please enter your choice:"
   echo -n "---> "
   read choice
+
+  # Prompt for Script
   echo "Please specify the path to the script you wish to run:"
   read path
+
+  # Re-prompt
+  while ! [[ -f $path ]]; do
+      echo "This is a directory/invalid file. Please try again!"
+      echo
+      echo "Please specify the path to the script you wish to run:"
+      read path 
+  done
 
   # Count the number of VMs 
   count=$(minimega -e vm info | wc -l)
@@ -495,7 +502,7 @@ function case8b() {
 
     
     # Re-prompt
-    while [[ -z $Upath ]]; do
+    while ! [[ -f $Upath ]]; do
       echo "This is a directory/invalid file. Please try again!"
       echo
       echo "Please enter the path to file containing the Username of the VM(s)"
@@ -506,7 +513,7 @@ function case8b() {
     read Ppath
 
    # Re-prompt
-    while [[ -z $Ppath ]]; do
+    while ! [[ -f $Ppath ]]; do
       echo "This is a directory/invalid file. Please try again!"
       echo
       echo "Please enter the path to file containing the Password of the VM(s)"
@@ -580,7 +587,7 @@ function case9ba() {
   state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
   
   # Check if VM exists
-  if [[ $state == "" ]]
+  if [[ "$state" == ""  ]]
   then
     echo "Such VM doesn't exist! Exiting to main menu..."
 
@@ -697,7 +704,7 @@ function case9bb() {
   state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
   
   # Check if VM exists
-  if [[ $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo "Such VM doesn't exist! Exiting to main menu..."
 
@@ -747,23 +754,6 @@ function case9bb() {
       # If SSH invalid, exit to main menu
       if [[ $? -eq 0 ]]
       then
-       
-        # Print the interfaces and prompt
-        echo "The VM has the following network interfaces:"
-        echo
-        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "ifconfig"
-        echo
-        echo "Please enter the interface: "
-        read interface
-
-        # If Interface empty, re-prompt
-        while [[ -z "$interface" ]]; do
-          echo "Password can't be empty! Please try again."
-          echo
-          echo "Please enter the interface: "
-          read interface
-        done
-
         # Build the script
 
         echo "#!/bin/bash
@@ -784,7 +774,7 @@ function case9bb() {
         str+="		|		N/A		|		N/A		|		N/A		|   N/A"
         echo $str >> temp
 
-        echo "Started"
+        echo "Stopped"
       else
         echo -e "${RED}Invalid Username/Password for${NC} $HOST. Exiting to main menu..."
         return
@@ -817,7 +807,7 @@ function case9bca() {
   state=$(minimega -e vm info | grep $ip | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
 
@@ -888,7 +878,7 @@ function case9bca() {
       tmux kill-session -t ITGRecv
     fi
 
-    a=$(cat out | grep 'for more information' out | wc -l)
+    a=$(cat out | grep 'for help' out | wc -l)
 
     if [[ $a -gt 0 ]]; then
       echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
@@ -904,7 +894,7 @@ function case9bca() {
     echo "Starting ITGRecv in $ip"
     SCRIPT="chmod +x ITGRecvStart.sh; echo $password | sudo -S ./ITGRecvStart.sh;  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
-
+    echo
     echo "Please enter the ITGSend command" 
     read ITGSendCommand
 
@@ -924,7 +914,7 @@ function case9bca() {
       tmux kill-session -t ITGSend
     fi
 
-    a=$(cat out | grep 'for more information' out | wc -l)
+    a=$(cat out | grep 'for help' out | wc -l)
 
     if [[ $a -gt 0 ]]; then
       echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
@@ -973,7 +963,7 @@ function case9bd() {
   state=$(minimega -e vm info | grep $ip | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
 
@@ -1166,7 +1156,8 @@ function case9ca() {
   # Check if VMs Exist
   state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
   state1=$(minimega -e vm info | grep $DEST | awk '{print $7}')
-  if [[ "$state" != "RUNNING" || "$state1" != "RUNNING" ]]
+
+  if ! [[ "$state" == "RUNNING" && "$state1" == "RUNNING" ]]
   then
     echo "One or more VM(s) don't exist/aren't running. Exiting to main menu..."
   else
@@ -1282,7 +1273,7 @@ function case9ca() {
         echo -e "${RED}Invalid Username/Password for${NC} one of the VMs. Exiting to main menu..."
       fi
     else
-      echo "The VM is already generating traffic. Exiting to main menu..."
+      echo "One or both VM(s) is/are already generating traffic. Exiting to main menu..."
     fi
   fi
 }
@@ -1488,7 +1479,7 @@ function case9cc() {
   state1=$(minimega -e vm info | grep $dest | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" || $state1 == "" ]]
+  if [[ "$state" == ""  || "$state1" == "" ]]
   then
     echo -e "${RED}One or more VMs don't exist!${NC} Exiting to main menu..."
 
@@ -1616,7 +1607,7 @@ function case9cc() {
     echo "Starting ITGRecv in $host"
     SCRIPT="chmod +x ITGRecvStart.sh; echo $passwordD | sudo -S ./ITGRecvStart.sh  "
     sshpass -p "$passwordD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${usernameD} ${dest} "${SCRIPT}"
-
+    echo
     echo "Please enter the ITGSend command to start in $host" 
     read ITGSendCommand
 
@@ -1637,7 +1628,7 @@ function case9cc() {
       tmux kill-session -t ITGSend
     fi
 
-    a=$(cat out | grep 'for more information' out | wc -l)
+    a=$(cat out | grep 'for help' out | wc -l)
 
     if [[ $a -gt 0 ]]; then
       echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
@@ -1699,7 +1690,7 @@ function case9cd() {
   state1=$(minimega -e vm info | grep $dest | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" || $state1 == "" ]]
+  if [[ "$state" == "" || "$state1" == "" ]]
   then
     echo -e "${RED}One or more VMs don't exist!${NC} Exiting to main menu..."
 
@@ -1709,7 +1700,6 @@ function case9cd() {
     echo -e "${RED}One or more VM(s) is/are not Running!${NC} Exiting to main menu..."
 
   else
-    
     # Check if VM  generating traffic
     val=$(cat temp | grep $host | awk '{print $9}')
     if [[ "$val" != "D-ITG" ]]; then
@@ -1907,7 +1897,7 @@ function case9d() {
   state=$(minimega -e vm info | grep $ip | awk '{print $7}')
 
   # Check if VM Exists or not
-  if [[ $state == "" ]]
+  if [[ "$state" == "" ]]
   then
     echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
 

@@ -130,10 +130,10 @@ then
     scriptname=$(basename $3)
     USERNAME=$(echo vm$i)
     SCRIPT="chmod +x $scriptname; echo $USERNAME | sudo -S ./$scriptname"
-    sshpass -p "$USERNAME" scp  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  $3 $USERNAME@$HOST:
+    sshpass -p "$USERNAME" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  $3 $USERNAME@$HOST:
     if [[ $? -eq 0 ]]
     then
-      sshpass -p "$USERNAME" ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+      sshpass -p "$USERNAME" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
     else
       echo "Invalid Username/Password for $HOST. Exiting to main menu..."
       exit
