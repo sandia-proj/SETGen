@@ -1,11 +1,10 @@
 #!/bin/bash
 
-#Colors
-RED='\033[0;31m'
+#Color
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
-PURPLE='\033[0;35m'
 GREEN=$'\e[0;32m'
+RED='\033[0;31m'
 NC='\033[0m'
 
 
@@ -600,7 +599,7 @@ function case9ba() {
   else
    
     # Check if VM generating traffic
-    val=$(cat temp | grep $HOST | awk '{print $9}')
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
 
     if [[ "$val" == "N/A" ]]
     then
@@ -667,11 +666,11 @@ function case9ba() {
         SCRIPT="chmod +x NTGStart.sh; echo $PASSWORD | sudo -S ./NTGStart.sh"
         sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
 
-        # Update the temp file
-        sed -i "/\b${HOST}\b/d" temp
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
         str+="		|		$HOST		|		$HOST		|		$interface		|   Wrapper"
-        echo $str >> temp
+        echo $str >> tmp/temp
 
         echo "Started"
       else
@@ -717,9 +716,9 @@ function case9bb() {
   else
    
     # Check if VM generating traffic
-    val=$(cat temp | grep $HOST | awk '{print $9}')
-    val1=$(cat temp | grep $HOST | awk '{print $3}')
-    val2=$(cat temp | grep $HOST | awk '{print $5}')
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
+    val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
+    val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
     if [[ "$val" == "Wrapper" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
@@ -768,11 +767,11 @@ function case9bb() {
         SCRIPT="chmod +x NTGStop.sh; echo $PASSWORD | sudo -S ./NTGStop.sh"
         sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
 
-        # Update the temp file
-        sed -i "/\b${HOST}\b/d" temp
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
         str+="		|		N/A		|		N/A		|		N/A		|   N/A"
-        echo $str >> temp
+        echo $str >> tmp/temp
 
         echo "Stopped"
       else
@@ -819,7 +818,7 @@ function case9bca() {
   else
     
     # Check if VM already generating traffic
-    val=$(cat temp | grep $ip | awk '{print $9}')
+    val=$(cat tmp/temp | grep $ip | awk '{print $9}')
     if [[ "$val" != "N/A" ]]; then
       echo "The VM is already generating traffic. Exiting to main menu..."
       return
@@ -931,11 +930,11 @@ function case9bca() {
     SCRIPT="chmod +x ITGSendStart.sh; echo $password | sudo -S ./ITGSendStart.sh;  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
 
-    # Update the temp file
-    sed -i "/\b${ip}\b/d" temp
+    # Update the tmp/temp file
+    sed -i "/\b${ip}\b/d" tmp/temp
     str=$ip
     str+="	    	|	    	---	    	|   		---   		|       ---       |       D-ITG       "
-    echo $str >> temp
+    echo $str >> tmp/temp
 
     echo
     echo "Started!"
@@ -975,9 +974,9 @@ function case9bd() {
   else
     
     # Check if VM not generating traffic
-    val=$(cat temp | grep $ip | awk '{print $9}')
-    val1=$(cat temp | grep $ip | awk '{print $3}')
-    val2=$(cat temp | grep $ip | awk '{print $5}')
+    val=$(cat tmp/temp | grep $ip | awk '{print $9}')
+    val1=$(cat tmp/temp | grep $ip | awk '{print $3}')
+    val2=$(cat tmp/temp | grep $ip | awk '{print $5}')
     if ! [[ "$val" == "D-ITG" && "$val1" == "---" && "$val2" == "---" ]]; then
       echo "The VM is not generating/generating non-DITG traffic. Exiting to main menu..."
       return
@@ -1037,11 +1036,11 @@ function case9bd() {
     SCRIPT="chmod +x ITGRecvStop.sh; echo $password | sudo -S ./ITGRecvStop.sh  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
 
-    # Update the temp file
-    sed -i "/\b${ip}\b/d" temp
+    # Update the tmp/temp file
+    sed -i "/\b${ip}\b/d" tmp/temp
     str=$ip
     str+="	    	|	    	N/A	    	|   		N/A   		|       N/A       |       N/A       "
-    echo $str >> temp
+    echo $str >> tmp/temp
 
     echo
     echo "Stopped!"
@@ -1080,10 +1079,11 @@ function case9bc() {
 # Function that displays the Network Traffic generation status
 
 function case9a() {
+  echo -e "${YELLOW}=================================================================================="
+  echo -e "==========================${CYAN} VM TRAFFIC GENERATION STATUS ${YELLOW}=========================="
+  echo -e "==================================================================================${NC}"
   echo
-  echo -e "------------------------${CYAN} VM STATUS ${NC} -------------------------"
-  echo
-  cat temp
+  column -t -s ' ' tmp/temp
   echo
 }
 
@@ -1162,8 +1162,8 @@ function case9ca() {
     echo "One or more VM(s) don't exist/aren't running. Exiting to main menu..."
   else
 
-    val=$(cat temp | grep $HOST | awk '{print $9}')
-    val1=$(cat temp | grep $DEST | awk '{print $9}')
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
+    val1=$(cat tmp/temp | grep $DEST | awk '{print $9}')
 
     if [[ "$val" == "N/A" && "$val1" == "N/A" ]]
     then
@@ -1258,15 +1258,15 @@ function case9ca() {
         SCRIPT="chmod +x NTGStartH.sh; echo $H_PASSWORD | sudo -S ./NTGStartH.sh  "
         sshpass -p "$H_PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${H_USERNAME} ${HOST} "${SCRIPT}"
 
-        # Update temp file
-        sed -i "/\b${HOST}\b/d" temp
-        sed -i "/\b${DEST}\b/d" temp
+        # Update tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
+        sed -i "/\b${DEST}\b/d" tmp/temp
         str=$HOST
         str+="		|		---		|		$DEST		|       ---       |       Wrapper       "
-        echo $str >> temp
+        echo $str >> tmp/temp
         str=$DEST
         str+="		|		$HOST		|		---		|		$interface		|       Wrapper       "
-        echo $str >> temp
+        echo $str >> tmp/temp
         echo "Started"
 
       else
@@ -1317,8 +1317,8 @@ function case9cb() {
   else
     
     # Check if the VMs are generating inter-VM traffic
-    count=$(cat temp | grep $HOST | wc -l)
-    count1=$(cat temp | grep $DEST | wc -l)
+    count=$(cat tmp/temp | grep $HOST | wc -l)
+    count1=$(cat tmp/temp | grep $DEST | wc -l)
     if [[ $count != 2 || $count1 != 2 ]]
     then
       echo -e "${RED}One of the VMs is not generating or is generating single traffic.${NC} Exiting to main menu..."
@@ -1332,8 +1332,8 @@ function case9cb() {
     valid1=0
     for (( i=1; i<3; i++ ))
     do
-      val=$(cat temp | grep $HOST | awk 'NR=='$i'{print$3}')
-      val1=$(cat temp | grep $HOST | awk 'NR=='$i'{print$5}')
+      val=$(cat tmp/temp | grep $HOST | awk 'NR=='$i'{print$3}')
+      val1=$(cat tmp/temp | grep $HOST | awk 'NR=='$i'{print$5}')
       if [[ "$val" == "---" && "$val1" == $DEST ]]
       then
         valid=1
@@ -1429,13 +1429,13 @@ function case9cb() {
         sshpass -p "$D_PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${D_USERNAME} ${DEST} "${SCRIPT}"
 
         # Update the temo file
-        sed -i "/\b${HOST}\b/d" temp
+        sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
         str+="		|		N/A		|		N/A		|		N/A		|   N/A"
-        echo $str >> temp
+        echo $str >> tmp/temp
         str=$DEST
         str+="		|		N/A		|		N/A		|		N/A		|   N/A"
-        echo $str >> temp
+        echo $str >> tmp/temp
         echo "Stopped"
 
       else
@@ -1491,14 +1491,14 @@ function case9cc() {
   else
     
     # Check if VM already generating traffic
-    val=$(cat temp | grep $host | awk '{print $9}')
+    val=$(cat tmp/temp | grep $host | awk '{print $9}')
     if [[ "$val" != "N/A" ]]; then
       echo "$host is already generating traffic. Exiting to main menu..."
       return
     fi
 
     # Check if VM already generating traffic
-    val=$(cat temp | grep $dest | awk '{print $9}')
+    val=$(cat tmp/temp | grep $dest | awk '{print $9}')
     if [[ "$val" != "N/A" ]]; then
       echo "$dest is already generating traffic. Exiting to main menu..."
       return
@@ -1645,15 +1645,15 @@ function case9cc() {
     SCRIPT="chmod +x ITGSendStart.sh; echo $password | sudo -S ./ITGSendStart.sh  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${host} "${SCRIPT}"
 
-    # Update the temp file
-    sed -i "/\b${host}\b/d" temp
-    sed -i "/\b${dest}\b/d" temp
+    # Update the tmp/temp file
+    sed -i "/\b${host}\b/d" tmp/temp
+    sed -i "/\b${dest}\b/d" tmp/temp
     str=$host
     str+="		|		---		|		$dest		|       ---       |       D-ITG       "
-    echo $str >> temp
+    echo $str >> tmp/temp
     str=$dest
     str+="		|		$host		|		---		|		---		|       D-ITG       "
-    echo $str >> temp
+    echo $str >> tmp/temp
     echo "Started"
   fi
 }
@@ -1701,14 +1701,14 @@ function case9cd() {
 
   else
     # Check if VM  generating traffic
-    val=$(cat temp | grep $host | awk '{print $9}')
+    val=$(cat tmp/temp | grep $host | awk '{print $9}')
     if [[ "$val" != "D-ITG" ]]; then
       echo "$host is not generating D-ITG traffic. Exiting to main menu..."
       return
     fi
 
     # Check if VM  generating traffic
-    val=$(cat temp | grep $dest | awk '{print $9}')
+    val=$(cat tmp/temp | grep $dest | awk '{print $9}')
     if [[ "$val" != "D-ITG" ]]; then
       echo "$dest is not generating D-ITG traffic. Exiting to main menu..."
       return
@@ -1717,8 +1717,8 @@ function case9cd() {
     # Check if the VMs are generating traffic to each other or not
     for (( i=1; i<3; i++ ))
     do
-      val=$(cat temp | grep $host | awk 'NR=='$i'{print$3}')
-      val1=$(cat temp | grep $host | awk 'NR=='$i'{print$5}')
+      val=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$3}')
+      val1=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$5}')
       if [[ "$val" == "---" && "$val1" == $dest ]]
       then
         valid=1
@@ -1824,15 +1824,15 @@ function case9cd() {
     SCRIPT="chmod +x ITGRecvStop.sh; echo $passwordD | sudo -S ./ITGRecvStop.sh  "
     sshpass -p "$passwordD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${usernameD} ${dest} "${SCRIPT}"
 
-    # Update the temp file
-    sed -i "/\b${host}\b/d" temp
-    sed -i "/\b${dest}\b/d" temp
+    # Update the tmp/temp file
+    sed -i "/\b${host}\b/d" tmp/temp
+    sed -i "/\b${dest}\b/d" tmp/temp
     str=$host
     str+="		|	  	N/A	  	|		  N/A	  	|     N/A     |       N/A       "
-    echo $str >> temp
+    echo $str >> tmp/temp
     str=$dest
     str+="		|	  	N/A	  	|	  	N/A 		|	  	N/A		  |       N/A       "
-    echo $str >> temp
+    echo $str >> tmp/temp
     echo "Stopped"
   fi
 }
@@ -1877,7 +1877,7 @@ function case9c() {
   fi
 }
 
-# Function that deals with Replaying PCAP Files in a VM
+# Function that deals with starting Replaying PCAP Files in a VM
 
 function case9d() {
 
@@ -1909,7 +1909,7 @@ function case9d() {
   else
     
     # Check if VM already generating traffic or replaying
-    val=$(cat temp | grep $ip | awk '{print $9}')
+    val=$(cat tmp/temp | grep $ip | awk '{print $9}')
     if [[ "$val" != "N/A" ]]; then
       echo "The VM is already generating traffic/replaying PCAP file. Exiting to main menu..."
       return
@@ -1973,7 +1973,7 @@ function case9d() {
 
     # If Interface empty, re-prompt
     while [[ -z "$interface" ]]; do
-      echo "Password can't be empty! Please try again."
+      echo "Interface can't be empty! Please try again."
       echo
       echo "Please enter the interface: "
       read interface
@@ -1982,7 +1982,7 @@ function case9d() {
     # Build the script
     scriptname=$(basename $path)
     echo "#!/bin/bash
-        tmux new-session -d -s ReplayPCAP \; send-keys \"python3 /home/$username/NetworkWrapper/wrap.py $interface --replay /home/$username/$scriptname \" Enter
+        tmux new-session -d -s ReplayPCAP \; send-keys \"python3 /home/$username/NetworkWrapper/wrap.py $interface --replay $scriptname \" Enter
         " > ReplayPCAP.sh
 
     # Copy the script to the VM
@@ -1993,13 +1993,108 @@ function case9d() {
     SCRIPT="chmod +x ReplayPCAP.sh; echo $password | sudo -S ./ReplayPCAP.sh"
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
 
-    # Update the temp file
-    sed -i "/\b${ip}\b/d" temp
+    # Update the tmp/temp file
+    sed -i "/\b${ip}\b/d" tmp/temp
     str=$ip
     str+="		|		---		|		---		|		$interface		|   ReplayPCAP"
-    echo $str >> temp
+    echo $str >> tmp/temp
 
     echo "Started"
+  fi
+
+}
+
+# Function that deals with starting Replaying PCAP Files in a VM
+
+function case9e() {
+
+  # Prompt for VM's IP address
+  echo "Please enter the VM's IP address where you would like to stop replaying PCAP file:"
+  read ip
+
+  #Re-prompt until valid input
+  while ! [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered! Please try again."
+    echo
+    echo "Please enter the VM's IP address where you would like to generate traffic using D-ITG:"
+    read ip
+  done
+  
+  # Get State of VM
+  state=$(minimega -e vm info | grep $ip | awk '{print $7}')
+
+  # Check if VM Exists or not
+  if [[ "$state" == "" ]]
+  then
+    echo -e "${RED}Such VM doesn't exist!${NC} Exiting to main menu..."
+
+  # If not RUNNING, exit to main menu
+  elif [[ $state != "RUNNING" ]]
+  then
+    echo -e "${RED}The VM is not Running!${NC} Exiting to main menu..."
+
+  else
+    
+    # Check if VM already generating traffic or replaying
+    val=$(cat tmp/temp | grep $ip | awk '{print $9}')
+    if [[ "$val" != "ReplayPCAP" ]]; then
+      echo "The VM is not replaying PCAP file. Exiting to main menu..."
+      return
+    fi 
+
+    # Prompt for Username
+    echo "Please enter the VM's username:"
+    read username
+
+    # If Username empty, re-prompt
+    while [[ -z "$username" ]]; do
+      echo "Username can't be empty! Please try again."
+      echo
+      echo "Please enter the VM's username:"
+      read username
+    done
+
+    # Prompt for Password
+    echo "Please enter the VM's password:"
+    read password
+
+    # If Password empty, re-prompt
+    while [[ -z "$password" ]]; do
+      echo "Password can't be empty! Please try again."
+      echo
+      echo "Please enter the VM's password:"
+      read password
+    done
+
+    # Check SSH connection
+    sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "exit"
+
+    # If SSH invalid, exit to main menu
+    if ! [[ $? -eq 0 ]]; then
+      echo -e "${RED}Invalid Username/Password entered for${NC} $ip. Exiting to main menu..."
+      return
+    fi
+
+    # Build the script
+    echo "#!/bin/bash
+        tmux kill-session -t ReplayPCAP
+        " > ReplayPCAPS.sh
+
+    # Copy the script to the VM
+
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ReplayPCAPS.sh $username@$ip:
+
+    echo "Stopping replay in $ip"
+    SCRIPT="chmod +x ReplayPCAPS.sh; echo $password | sudo -S ./ReplayPCAPS.sh"
+    sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
+
+    # Update the tmp/temp file
+    sed -i "/\b${ip}\b/d" tmp/temp
+    str=$ip
+    str+="		|	N/A	|		N/A		|		N/A		|   N/A"
+    echo $str >> tmp/temp
+
+    echo "Stopped"
   fi
 
 }
@@ -2015,8 +2110,9 @@ function case9() {
   echo "1- Network Traffic Generation Status"
   echo "2- VM Network Traffic Generation"
   echo "3- Cross-VM Network Traffic Generation"
-  echo "4- Replay PCAP file in a VM"
-  echo "5- Exit to main menu"
+  echo "4- Start PCAP file replay in a VM"
+  echo "5- Stop PCAP file replay in a VM"
+  echo "6- Exit to main menu"
   echo "--------------------------------------"
   echo "Please enter your choice:"
   echo -n "---> "
@@ -2034,6 +2130,9 @@ function case9() {
   then
     case9d
   elif [[ $choice == 5 ]]
+  then
+    case9e
+  elif [[ $choice == 6 ]]
   then
     echo "Exiting to main menu..."
     return
@@ -2080,9 +2179,9 @@ function case10() {
         fi
       done
 
-      # If temp file was ever created, then remove temp file
-      if [[ -f temp ]]; then
-        rm temp
+      # If tmp/temp file was ever created, then remove tmp/temp file
+      if [[ -f tmp/temp ]]; then
+        rm tmp/temp
       fi
     fi
   fi
@@ -2113,17 +2212,22 @@ function case11() {
   fi
 }
 
-# Initialize the Temp File that will help in Traffic Generation
+# Initialize the tmp/temp File that will help in Traffic Generation
 
 function init_status() {
-  if [ ! -f temp ]
+
+  if ! [[ -d tmp ]]; then
+    mkdir tmp
+  fi
+
+  if [ ! -f tmp/temp ]
   then
     count=$(minimega -e vm info | wc -l)
     bar=$(minimega -e vm info | awk '{print $2}')
-    str="			IP		|		SRC		|		DEST		|		INTERFACE		|		METHOD		"
-    echo $str >> temp
-    echo >> temp
-    echo >> temp
+    str="   IP    |   SRC   |   DEST    |   INTERFACE   |   METHOD    "
+    echo -e "$str" >> tmp/temp
+    echo >> tmp/temp
+    echo >> tmp/temp
     for (( i=1; i < $count; i++ ))
     do
       let row=$i+1
@@ -2134,16 +2238,16 @@ function init_status() {
       fi 
       str="	"
       str+=$(minimega -e vm info | awk 'NR=='$row'{print $27}')
-      str+="		|		N/A		|		N/A		|		N/A		|   N/A"
-      echo $str >> temp	
+      str+="    |   N/A		|		N/A		|		N/A		|   N/A"
+      echo $str >> tmp/temp	
     done
   fi
 }
 
-function add_ip_status() {
+function update_tmp/temp() {
       str=$1
       str+="		|		N/A		|		N/A		|		N/A		"
-      echo $str >> temp
+      echo $str >> tmp/temp
 }
 
 # Check if the user is ROOT or not
@@ -2204,6 +2308,8 @@ do
     case10
   elif [[ "$input" == 11 ]]; then
     case11
+  elif [[ "$input" == "clear" || "$input" == "Clear" ]]; then
+    clear
   else
     echo -e "${RED}Invalid Option.${NC} Please try again!"
     echo
