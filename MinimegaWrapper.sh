@@ -27,7 +27,7 @@ function case0() {
 
 function case1() {
   # Calling the script that deals with generating VHDs
-  ./VHDCreator.sh
+  ./scripts/VHDCreator.sh
   
   # Reverting to the current directory
   cd $dir
@@ -37,7 +37,7 @@ function case1() {
 
 function case2() { 
   # Calling the script that deals with deleting VHDs
-  ./VHDDestroyer.sh
+  ./scripts/VHDDestroyer.sh
 
   # Reverting to the current directory
   cd $dir
@@ -84,7 +84,7 @@ function case4() {
 
 function case5() {
   # Calling script that deals with the automated generation of VMs
-  ./VMgen.sh
+  ./scripts/VMgen.sh
 
   # Reverting to the current directory
   cd $dir
@@ -125,7 +125,7 @@ function case6() {
   # If Default Username-Password, then calling the script directly
   if [[ $choice == 1 ]]
   then
-    ./VMconnect.sh $count
+    ./scripts/VMconnect.sh $count
   
   # Supplying the Username and Password file
   elif [[ $choice == 2 ]]
@@ -156,7 +156,7 @@ function case6() {
     done
 
     # Calling the script with the arguments  
-    ./VMconnect.sh $Upath $Ppath
+    ./scripts/VMconnect.sh $Upath $Ppath
  
   # Exit to main menu
   elif [[ $choice == 3 ]]
@@ -287,7 +287,7 @@ function case7b() {
   # Use Deafault Username|Password
   if [[ $choice == 1 ]]
   then
-    ./VMconnect.sh $count -copy $path
+    ./scripts/VMconnect.sh $count -copy $path
 
   # Get Username and Password File
   elif [[ $choice == 2 ]]
@@ -319,7 +319,7 @@ function case7b() {
     fi
 
     # Calling the script with the arguments
-    ./VMconnect.sh -copy $path $Upath $Ppath
+    ./scripts/VMconnect.sh -copy $path $Upath $Ppath
 
   # Exit
   elif [[ $choice == 3 ]]
@@ -491,7 +491,7 @@ function case8b() {
   # Call the script with appropriate args
   if [[ $choice == 1 ]]
   then 
-    ./VMconnect.sh $count -run $path
+    ./scripts/VMconnect.sh $count -run $path
   elif [[ $choice == 2 ]]
   then
 
@@ -520,7 +520,7 @@ function case8b() {
     done
 
     # Call VMconnect Script
-    ./VMconnect.sh -run $path $Upath $Ppath
+    ./scripts/VMconnect.sh -run $path $Upath $Ppath
 
   elif [[ $choice == 3 ]]
   then
@@ -656,11 +656,11 @@ function case9ba() {
         echo "#!/bin/bash
             cd NetworkWrapper/
             tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface\" Enter
-            " > NTGStart.sh
+            " > tmp/NTGStart.sh
 
         # Copy the script to the VM
 
-        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStart.sh $USERNAME@$HOST:
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStart.sh $USERNAME@$HOST:
 
         echo "Starting Network Traffic Generation in $HOST"
         SCRIPT="chmod +x NTGStart.sh; echo $PASSWORD | sudo -S ./NTGStart.sh"
@@ -757,11 +757,11 @@ function case9bb() {
 
         echo "#!/bin/bash
             tmux kill-session -t TrafficGen
-            " > NTGStop.sh
+            " > tmp/NTGStop.sh
 
         # Copy the script to ehte VM
 
-        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStop.sh $USERNAME@$HOST:
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStop.sh $USERNAME@$HOST:
 
         echo "Stopping Network Traffic Generation in $HOST"
         SCRIPT="chmod +x NTGStop.sh; echo $PASSWORD | sudo -S ./NTGStop.sh"
@@ -887,8 +887,8 @@ function case9bca() {
     # Build Script
     echo "#!/bin/bash
             tmux new-session -d -s ITGRecv \; send-keys \"$ITGRecvCommand \" Enter
-            " > ITGRecvStart.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGRecvStart.sh $username@$ip:
+            " > tmp/ITGRecvStart.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStart.sh $username@$ip:
 
     echo "Starting ITGRecv in $ip"
     SCRIPT="chmod +x ITGRecvStart.sh; echo $password | sudo -S ./ITGRecvStart.sh;  "
@@ -924,8 +924,8 @@ function case9bca() {
     echo "Starting ITGSend in $ip"
     echo "#!/bin/bash
             tmux new-session -d -s ITGSend \; send-keys \"$ITGSendCommand \" Enter
-            " > ITGSendStart.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGSendStart.sh $username@$ip:
+            " > tmp/ITGSendStart.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStart.sh $username@$ip:
 
     SCRIPT="chmod +x ITGSendStart.sh; echo $password | sudo -S ./ITGSendStart.sh;  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${ip} "${SCRIPT}"
@@ -1019,8 +1019,8 @@ function case9bd() {
     echo "Stopping ITGSend in $ip"
     echo "#!/bin/bash
             tmux kill-session -t ITGSend
-            " > ITGSendStop.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGSendStop.sh $username@$ip:
+            " > tmp/ITGSendStop.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStop.sh $username@$ip:
 
 
     SCRIPT="chmod +x ITGSendStop.sh; echo $password | sudo -S ./ITGSendStop.sh;  "
@@ -1029,8 +1029,8 @@ function case9bd() {
     # Stop ITGRecv
     echo "#!/bin/bash
             tmux kill-session -t ITGRecv 
-            " > ITGRecvStop.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGRecvStop.sh $username@$ip:
+            " > tmp/ITGRecvStop.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStop.sh $username@$ip:
 
     echo "Stopping ITGRecv in $ip"
     SCRIPT="chmod +x ITGRecvStop.sh; echo $password | sudo -S ./ITGRecvStop.sh  "
@@ -1066,9 +1066,9 @@ function case9bc() {
   if [[ $choice == 1 ]]; then
     case9bca
   elif [[ $choice == 2 ]]; then
-    cat ITGRecvHelp
+    cat tmp/ITGRecvHelp
   elif [[ $choice == 3 ]]; then
-    cat ITGSendHelp
+    cat tmp/ITGSendHelp
   elif [[ $choice == 4 ]]; then
     return
   else
@@ -1239,14 +1239,14 @@ function case9ca() {
         # Build the script and copy to VM
         echo "#!/bin/bash
             sudo tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$H_USERNAME/NetworkWrapper/wrap.py $interface --dest $DEST \" Enter
-            " > NTGStartH.sh
-        sshpass -p "$H_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStartH.sh $H_USERNAME@$HOST:
+            " > tmp/NTGStartH.sh
+        sshpass -p "$H_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStartH.sh $H_USERNAME@$HOST:
         
         # Build the script and copy to VM
         echo "#!/bin/bash
             tmux new-session -d -s TrafficGen \; send-keys \"ITGRecv -l Traffic.log \" Enter
-            " > NTGStartD.sh
-        sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStartD.sh $D_USERNAME@$DEST:
+            " > tmp/NTGStartD.sh
+        sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null tmp/NTGStartD.sh $D_USERNAME@$DEST:
     
         # Start the Receiver
         echo "Starting the receiver in $DEST"
@@ -1411,14 +1411,14 @@ function case9cb() {
         echo 
         echo "#!/bin/bash
             sudo tmux kill-session -t TrafficGen
-            " > NTGStopH.sh
-        sshpass -p "$H_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStopH.sh $H_USERNAME@$HOST:
+            " > tmp/NTGStopH.sh
+        sshpass -p "$H_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStopH.sh $H_USERNAME@$HOST:
         
         # Build the script and Copy to DEST VM
         echo "#!/bin/bash
             tmux kill-session -t TrafficGen
-            " > NTGStopD.sh
-        sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  NTGStopD.sh $D_USERNAME@$DEST:
+            " > tmp/NTGStopD.sh
+        sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStopD.sh $D_USERNAME@$DEST:
 
         echo "Stopping Network Traffic Generation from $HOST to $DEST"
         SCRIPT="chmod +x NTGStopH.sh; echo $H_PASSWORD | sudo -S ./NTGStop.sh  "
@@ -1601,8 +1601,8 @@ function case9cc() {
     # Start ITGRecv in Dest
     echo "#!/bin/bash
             tmux new-session -d -s ITGRecv \; send-keys \"$ITGRecvCommand \" Enter
-            " > ITGRecvStart.sh
-    sshpass -p "$passwordD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGRecvStart.sh $usernameD@$dest:
+            " > tmp/ITGRecvStart.sh
+    sshpass -p "$passwordD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStart.sh $usernameD@$dest:
 
     echo "Starting ITGRecv in $host"
     SCRIPT="chmod +x ITGRecvStart.sh; echo $passwordD | sudo -S ./ITGRecvStart.sh  "
@@ -1639,8 +1639,8 @@ function case9cc() {
     echo "Starting ITGSend in $host"
     echo "#!/bin/bash
             tmux new-session -d -s ITGSend \; send-keys \"$ITGSendCommand \" Enter
-            " > ITGSendStart.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGSendStart.sh $username@$host:
+            " > tmp/ITGSendStart.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStart.sh $username@$host:
 
     SCRIPT="chmod +x ITGSendStart.sh; echo $password | sudo -S ./ITGSendStart.sh  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${host} "${SCRIPT}"
@@ -1805,8 +1805,8 @@ function case9cd() {
     echo "Stopping ITGSend in $host"
     echo "#!/bin/bash
             tmux kill-session -t ITGSend
-            " > ITGSendStop.sh
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGSendStop.sh $username@$host:
+            " > tmp/ITGSendStop.sh
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStop.sh $username@$host:
 
     SCRIPT="chmod +x ITGSendStop.sh; echo $password | sudo -S ./ITGSendStop.sh  "
     sshpass -p "$password" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${username} ${host} "${SCRIPT}"
@@ -1817,8 +1817,8 @@ function case9cd() {
     # Build Script
     echo "#!/bin/bash
             tmux kill-session -t ITGRecv
-            " > ITGRecvStop.sh
-    sshpass -p "$passwordD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ITGRecvStop.sh $usernameD@$dest:
+            " > tmp/ITGRecvStop.sh
+    sshpass -p "$passwordD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStop.sh $usernameD@$dest:
 
     # Kill the tmux process
     SCRIPT="chmod +x ITGRecvStop.sh; echo $passwordD | sudo -S ./ITGRecvStop.sh  "
@@ -1983,11 +1983,11 @@ function case9d() {
     scriptname=$(basename $path)
     echo "#!/bin/bash
         tmux new-session -d -s ReplayPCAP \; send-keys \"python3 /home/$username/NetworkWrapper/wrap.py $interface --replay $scriptname \" Enter
-        " > ReplayPCAP.sh
+        " > tmp/ReplayPCAP.sh
 
     # Copy the script to the VM
 
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ReplayPCAP.sh $username@$ip:
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ReplayPCAP.sh $username@$ip:
 
     echo "Replaying PCAP file in $ip"
     SCRIPT="chmod +x ReplayPCAP.sh; echo $password | sudo -S ./ReplayPCAP.sh"
@@ -2078,11 +2078,11 @@ function case9e() {
     # Build the script
     echo "#!/bin/bash
         tmux kill-session -t ReplayPCAP
-        " > ReplayPCAPS.sh
+        " > tmp/ReplayPCAPS.sh
 
     # Copy the script to the VM
 
-    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  ReplayPCAPS.sh $username@$ip:
+    sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ReplayPCAPS.sh $username@$ip:
 
     echo "Stopping replay in $ip"
     SCRIPT="chmod +x ReplayPCAPS.sh; echo $password | sudo -S ./ReplayPCAPS.sh"
@@ -2179,10 +2179,9 @@ function case10() {
         fi
       done
 
-      # If tmp/temp file was ever created, then remove tmp/temp file
-      if [[ -f tmp/temp ]]; then
-        rm tmp/temp
-      fi
+      # Remove all temporary files
+      rm -rf tmp/*
+
     fi
   fi
 }
@@ -2216,9 +2215,6 @@ function case11() {
 
 function init_status() {
 
-  if ! [[ -d tmp ]]; then
-    mkdir tmp
-  fi
 
   if [ ! -f tmp/temp ]
   then
@@ -2260,6 +2256,10 @@ fi
 
 # Save the current Directory
 dir=$(pwd)
+
+if ! [[ -d tmp ]]; then
+    mkdir tmp
+fi
 
 # Prompt for options
 while true
