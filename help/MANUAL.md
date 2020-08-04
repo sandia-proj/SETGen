@@ -11,4 +11,9 @@ As of now, Ubuntu is the only supported operating system.
 
 ## Prerequisites
 
+* Minimega:<br />
+
+Please ensure that Minimega is installed.
+
+
 ## Installation

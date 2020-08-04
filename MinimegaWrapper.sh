@@ -93,17 +93,28 @@ function case5() {
 # Install the required packages to all "RUNNING" VMs for Traffic Generation
 
 function case6() {
+
+  echo "Have you installed Ubuntu and the required tools in all running VMs? Y/N"
+  read ans 
+
+  if ! [[ "$ans" == "Y" || "$ans" == "y" ]]; then
+    echo 
+    echo "Please follow the steps in the Manual and then continue with option 6."
+    echo "Exiting to main menu..."
+    return
+  fi
+
   # Populate the temporary file with the VM names and IP addresses
   init_status
   
   # Checking the number of VMs
-  count=$(minimega -e vm info | grep RUNNING | wc -l)
+  count=$(minimega -e vm info | wc -l)
   let count=count-1
   
   # Checking if there are valid VMs. If not, exit to main menu.
   if [[ $count -lt 1 ]]; then
     echo
-    echo -e "${RED}Couldn't find any running VMs.${NC} Please proceed to step 5 to generate VMs and follow the manual for next steps."
+    echo -e "${RED}Couldn't find any VMs.${NC} Please proceed to step 5 to generate VMs and follow the manual for next steps."
     sleep 0.5
     echo "Exiting to main menu..."
     sleep 0.5
@@ -1140,7 +1151,7 @@ function case9ca() {
     read HOST
   done
 
- # Prompt for DEST IP
+  # Prompt for DEST IP
   echo
   echo "Please enter the DEST VM's ip address you want to start Traffic Generation to:"
   read DEST
@@ -2240,10 +2251,32 @@ function init_status() {
   fi
 }
 
-function update_tmp/temp() {
-      str=$1
-      str+="		|		N/A		|		N/A		|		N/A		"
+function update_temp() {
+    
+    # Get the count of VMs
+    count=$(minimega -e vm info | wc -l)
+
+    let count=count-1
+    for (( i=1; i <=$count; i++ ))
+    do
+      let row=$i+1
+      state=$(minimega -e vm info | awk 'NR=='$row'{print $7}')
+      if [[ "$state" != "RUNNING" ]] 
+      then
+        continue
+      fi
+      ip=$(minimega -e vm info | awk 'NR=='$row'{print $27}')
+      HOST=$(echo ${ip:1:-1})
+      exist=$(cat tmp/temp | grep $HOST | wc -l)
+      if [[ $exist -gt 0 ]]; then
+        continue
+      fi
+      str="	"
+      str+=$(minimega -e vm info | awk 'NR=='$row'{print $27}')
+      str+="    |   N/A		|		N/A		|		N/A		|   N/A"
       echo $str >> tmp/temp
+    done
+     
 }
 
 # Check if the user is ROOT or not
@@ -2264,6 +2297,11 @@ fi
 # Prompt for options
 while true
 do 
+  run=$(ps -aux | grep miniweb | wc -l)
+  if [[ $run -gt 1 && -f tmp/temp ]]
+  then
+    update_temp
+  fi
   echo
   echo -e "${GREEN}Options:${NC}"
   echo "--------------------------------------------"
