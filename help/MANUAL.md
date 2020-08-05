@@ -21,9 +21,9 @@ As of now, Ubuntu is the only supported operating system.
 
 3) Tmux:
    
-        Tmux is a terminal multiplexer for Unix-like operating systems. It allows multiple terminal sessions to be accessed simultaneously in a single window. It is useful for running more than one command-line program at the same time.
+    Tmux is a terminal multiplexer for Unix-like operating systems. It allows multiple terminal sessions to be accessed simultaneously in a single window. It is useful for running more than one command-line program at the same time.
 
-        To install Tmux, run the following command:
+    To install Tmux, run the following command:
 
         ```
         sudo apt install tmux
