@@ -25,9 +25,9 @@ As of now, Ubuntu is the only supported operating system.
 
     To install Tmux, run the following command:
 
-        ```
-        sudo apt install tmux
-        ```
+    ```
+    sudo apt install tmux
+    ```
 
 
 
