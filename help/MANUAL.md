@@ -25,9 +25,25 @@ As of now, Ubuntu is the only supported operating system.
 
     To install Tmux, run the following command:
 
-    ```
-    sudo apt install tmux
-    ```
+        sudo apt install tmux
+    
+4) SSHPass:
+
+    SSHPass is a tiny utility, which allows you to provide the ssh password without using the prompt. This is very helpful for scripting.
+
+    To install SSHPass, run the following command:
+
+        apt-get install sshpass
+
+5) D-ITG:
+
+    D-ITG (Distributed Internet Traffic Generator) is a platform capable of producing IPv4 and IPv6 traffic by accurately replicating the workload of current Internet applications.
+
+    To install D-ITG and its dependencies, run the following command:
+
+        sudo apt-get install -y d-itg
+
+
 
 
 
