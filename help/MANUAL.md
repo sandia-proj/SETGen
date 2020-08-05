@@ -13,11 +13,11 @@ As of now, Ubuntu is the only supported operating system.
 
 1) Minimega:
 
-        Please ensure that Minimega is installed.
+    Please ensure that Minimega is installed.
 
 2) Miniweb:
 
-        Please ensure that Miniwb is installed and the binaries are located in the /opt/bin directory.
+    Please ensure that Miniwb is installed and the binaries are located in the /opt/bin directory.
 
 3) Tmux:
    
