@@ -106,4 +106,73 @@ As of now, Ubuntu is the only supported operating system.
 
 1) Main menu options
 
-    ![alt text](MMO.png "Main menu options")
+    ![alt text](MMO.png "Main menu options") </br>
+                    Fig: Main menu options
+
+</br>
+
+2) Creating Username and Password File for the VMs:
+
+    To create username and password file for the running VMs, run 
+	    
+        minimega -e vm info as the root user.
+
+
+    ![alt text](SMVIO.png "Sample output of Minimega VM info") </br>
+                    Fig: Sample output of Minimega VM info
+</br>
+
+    Then, create a file for username. Use a text editor (like Vim) to edit the file.
+
+    Type the username for each VM in order of Minimega ID (0,1,2, ……). 
+
+    For example, in the sample username file, the username in the first row is for vm1, second row for vm2 and third row for vm3.
+
+
+    ![alt text](SUF.png "Sample username File") </br>
+                    Fig: Sample Username File
+</br>
+
+    In a similar way, create the password file containing the passwords for the VMs.
+
+**Note:** Make sure that both username and password file **don’t have a new line at the end.**
+
+
+3) Understanding VM Traffic Generation Status
+   
+   ![alt text](STGS.png "Sample Traffic Generation Status") </br>
+                    Fig: Sample Traffic Generation Status
+    </br>
+
+    Here, the first row means that 1.0.0.22 is not generating any kind of traffic.
+    
+    The second row means that 1.0.0.30 is generating realistic traffic within itself in the ens0 device using the Network Wrapper.
+
+    The third and fourth row mean that 1.0.0.92 is generating realistic traffic to 1.0.0.184’s ens1 interface using the Network Wrapper.
+
+    The fifth row means that 1.0.0.188 is generating traffic within itself using D-ITG.
+
+    The sixth and seventh rows mean that 1.0.0.50 is generating D-ITG traffic to 1.0.0.32.
+
+    The eighth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
+
+</br>
+
+4) Installing required tools in the VMs:
+   
+    After creating the VMs in Minimega using option 5, you are required to manually install some tools in **all running VMs.**
+
+    After logging in to VM as the **root** user, update the system by running
+
+        apt-get update
+
+    Install python3 by running
+
+        apt-get install python3
+
+
+    Install OpenSSH Server by running    
+
+        apt install openssh-server
+
+    After running the above commands, you should be able to proceed to option 6.
