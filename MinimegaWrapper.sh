@@ -101,6 +101,7 @@ function case6() {
     echo 
     echo "Please follow the steps in the Manual and then continue with option 6."
     echo "Exiting to main menu..."
+    
     return
   fi
 
