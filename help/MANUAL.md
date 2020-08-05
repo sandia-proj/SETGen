@@ -62,7 +62,7 @@ As of now, Ubuntu is the only supported operating system.
 ## Installation
 
 
-0) Make sure that the prerequisites are installed
+0) **Make sure that the prerequisites are installed**
    
 
 1) Unzip the installation file to the desired director
@@ -88,3 +88,22 @@ As of now, Ubuntu is the only supported operating system.
 
         ./MinimegaWrapper.sh
 
+
+## Notes
+
+
+1) To avoid network traffic conflicts in Cross-VM Traffic Generation, we are allowing only a unique pair of Host/Dest VM to generate traffic. So, if host A is generating traffic to host B, both B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.
+
+
+2) It is strongly advised NOT to modify any files in tmp/ directory.
+
+
+3) In the main menu, you can type “clear” as an option to clear the screen.
+
+
+## Tutorial
+
+
+1) Main menu options
+
+![alt text](MMO.png "Main menu options")
