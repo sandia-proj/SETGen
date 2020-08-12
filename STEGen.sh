@@ -9,9 +9,9 @@ NC='\033[0m'
 
 
 echo
-echo "------------------------------------------------------------------"
-echo -e "---------------------- ${CYAN}MINIMEGA WRAPPER${NC} --------------------------"
-echo "------------------------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------"
+echo -e "---------------------- ${CYAN}STEGen - System traffic and events generator${NC} --------------------------"
+echo "----------------------------------------------------------------------------------------------"
 echo
 
 # Exit the Wrapper
@@ -124,7 +124,7 @@ function case6() {
 
   # Display Menu
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "----------------------------------------------------------"
   echo "1- Run with default username/password i.e. vm<no.>/vm<no.>"
   echo "2- Provide username file and password file"
@@ -268,9 +268,9 @@ function case7a() {
 
 function case7b() {
 
-  # Prompt for Options
+  # Prompt for OPTIONS
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "----------------------------------------------------------"
   echo "1- Run with default username/password i.e. vm<no.>/vm<no.>"
   echo "2- Provide username file and password file"
@@ -350,9 +350,9 @@ function case7b() {
 
 function case7() {
 
-  # Prompt for Options
+  # Prompt for OPTIONS
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "-------------------------------------"
   echo "1- Copy the file to a specific VM"
   echo "2- Copy the file to all running VM(s)"
@@ -474,7 +474,7 @@ function case8b() {
 
   # Prompt 
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "----------------------------------------------------------"
   echo "1- Run with default username/password i.e. vm<no.>/vm<no.>"
   echo "2- Provide username file and password file"
@@ -550,7 +550,7 @@ function case8() {
 
   # Prompt
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "--------------------------------------"
   echo "1- Run the script in a specific VM"
   echo "2- Run the script in all running VM(s)"
@@ -1060,12 +1060,12 @@ function case9bd() {
   fi
 }
 
-# Function that handles Different Options for Running D-ITG in a VM
+# Function that handles Different OPTIONS for Running D-ITG in a VM
 
 function case9bc() { 
   # Prompt
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "------------------------------------"
   echo "1- Run D-ITG"
   echo "2- View D-ITG Recv Help File"
@@ -1103,7 +1103,7 @@ function case9a() {
 
 function case9b() {
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "-----------------------------------"
   echo "1- Start Traffic Generation in a VM"
   echo "2- Stop Traffic Generation in a VM"
@@ -1855,9 +1855,9 @@ function case9cd() {
 
 function case9c() {
 
-  # Prompt for Options
+  # Prompt for OPTIONS
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "----------------------------------------"
   echo "1- Start Traffic Generation from/to a VM"
   echo "2- Stop Traffic Generation from/to a VM"
@@ -2117,7 +2117,7 @@ function case9() {
 
   # Prompt
   echo 
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "--------------------------------------"
   echo "1- Network Traffic Generation Status"
   echo "2- VM Network Traffic Generation"
@@ -2295,7 +2295,7 @@ if ! [[ -d tmp ]]; then
     mkdir tmp
 fi
 
-# Prompt for options
+# Prompt for OPTIONS
 while true
 do 
   run=$(ps -aux | grep miniweb | wc -l)
@@ -2304,19 +2304,20 @@ do
     update_temp
   fi
   echo
-  echo -e "${GREEN}Options:${NC}"
+  echo -e "${GREEN}OPTIONS:${NC}"
   echo "--------------------------------------------"
-  echo "1- Create Virtual Hard Disk(s)"
-  echo "2- Delete Virtual Hard Disk(s)"
-  echo "3- Start Minimega"
-  echo "4- Start Miniweb"
-  echo "5- Setup and Start VM(s)"
-  echo "6- Install Wrapper requirements in the VM(s)"
-  echo "7- Copy file(s) to VM(s)"
-  echo "8- Execute Script in VM(s)"
-  echo "9- Traffic Generator Control Panel"
-  echo "10- Kill Minimega"
-  echo "11- Kill Miniweb"
+  echo "01- Create Virtual Hard Disk(s)"
+  echo "02- Delete Virtual Hard Disk(s)"
+  echo "03- Start Minimega"
+  echo "04- Start Miniweb"
+  echo "05- Setup and Start VM(s)"
+  echo "06- Install Wrapper requirements in the VM(s)"
+  echo "07- Copy file(s) to VM(s)"
+  echo "08- Execute Script in VM(s)"
+  echo "09- Network Traffic Generator Control Panel"
+  echo "10- System Events Generator Control Panel"
+  echo "11- Kill Minimega"
+  echo "12- Kill Miniweb"
   echo "0- Exit"
   echo "--------------------------------------------"
   echo
