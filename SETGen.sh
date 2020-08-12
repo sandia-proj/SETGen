@@ -2283,7 +2283,7 @@ function update_temp() {
 # Check if the user is ROOT or not
 if [ "$EUID" -ne 0 ]
 then 
-  echo -e "${RED}You need to be the root user in order to use this Wrapper.${NC}"
+  echo -e "${RED}You need to be the root user in order to use SETGen. Please try again as root user!${NC}"
   echo "Exiting..."
   exit
 fi
