@@ -109,13 +109,13 @@ function case6() {
   init_status
   
   # Checking the number of VMs
-  count=$(minimega -e vm info | wc -l)
+  count=$(minimega -e vm info | grep RUNNING | wc -l)
   let count=count-1
   
   # Checking if there are valid VMs. If not, exit to main menu.
   if [[ $count -lt 1 ]]; then
     echo
-    echo -e "${RED}Couldn't find any VMs.${NC} Please proceed to step 5 to generate VMs and follow the manual for next steps."
+    echo -e "${RED}Couldn't find any running VM(s).${NC} Please proceed to step 5 to generate VMs and follow the manual for next steps."
     sleep 0.5
     echo "Exiting to main menu..."
     sleep 0.5
@@ -681,7 +681,7 @@ function case9ba() {
         # Update the tmp/temp file
         sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		$HOST		|		$HOST		|		$interface		|   Wrapper"
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper"
         echo $str >> tmp/temp
 
         echo "Started"
@@ -732,7 +732,7 @@ function case9bb() {
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
     val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "Wrapper" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    if [[ "$val" == "NetworkWrapper" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
@@ -791,7 +791,7 @@ function case9bb() {
         return
       fi
     else
-      echo "The VM is not generating Wrapper traffic within itself. Exiting to main menu..."
+      echo "The VM is not generating NetworkWrapper traffic within itself. Exiting to main menu..."
       return
     fi
   fi
@@ -1274,10 +1274,10 @@ function case9ca() {
         sed -i "/\b${HOST}\b/d" tmp/temp
         sed -i "/\b${DEST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		---		|		$DEST		|       ---       |       Wrapper       "
+        str+="		|		---		|		$DEST		|       ---       |       NetworkWrapper       "
         echo $str >> tmp/temp
         str=$DEST
-        str+="		|		$HOST		|		---		|		$interface		|       Wrapper       "
+        str+="		|		$HOST		|		---		|		$interface		|       NetworkWrapper       "
         echo $str >> tmp/temp
         echo "Started"
 
@@ -2311,7 +2311,7 @@ do
   echo "03- Start Minimega"
   echo "04- Start Miniweb"
   echo "05- Setup and Start VM(s)"
-  echo "06- Install Wrapper requirements in the VM(s)"
+  echo "06- Install STEGen requirements in the VM(s)"
   echo "07- Copy file(s) to VM(s)"
   echo "08- Execute Script in VM(s)"
   echo "09- Network Traffic Generator Control Panel"
