@@ -10,17 +10,18 @@ As of now, Ubuntu is the only supported operating system.
 ---
 
 
-## Prerequisites
+## Pre-requisites
 
 
 1) Minimega:
 
     Please ensure that Minimega is installed.
+    ## Add Link to install
 
 
 2) Miniweb:
 
-    Please ensure that Miniwb is installed and the binaries are located in the /opt/bin directory.
+    Please ensure that Miniweb is installed and the binaries are located in the /opt/bin directory.
 
 
 3) Tmux:
@@ -62,7 +63,7 @@ As of now, Ubuntu is the only supported operating system.
 ## Installation
 
 
-0) **Make sure that the prerequisites are installed**
+0) **Make sure that the pre-requisites are installed**
    
 
 1) Unzip the installation file to the desired director
