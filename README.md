@@ -1,2 +1,2 @@
-# MinimegaWrapper
-A Wrapper that controls minimega and network traffic generator.
+# SETGen
+An all in one Minimega VM Controller, System and Traffic Generator
