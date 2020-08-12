@@ -10,7 +10,7 @@ NC='\033[0m'
 
 echo
 echo "----------------------------------------------------------------------------------------------"
-echo -e "---------------------- ${CYAN}STEGen - System traffic and events generator${NC} --------------------------"
+echo -e "---------------------- ${CYAN}SETGen - System events and traffic generator${NC} --------------------------"
 echo "----------------------------------------------------------------------------------------------"
 echo
 
@@ -2311,7 +2311,7 @@ do
   echo "03- Start Minimega"
   echo "04- Start Miniweb"
   echo "05- Setup and Start VM(s)"
-  echo "06- Install STEGen requirements in the VM(s)"
+  echo "06- Install SETGen requirements in the VM(s)"
   echo "07- Copy file(s) to VM(s)"
   echo "08- Execute Script in VM(s)"
   echo "09- Network Traffic Generator Control Panel"
