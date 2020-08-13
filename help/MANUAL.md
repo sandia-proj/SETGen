@@ -39,7 +39,7 @@ As of now, Ubuntu is the only supported operating system.
 
     To install SSHPass, run the following command:
 
-        apt-get install sshpass
+        sudo apt-get install sshpass
 
 
 5) D-ITG:
