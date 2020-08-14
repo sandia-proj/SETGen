@@ -35,7 +35,7 @@ then
     echo
     USERNAME=$(echo vm$i)
     SCRIPT="chmod +x WrapperInstaller.sh; echo $USERNAME | sudo -S ./WrapperInstaller.sh"
-    sshpass -p "$USERNAME" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  WrapperInstaller.sh $USERNAME@$HOST:
+    sshpass -p "$USERNAME" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  scripts/WrapperInstaller.sh $USERNAME@$HOST:
     if [[ $? -eq 0 ]]
       then 
       sshpass -p "$USERNAME" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
@@ -73,7 +73,7 @@ then
     USERNAME=$(cat $1 | awk 'NR=='$i'{print $1}')
     PASSWORD=$(cat $2 | awk 'NR=='$i'{print $1}')
     SCRIPT="chmod +x WrapperInstaller.sh; echo $PASSWORD | sudo -S ./WrapperInstaller.sh"
-    sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  WrapperInstaller.sh $USERNAME@$HOST:
+    sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  scripts/WrapperInstaller.sh $USERNAME@$HOST:
     if [[ $? -eq 0 ]]
     then 
       sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -t -l ${USERNAME} ${HOST} "${SCRIPT}"

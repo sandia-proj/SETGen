@@ -90,6 +90,7 @@ do
         str=$(echo $name$i)
         umount /mnt/$str
         rm $str.img
+        rm -rf /mnt/$str
 done
 
 echo

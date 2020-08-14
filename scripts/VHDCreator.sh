@@ -60,6 +60,9 @@ echo "Prefix for VHD: $name"
 
 cd $path
 
+echo
+echo 
+
 # Create the VHDs
 for (( i=1; i <= $numOfVMs; i++ ))
 do

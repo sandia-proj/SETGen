@@ -28,10 +28,9 @@ function case0() {
 function case1() {
   cd $dir
   # Calling the script that deals with generating VHDs
-  cd scripts
-  ./VHDCreator.sh
+  ./scripts/VHDCreator.sh
   # Reverting to the current directory
-  cd $dir
+  
 }
 
 # Delete VHDs
@@ -39,8 +38,7 @@ function case1() {
 function case2() { 
   cd $dir
   # Calling the script that deals with deleting VHDs
-  cd scripts
-  ./VHDDestroyer.sh
+  ./scripts/VHDDestroyer.sh
 
   # Reverting to the current directory
   cd $dir
@@ -92,8 +90,7 @@ function case5() {
   cd $dir
 
   # Calling script that deals with the automated generation of VMs
-  cd scripts/
-  ./VMgen.sh
+  ./scripts/VMgen.sh
 }
 
 # Install the required packages to all "RUNNING" VMs for Traffic Generation
@@ -143,8 +140,8 @@ function case6() {
   # If Default Username-Password, then calling the script directly
   if [[ $choice == 1 ]]
   then
-    cd scripts
-    ./VMconnect.sh $count
+    
+    ./scripts/VMconnect.sh $count
   
   # Supplying the Username and Password file
   elif [[ $choice == 2 ]]
@@ -174,10 +171,8 @@ function case6() {
       read Ppath
     done
 
-    cd scripts/
-
     # Calling the script with the arguments  
-    ./VMconnect.sh $Upath $Ppath
+    ./scripts/VMconnect.sh $Upath $Ppath
  
   # Exit to main menu
   elif [[ $choice == 3 ]]
@@ -308,8 +303,7 @@ function case7b() {
   # Use Deafault Username|Password
   if [[ $choice == 1 ]]
   then
-    cd scripts
-    ./VMconnect.sh $count -copy $path
+    ./scripts/VMconnect.sh $count -copy $path
 
   # Get Username and Password File
   elif [[ $choice == 2 ]]
@@ -341,8 +335,7 @@ function case7b() {
     fi
 
     # Calling the script with the arguments
-    cd scripts
-    ./VMconnect.sh -copy $path $Upath $Ppath
+    ./scripts/VMconnect.sh -copy $path $Upath $Ppath
 
   # Exit
   elif [[ $choice == 3 ]]
@@ -514,8 +507,7 @@ function case8b() {
   # Call the script with appropriate args
   if [[ $choice == 1 ]]
   then 
-    cd scripts
-    ./VMconnect.sh $count -run $path
+    ./scripts/VMconnect.sh $count -run $path
   elif [[ $choice == 2 ]]
   then
 
@@ -544,8 +536,7 @@ function case8b() {
     done
 
     # Call VMconnect Script
-    cd scripts
-    ./VMconnect.sh -run $path $Upath $Ppath
+    ./scripts/VMconnect.sh -run $path $Upath $Ppath
 
   elif [[ $choice == 3 ]]
   then
