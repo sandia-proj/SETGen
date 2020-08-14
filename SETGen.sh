@@ -26,9 +26,10 @@ function case0() {
 # Generate VHDs
 
 function case1() {
+  cd $dir
   # Calling the script that deals with generating VHDs
-  ./scripts/VHDCreator.sh
-  
+  cd scripts
+  ./VHDCreator.sh
   # Reverting to the current directory
   cd $dir
 }
@@ -36,8 +37,10 @@ function case1() {
 # Delete VHDs
 
 function case2() { 
+  cd $dir
   # Calling the script that deals with deleting VHDs
-  ./scripts/VHDDestroyer.sh
+  cd scripts
+  ./VHDDestroyer.sh
 
   # Reverting to the current directory
   cd $dir
@@ -46,6 +49,7 @@ function case2() {
 # Start Minimega
 
 function case3() {
+  cd $dir
   # Checking if there's any running Minimega Process  
   run=$(ps -aux | grep minimega | wc -l)
 
@@ -61,7 +65,8 @@ function case3() {
 
 # Start Miniweb
 
-function case4() { 
+function case4() {
+  cd $dir
   # Checking if there's any running Miniweb Process  
   run=$(ps -aux | grep miniweb | wc -l)
 
@@ -83,17 +88,18 @@ function case4() {
 # Minimega VM Generator
 
 function case5() {
-  # Calling script that deals with the automated generation of VMs
-  ./scripts/VMgen.sh
-
   # Reverting to the current directory
   cd $dir
+
+  # Calling script that deals with the automated generation of VMs
+  cd scripts/
+  ./VMgen.sh
 }
 
 # Install the required packages to all "RUNNING" VMs for Traffic Generation
 
 function case6() {
-
+  # Reverting to the current directory
   echo "Have you installed Ubuntu and the required tools in all running VMs? Y/N"
   read ans 
 
@@ -137,7 +143,8 @@ function case6() {
   # If Default Username-Password, then calling the script directly
   if [[ $choice == 1 ]]
   then
-    ./scripts/VMconnect.sh $count
+    cd scripts
+    ./VMconnect.sh $count
   
   # Supplying the Username and Password file
   elif [[ $choice == 2 ]]
@@ -167,8 +174,10 @@ function case6() {
       read Ppath
     done
 
+    cd scripts/
+
     # Calling the script with the arguments  
-    ./scripts/VMconnect.sh $Upath $Ppath
+    ./VMconnect.sh $Upath $Ppath
  
   # Exit to main menu
   elif [[ $choice == 3 ]]
@@ -299,7 +308,8 @@ function case7b() {
   # Use Deafault Username|Password
   if [[ $choice == 1 ]]
   then
-    ./scripts/VMconnect.sh $count -copy $path
+    cd scripts
+    ./VMconnect.sh $count -copy $path
 
   # Get Username and Password File
   elif [[ $choice == 2 ]]
@@ -331,7 +341,8 @@ function case7b() {
     fi
 
     # Calling the script with the arguments
-    ./scripts/VMconnect.sh -copy $path $Upath $Ppath
+    cd scripts
+    ./VMconnect.sh -copy $path $Upath $Ppath
 
   # Exit
   elif [[ $choice == 3 ]]
@@ -349,7 +360,7 @@ function case7b() {
 # Function that deals with copying of files to VM
 
 function case7() {
-
+  cd $dir
   # Prompt for OPTIONS
   echo 
   echo -e "${GREEN}OPTIONS:${NC}"
@@ -503,7 +514,8 @@ function case8b() {
   # Call the script with appropriate args
   if [[ $choice == 1 ]]
   then 
-    ./scripts/VMconnect.sh $count -run $path
+    cd scripts
+    ./VMconnect.sh $count -run $path
   elif [[ $choice == 2 ]]
   then
 
@@ -532,7 +544,8 @@ function case8b() {
     done
 
     # Call VMconnect Script
-    ./scripts/VMconnect.sh -run $path $Upath $Ppath
+    cd scripts
+    ./VMconnect.sh -run $path $Upath $Ppath
 
   elif [[ $choice == 3 ]]
   then
@@ -547,7 +560,7 @@ function case8b() {
 # Function that deals with running scripts in VMs
 
 function case8() {
-
+  cd $dir
   # Prompt
   echo 
   echo -e "${GREEN}OPTIONS:${NC}"
@@ -2114,7 +2127,7 @@ function case9e() {
 # Function that deals with Traffic Generation 
 
 function case9() {
-
+  cd $dir
   # Prompt
   echo 
   echo -e "${GREEN}OPTIONS:${NC}"
