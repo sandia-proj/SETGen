@@ -161,8 +161,8 @@ As of now, Ubuntu is the only supported operating system.
 
     **INTERFACE** column refers to the network interface where network traffic is being generated.
 
-    **METHOD** column refers to the component being used for Network Traffic generation. 
-         The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP
+    **METHOD** column refers to the component being used for Network Traffic generation. </br>
+            The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP
     
     The first row means that 1.0.0.22 is not generating any kind of traffic.
     
