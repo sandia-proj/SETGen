@@ -158,12 +158,16 @@ As of now, Ubuntu is the only supported operating system.
    </br>
    This option controls intra-VM/inter-VM Network Traffic Generation.
    </br>
-   There are 4 ways of Generating Network Traffic.
-   </br> \_ Using **NetworkWrapper** with tools to generate intra-VM/inter-VM network traffic:
-   </br> In this option,
+   There are 4 ways of Generating Network Traffic:
+   </br>
    </br>
 
-   </br> \_ Using
+   - Using **NetworkWrapper** with tools to generate intra-VM/inter-VM network traffic:
+     </br> In this option,
+     </br>
+
+   </br> 
+   * Using
 
 2) Creating Username and Password File for the VMs:
 
