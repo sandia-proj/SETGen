@@ -18,7 +18,7 @@ while ! [[ "$numOfVMs" =~ ^[0-9]+$ ]]; do
 done
 
 echo "Please specify the Virtual Hard Disk Size in Bytes:"
-echo "The recommended size is 15360 bytes i.e. 15gb"
+echo "The minimum recommended size is 30720 bytes i.e. 30gb"
 
 read vhdsize
 
