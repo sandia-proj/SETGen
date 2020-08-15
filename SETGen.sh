@@ -2549,7 +2549,7 @@ do
   echo "04- Start Miniweb"
   echo "05- Setup and Start VM(s)"
   echo "06- Install SETGen requirements in the VM(s)"
-  echo "07- Copy file(s) to VM(s)"
+  echo "07- Copy file to VM(s)"
   echo "08- Execute Script in VM(s)"
   echo "09- Network Traffic Generator Control Panel"
   echo "10- System Events Generator Control Panel"
