@@ -176,7 +176,6 @@ As of now, Ubuntu is the only supported operating system.
    - Using **D-ITG** to generate/stop intra-VM/inter-VM network trafiic:
      </br> In this option, **tmux** is used to create and run ITGSend (Network Traffic sender component of D-ITG) and ITGRecv (Network Traffic receiver component of D-ITG) inside/between VM(s)
      </br>
-
    </br>
 
    **10- System Events Generator Control Panel**
