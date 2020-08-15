@@ -62,13 +62,13 @@ As of now, Ubuntu is the only supported operating system.
 
 ## Installation
 
-0. **Make sure that the pre-requisites are installed**
+0.  **Make sure that the pre-requisites are installed**
 
-1) Unzip the installation file to the desired director
+1.  Unzip the installation file to the desired director
 
-2. Change directory to the MinimegaWrapper directory
+2.  Change directory to the MinimegaWrapper directory
 
-3)  To change the permissions of the script, run
+3.  To change the permissions of the script, run
 
          chmod +x MinimegaWrapper.sh
 
@@ -76,7 +76,7 @@ As of now, Ubuntu is the only supported operating system.
 
          chmod +x scripts/*
 
-5) Kill all instances of Minimega processes
+5.  Kill all instances of Minimega processes
 
 6.  With root user permissions, run
 
@@ -88,7 +88,7 @@ As of now, Ubuntu is the only supported operating system.
 
 1. To avoid network traffic conflicts in Cross-VM Traffic Generation, we are allowing only a unique pair of Host/Dest VM to generate traffic. So, if host A is generating traffic to host B, both B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.
 
-2) It is strongly advised NOT to modify any files in tmp/ directory.
+2. It is strongly advised NOT to modify any files in tmp/ directory.
 
 3. In the main menu, you can type “clear” as an option to clear the screen.
 
@@ -98,15 +98,15 @@ As of now, Ubuntu is the only supported operating system.
 
 1.  Main menu options
 
-    ![alt text](MMO.png "Main menu options") </br>
-    Fig: SETGen Main menu options
-    </br>
+    ![alt text](MMO.png "Main menu options")</br>
+
+    Fig: SETGen main menu options</br>
 
     **01- Create Virtual Hard Disk(s)**
 
     This option helps to create Virtual Hard Disks.
 
-    The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.
+    The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.&nbsp;
 
 
     **02- Delete Virtual Hard Disk(s)**
@@ -115,7 +115,7 @@ As of now, Ubuntu is the only supported operating system.
 
 </br>
 
-2. Creating Username and Password File for the VMs:
+1. Creating Username and Password File for the VMs:
 
    To create username and password file for the running VMs, run
 
