@@ -65,8 +65,6 @@ As of now, Ubuntu is the only supported operating system.
 
 ***
 
-
-***
 ## Installation
 
 
@@ -98,7 +96,6 @@ As of now, Ubuntu is the only supported operating system.
 
 ***
 
-***
 ## Notes
 
 
@@ -109,7 +106,6 @@ As of now, Ubuntu is the only supported operating system.
 
 
 3) In the main menu, you can type “clear” as an option to clear the screen.
-***
 
 ***
 ## Tutorial
@@ -187,4 +183,5 @@ As of now, Ubuntu is the only supported operating system.
         apt install openssh-server
 
     After running the above commands, you should be able to proceed to option 6.
+    
 ***
