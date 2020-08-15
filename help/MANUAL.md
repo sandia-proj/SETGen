@@ -194,17 +194,17 @@ As of now, Ubuntu is the only supported operating system.
    </br>
    
    **12- Kill Miniweb**
-  </br>
+   </br>
    This option will kill the **Miniweb** process created using SETGen option 4.
-  </br>
+   </br>
 
    **13- Exit**
-  </br>
-    This option quits SETGen script.
-    </br>
-    **NOTE:** Quitting SETGen does **not** cause any damage to the running VMs.
-  </br>
-</br>
+   </br>
+   This option quits SETGen script.
+   </br>
+   **NOTE:** Quitting SETGen does **not** cause any damage to the running VMs.
+   </br>
+   </br>
 
 
 
