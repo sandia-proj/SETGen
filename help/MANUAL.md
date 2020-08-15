@@ -4,7 +4,7 @@
 
 ---
 
-SETGen is an all-in-one script that provides the ability to control Minimega VMs, generate system events in VM(s), generate both intra and inter-VM network traffic, etc.
+SETGen is an all-in-one script that provides the ability to control Minimega VMs, generate system events in VM(s), generate intra-VM/inter-VM network traffic, etc.
 
 As of now, Ubuntu is the only supported operating system.
 
@@ -86,19 +86,19 @@ As of now, Ubuntu is the only supported operating system.
 
 ## Notes
 
-1. To avoid network traffic conflicts in Cross-VM Traffic Generation, we are allowing only a unique pair of Host/Dest VM to generate traffic. So, if host A is generating traffic to host B, both B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.
+1. To avoid network traffic conflicts in Cross-VM Traffic Generation, SETGen allows only a unique pair of Host/Dest VM to generate traffic. So, if host **A** is generating traffic to host **B**, both **B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.**
 
-2. It is strongly advised NOT to modify any files in tmp/ directory.
+2. It is strongly advised **NOT** to modify/create any files in tmp/ directory.
 
-3. In the main menu, you can type “clear” as an option to clear the screen.
+3. In the main menu, typing “clear” will clear the screen.
 
 ---
 
 ## Tutorial
 
-1. Main menu options
+1. Understanding SETGen main menu options
 
-   ![alt text](MMO.png "Main menu options")
+   ![alt text](MMO.png "SETGen main menu options")
    </br>
    Fig: SETGen main menu options
 
@@ -209,9 +209,9 @@ As of now, Ubuntu is the only supported operating system.
 
 
 
-2) Creating Username and Password File for the VMs:
+2) Create Username and Password File for the VMs:
 
-   To create username and password file for the running VMs, run
+   To create username and password file for all VMs, run
 
    minimega -e vm info as the root user.
 
@@ -231,9 +231,9 @@ As of now, Ubuntu is the only supported operating system.
                     Fig: Sample Username File
 
 
-    In a similar way, create the password file containing the passwords for the VMs.
+    In a similar way, create the password file containing the passwords for all VMs.
 
-**Note:** Make sure that both username and password file **don’t have a new line at the end.**
+**Note:** Make sure to include username and password of all VMs, irrespective of their VM status. Also, make sure that both username and password file **don’t have a trailing new line at the end.**
 
 3. Understanding VM Network Traffic Generation Status
 
@@ -252,6 +252,7 @@ As of now, Ubuntu is the only supported operating system.
    **INTERFACE** column refers to the network interface where network traffic is being generated.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
+   
    The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP
 
    The first row means that 1.0.0.22 is not generating any kind of traffic.
@@ -270,11 +271,11 @@ As of now, Ubuntu is the only supported operating system.
 
 </br>
 
-4.  Installing required tools in the VMs:
+4.  Manually installing required tools for SETGen in the VMs:
 
-    After creating the VMs in Minimega using option 5, you are required to manually install some tools in **all running VMs.**
+    After creating the VMs in Minimega using option 5, you are required to install ubuntu and manually install some tools in **all running VMs.**
 
-    After logging in to VM as the **root** user, update the system by running
+    After logging in to the VM as the **root** user, update the system by running
 
          apt-get update
 
@@ -282,11 +283,9 @@ As of now, Ubuntu is the only supported operating system.
 
          apt-get install python3
 
-
     Install OpenSSH Server by running
 
         apt install openssh-server
 
-    After running the above commands, you should be able to proceed to option 6.
 
 ---
