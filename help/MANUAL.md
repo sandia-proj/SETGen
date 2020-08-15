@@ -17,14 +17,14 @@ As of now, Ubuntu is the only supported operating system.
 
     Please ensure that Minimega is installed.
     
-    To install Minimega, follow the instructions [here](https://ku.nz/miniclass/module1.html)
+    To install Minimega, follow the instructions [here](https://ku.nz/miniclass/module1.html).
 
 
 2) Miniweb:
 
     Please ensure that Miniweb is installed and the binaries are located in the /opt/bin directory.
 
-    To install Miniweb, follow the instructions [here](https://ku.nz/miniclass/module1.html)
+    To install Miniweb, follow the instructions [here](https://ku.nz/miniclass/module1.html).
 
 
 3) Tmux:
