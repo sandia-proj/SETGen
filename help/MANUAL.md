@@ -142,7 +142,7 @@ As of now, Ubuntu is the only supported operating system.
 
     In a similar way, create the password file containing the passwords for the VMs.
 
-    **Note:** Make sure that both username and password file **don’t have a new line at the end.**
+**Note:** Make sure that both username and password file **don’t have a new line at the end.**
 
 
 3) Understanding VM Traffic Generation Status
