@@ -156,18 +156,28 @@ As of now, Ubuntu is the only supported operating system.
 
    **09- Network Traffic Generator Control Panel**
    </br>
-   This option controls intra-VM/inter-VM Network Traffic Generation.
+   This option controls intra-VM/inter-VM network traffic generation including viewing the status, starting/stopping traffic generation.
    </br>
-   There are 4 ways of Generating Network Traffic:
-   </br>
+   There are 4 ways of generating network traffic:
    </br>
 
-   - Using **NetworkWrapper** with tools to generate intra-VM/inter-VM network traffic:
-     </br> In this option,
+   - Using **NetworkWrapper** with tools to generate/stop intra-VM/inter-VM network traffic:
+     </br> In this option, **NetworkWrapper** uses tools like protonuke, D-ITG, ping, etc. to generate random intra-VM/inter-VM network traffic based on the statistics gathered by analyzing real-world network traffic captures.
      </br>
 
-   </br> 
-   * Using
+   - Using **NetworkWrapper** with PCAPs to generate/stop intra-VM network traffic:
+     </br> In this option, **NetworkWrapper** replays PCAP files in a randomized NEEED TO ADD
+     </br>
+
+   - Using **NetworkWrapper** to generate/stop intra-VM network traffic by replaying PCAP file:
+     </br> In this option, **NetworkWrapper** uses tcpreplay tool to generate intra-VM traffic by replaying a PCAP file (provided by the user) inside a VM.
+     </br>
+
+   - Using **D-ITG** to generate/stop intra-VM/inter-VM network trafiic:
+     </br> In this option, **tmux** is used to create and run ITGSend (Network Traffic sender component of D-ITG) and ITGRecv (Network Traffic receiver component of D-ITG) inside/between VM(s)
+     </br>
+
+   </br>
 
 2) Creating Username and Password File for the VMs:
 
