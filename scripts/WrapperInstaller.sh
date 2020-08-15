@@ -57,6 +57,11 @@ echo "INSTALLING TMUX"
 echo
 echo "y" | apt-get install tmux
 
+echo
+echo "INSTALLING AWS CLI"
+echo
+echo "y" | apt install awscli
+
 rm -rf NetworkWrapper
 git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/NetworkWrapper.git
 

@@ -610,7 +610,7 @@ function case9ba() {
 
   elif [[ "$state" != "RUNNING" ]]
   then
-    echo "The VM doesn't exist/isn't running. Exiting to main menu..."
+    echo "The VM is not running. Exiting to main menu..."
 
   else
    
@@ -685,7 +685,7 @@ function case9ba() {
         # Update the tmp/temp file
         sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper"
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper (Tools)"
         echo $str >> tmp/temp
 
         echo "Started"
@@ -727,7 +727,7 @@ function case9bb() {
 
   elif [[ "$state" != "RUNNING" ]]
   then
-    echo "The VM doesn't exist/isn't running. Exiting to main menu..."
+    echo "The VM is not running. Exiting to main menu..."
 
   else
    
@@ -736,7 +736,7 @@ function case9bb() {
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
     val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "NetworkWrapper" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    if [[ "$val" == "NetworkWrapper (Tools)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
@@ -1092,6 +1092,221 @@ function case9bc() {
   fi 
 }
 
+function case9be() {
+  # Prompt for IP Address of the VM
+  echo
+  echo "Please enter the VM's ip address you want to start Traffic Generation (using PCAPs) in:"
+  read HOST
+
+  # Re-prompt
+  while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered. Please try again!"
+    echo
+    echo "Please enter the VM's ip address you want to start Traffic Generation (using PCAPs) in:"
+    read HOST
+  done
+  
+  
+  state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
+  
+  # Check if VM exists
+  if [[ "$state" == ""  ]]
+  then
+    echo "Such VM doesn't exist! Exiting to main menu..."
+
+  # Check if VM in RUNNING state
+
+  elif [[ "$state" != "RUNNING" ]]
+  then
+    echo "The VM is not running. Exiting to main menu..."
+
+  else
+   
+    # Check if VM generating traffic
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
+
+    if [[ "$val" == "N/A" ]]
+    then
+
+      # Prompt for Username
+      echo "Please enter the VM's username:"
+      read USERNAME
+
+      # If Username empty, re-prompt
+      while [[ -z "$USERNAME" ]]; do
+        echo "Username can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's username:"
+        read USERNAME
+      done
+
+      # Prompt for Password
+      echo "Please enter the VM's password:"
+      read PASSWORD
+
+      # If Password empty, re-prompt
+      while [[ -z "$PASSWORD" ]]; do
+        echo "Password can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's password:"
+        read PASSWORD
+      done
+    
+      # Check SSH connection
+      sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "exit"
+
+      # If SSH invalid, exit to main menu
+      if [[ $? -eq 0 ]]
+      then
+       
+        # Print the interfaces and prompt
+        echo "The VM has the following network interfaces:"
+        echo
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "ifconfig"
+        echo
+        echo "Please enter the interface: "
+        read interface
+
+        # If Interface empty, re-prompt
+        while [[ -z "$interface" ]]; do
+          echo "Password can't be empty! Please try again."
+          echo
+          echo "Please enter the interface: "
+          read interface
+        done
+
+        # Build the script
+
+        echo "#!/bin/bash
+            cd NetworkWrapper/
+            tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface --realistic\" Enter
+            " > tmp/NTGStart.sh
+
+        # Copy the script to the VM
+
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStart.sh $USERNAME@$HOST:
+
+        echo "Starting Network Traffic Generation in $HOST"
+        SCRIPT="chmod +x NTGStart.sh; echo $PASSWORD | sudo -S ./NTGStart.sh"
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
+        str=$HOST
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper (PCAPs)"
+        echo $str >> tmp/temp
+
+        echo "Started"
+      else
+        echo -e "${RED}Invalid Username/Password for${NC} $HOST. Exiting to main menu..."
+        return
+      fi
+    else
+      echo "The VM is already generating traffic."
+    fi
+  fi
+}
+
+function case9bf() {
+  
+  # Prompt for IP Address of the VM
+  echo
+  echo "Please enter the VM's ip address you want to stop Traffic Generation(using PCAPs) in:"
+  read HOST
+
+  # Re-prompt
+  while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered. Please try again!"
+    echo
+    echo "Please enter the VM's ip address you want to stop Traffic Generation(using PCAPs) in:"
+    read HOST
+  done
+  
+  state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
+  
+  # Check if VM exists
+  if [[ "$state" == "" ]]
+  then
+    echo "Such VM doesn't exist! Exiting to main menu..."
+
+  # Check if VM in RUNNING state
+
+  elif [[ "$state" != "RUNNING" ]]
+  then
+    echo "The VM is not running. Exiting to main menu..."
+
+  else
+   
+    # Check if VM generating traffic
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
+    val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
+    val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
+
+    if [[ "$val" == "NetworkWrapper (PCAPs)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    then
+
+      # Prompt for Username
+      echo "Please enter the VM's username:"
+      read USERNAME
+
+      # If Username empty, re-prompt
+      while [[ -z "$USERNAME" ]]; do
+        echo "Username can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's username:"
+        read USERNAME
+      done
+
+      # Prompt for Password
+      echo "Please enter the VM's password:"
+      read PASSWORD
+
+      # If Password empty, re-prompt
+      while [[ -z "$PASSWORD" ]]; do
+        echo "Password can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's password:"
+        read PASSWORD
+      done
+    
+      # Check SSH connection
+      sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "exit"
+
+      # If SSH invalid, exit to main menu
+      if [[ $? -eq 0 ]]
+      then
+        # Build the script
+
+        echo "#!/bin/bash
+            tmux kill-session -t TrafficGen
+            " > tmp/NTGStop.sh
+
+        # Copy the script to the VM
+
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStop.sh $USERNAME@$HOST:
+
+        echo "Stopping Network Traffic Generation in $HOST"
+        SCRIPT="chmod +x NTGStop.sh; echo $PASSWORD | sudo -S ./NTGStop.sh"
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
+        str=$HOST
+        str+="		|		N/A		|		N/A		|		N/A		|   N/A"
+        echo $str >> tmp/temp
+        
+        echo "Stopped"
+      else
+        echo -e "${RED}Invalid Username/Password for${NC} $HOST. Exiting to main menu..."
+        return
+      fi
+    else
+      echo "The VM is not generating NetworkWrapper traffic (using PCAPs) within itself. Exiting to main menu..."
+      return
+    fi
+  fi
+}
+
 # Function that displays the Network Traffic generation status
 
 function case9a() {
@@ -1108,12 +1323,14 @@ function case9a() {
 function case9b() {
   echo 
   echo -e "${GREEN}OPTIONS:${NC}"
-  echo "-----------------------------------"
-  echo "1- Start Traffic Generation in a VM"
-  echo "2- Stop Traffic Generation in a VM"
+  echo "-------------------------------------------------"
+  echo "1- Start Traffic Generation (using tools) in a VM"
+  echo "2- Stop Traffic Generation (using tools) in a VM"
   echo "3- Start D-ITG in a VM"
-  echo "4- Stop D-ITG in a VM"
-  echo "5- Exit to main menu"
+  echo "4- Stop D-ITG in a VM" 
+  echo "5- Start Traffic Generation (using PCAPs) in a VM"
+  echo "6- Stop Traffic Generation (using PCAPs) in a VM"
+  echo "7- Exit to main menu"
   echo "-----------------------------------"
   echo "Please enter your choice:"
   echo -n "---> "
@@ -1132,6 +1349,12 @@ function case9b() {
     case9bd
   elif [[ $choice == 5 ]]
   then
+    case9be
+  elif [[ $choice == 6 ]]
+  then
+    case9bf
+  elif [[ $choice == 7 ]]
+  then
     echo "Exiting to main menu..."
     return
   else
@@ -1145,27 +1368,27 @@ function case9ca() {
   
   # Prompt for HOST IP
   echo
-  echo "Please enter the HOST VM's ip address you want to start Traffic Generation from:"
+  echo "Please enter the HOST VM's ip address you want to start Traffic Generation (using Tools) from:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the HOST VM's ip address you want to start Traffic Generation from:"
+    echo "Please enter the HOST VM's ip address you want to start Traffic Generation (using Tools) from:"
     read HOST
   done
 
   # Prompt for DEST IP
   echo
-  echo "Please enter the DEST VM's ip address you want to start Traffic Generation to:"
+  echo "Please enter the DEST VM's ip address you want to start Traffic Generation (using Tools) to:"
   read DEST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the DEST VM's ip address you want to start Traffic Generation to:"
+    echo "Please enter the DEST VM's ip address you want to start Traffic Generation (using Tools) to:"
     read DEST
   done
 
@@ -1278,10 +1501,10 @@ function case9ca() {
         sed -i "/\b${HOST}\b/d" tmp/temp
         sed -i "/\b${DEST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		---		|		$DEST		|       ---       |       NetworkWrapper       "
+        str+="		|		---		|		$DEST		|       ---       |       NetworkWrapper (Tools)      "
         echo $str >> tmp/temp
         str=$DEST
-        str+="		|		$HOST		|		---		|		$interface		|       NetworkWrapper       "
+        str+="		|		$HOST		|		---		|		$interface		|       NetworkWrapper (Tools)       "
         echo $str >> tmp/temp
         echo "Started"
 
