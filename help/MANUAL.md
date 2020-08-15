@@ -104,9 +104,14 @@ As of now, Ubuntu is the only supported operating system.
 
     **01- Create Virtual Hard Disk(s)**
 
-        This option helps to create Virtual Hard Disks.
+    This option helps to create Virtual Hard Disks.
 
-        The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.
+    The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.
+
+
+    **02- Delete Virtual Hard Disk(s)**
+
+    This option lets you delete Virtual Hard Disks created using SETGen.
 
 </br>
 
