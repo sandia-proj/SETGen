@@ -114,7 +114,7 @@ As of now, Ubuntu is the only supported operating system.
 1) Main menu options
 
     ![alt text](MMO.png "Main menu options") </br>
-                    Fig: Main menu options
+                    Fig: SETGen Main menu options
 
 </br>
 
