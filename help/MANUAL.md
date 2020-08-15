@@ -127,7 +127,7 @@ As of now, Ubuntu is the only supported operating system.
 
     ![alt text](SMVIO.png "Sample output of Minimega VM info") </br>
                     Fig: Sample output of Minimega VM info
-</br>
+
 
     Then, create a file for username. Use a text editor (like Vim) to edit the file.
 
@@ -138,14 +138,14 @@ As of now, Ubuntu is the only supported operating system.
 
     ![alt text](SUF.png "Sample username File") </br>
                     Fig: Sample Username File
-</br>
+
 
     In a similar way, create the password file containing the passwords for the VMs.
 
 **Note:** Make sure that both username and password file **don’t have a new line at the end.**
 
 
-3) Understanding VM Traffic Generation Status
+1) Understanding VM Traffic Generation Status
    
    ![alt text](STGS.png "Sample Traffic Generation Status") </br>
                     Fig: Sample Traffic Generation Status
