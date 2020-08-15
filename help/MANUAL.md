@@ -179,6 +179,35 @@ As of now, Ubuntu is the only supported operating system.
 
    </br>
 
+   **10- System Events Generator Control Panel**
+   </br>
+      **WORK IN PROGRESS**
+   </br>
+
+   **11- Kill Minimega**
+   </br>
+   </br>
+   **WARNING: After using this option, it will be impossible to recover the current Minimega VM(s) and new VMs will have to be created!**
+   </br>
+   </br>
+   This option will kill the **tmux** session "Minimega" created using SETGen option 3. 
+   </br>
+   
+   **12- Kill Miniweb**
+  </br>
+   This option will kill the **Miniweb** process created using SETGen option 4.
+  </br>
+
+   **13- Exit**
+  </br>
+    This option quits SETGen script.
+    </br>
+    **NOTE:** Quitting SETGen does **not** cause any damage to the running VMs.
+  </br>
+</br>
+
+
+
 2) Creating Username and Password File for the VMs:
 
    To create username and password file for the running VMs, run
