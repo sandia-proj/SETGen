@@ -1,9 +1,9 @@
-# Minimega Wrapper Manual
+# SETGen Manual
 
-### Last Updated: 4th August 2020
+### Last Updated: 15th August 2020
 ---
 
-Minimega Wrapper is an all-in-one script that provides the ability to control Minimega VMs, generate traffic within and between VM(s) using the Network Wrapper etc.
+SETGen is an all-in-one script that provides the ability to control Minimega VMs, generate system events in VM(s), generate both intra and inter-VM network traffic, etc.
 
 As of now, Ubuntu is the only supported operating system.
 
@@ -16,12 +16,15 @@ As of now, Ubuntu is the only supported operating system.
 1) Minimega:
 
     Please ensure that Minimega is installed.
-    ## Add Link to install
+    
+    To install Minimega, follow the instructions [here](https://ku.nz/miniclass/module1.html)
 
 
 2) Miniweb:
 
     Please ensure that Miniweb is installed and the binaries are located in the /opt/bin directory.
+
+    To install Miniweb, follow the instructions [here](https://ku.nz/miniclass/module1.html)
 
 
 3) Tmux:

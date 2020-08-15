@@ -2383,9 +2383,19 @@ function case9() {
   cd $dir
 }
 
+# Function that deals with System Events Generation
+
+function case10(){
+  echo
+  echo
+  echo -e "${YELLOW}########################## WORK IN PROGRESS ##########################${NC}"
+  echo
+  echo
+}
+
 # Function that deals with Killing Minimega Process
 
-function case10() {
+function case11() {
 
   # Check if Minimega Process exists
   run=$(ps -aux | grep minimega| wc -l)
@@ -2427,7 +2437,7 @@ function case10() {
 
 # Function that deals with Killing Miniweb
 
-function case11() {
+function case12() {
 
   # Checking if Miniweb process exists
   run=$(ps -aux | grep miniweb | wc -l)
