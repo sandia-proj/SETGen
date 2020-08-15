@@ -58,25 +58,21 @@ echo
 echo "y" | apt-get install tmux
 
 echo
-echo "INSTALLING AWS CLI"
+echo "INSTALLING MEGA CLI"
 echo
-echo "y" | apt install awscli
+echo "y" | apt-get install megatools
 
 rm -rf NetworkWrapper
 git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/NetworkWrapper.git
 
-rm -rf .aws
-mkdir .aws
-touch .aws/credentials
-touch .aws/config
-echo "[default]
-   aws_access_key_id = AKIAJ676LL44CH2QBIOQ
-   aws_secret_access_key = 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" > .aws/credentials
-echo "[default]
-  region = us-east-1
-  output = json" > .aws/config
+rm -rf ~/.megarc
+touch ~/.megarc
+echo "[Login]
+      Username = sandiaprojpcaps@gmail.com
+      Password = SandiaProj12345!" > ~/.megarc
 
-aws s3 cp s3://pcapsforsandiaproj/PCAPCaptures.rar NetworkWrapper/src/src_pcaps
+megacopy --download --local NetworkWrapper/src/src_pcaps --remote /PCAPs/
+
 
 #aria2c -x10 http://traffic.comics.unina.it/software/ITG/codice/D-ITG-2.8.1-r1023-src.zip
 #unzip D-ITG-2.8.1-r1023-src.zip
