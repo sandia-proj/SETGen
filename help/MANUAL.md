@@ -166,7 +166,7 @@ As of now, Ubuntu is the only supported operating system.
      </br>
 
    - Using **NetworkWrapper** with PCAPs to generate/stop intra-VM network traffic:
-     </br> In this option, **NetworkWrapper** replays PCAP files in a randomized order. It follows the Weibul distribution as analyzed by authors of the paper [Traffic analysis and characterization of Internet user behavior]("https://portal.research.lu.se/portal/files/5436478/2027068.pdf") by replaying the PCAP files based on the probability and category.
+     </br> In this option, **NetworkWrapper** replays PCAP files in a randomized order. It follows the Weibul distribution as analyzed by authors of the paper [Traffic analysis and characterization of Internet user behavior](https://portal.research.lu.se/portal/files/5436478/2027068.pdf) by replaying the PCAP files based on the probability and category.
      </br>
 
    - Using **NetworkWrapper** to generate/stop intra-VM network traffic by replaying PCAP file:
