@@ -76,7 +76,7 @@ As of now, Ubuntu is the only supported operating system.
 
          chmod +x scripts/*
 
-5.  Kill all instances of Minimega processes
+5.  Kill all instances of Minimega and Miniweb processes
 
 6.  With root user permissions, run
 
