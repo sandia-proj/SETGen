@@ -202,6 +202,7 @@ As of now, Ubuntu is the only supported operating system.
    </br>
    This option quits SETGen script.
    </br>
+   </br>
    **NOTE:** Quitting SETGen does **not** cause any damage to the running VMs.
    </br>
    </br>
