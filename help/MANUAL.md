@@ -129,7 +129,7 @@ As of now, Ubuntu is the only supported operating system.
                     Fig: Sample output of Minimega VM info
 
 
-    Then, create a file for username. Use a text editor (like Vim) to edit the file.
+    Then, create a file for username. Use a text editor (e.g. Vim) to edit the file.
 
     Type the username for each VM in order of Minimega ID (0,1,2, ……). 
 
@@ -145,23 +145,38 @@ As of now, Ubuntu is the only supported operating system.
 **Note:** Make sure that both username and password file **don’t have a new line at the end.**
 
 
-1) Understanding VM Traffic Generation Status
+1) Understanding VM Network Traffic Generation Status
    
-   ![alt text](STGS.png "Sample Traffic Generation Status") </br>
-                    Fig: Sample Traffic Generation Status
+   ![alt text](STGS.png "Sample Network Traffic Generation Status") </br>
+                    Fig: Sample Network Traffic Generation Status
     </br>
 
-    Here, the first row means that 1.0.0.22 is not generating any kind of traffic.
+    Here, 
     
-    The second row means that 1.0.0.30 is generating realistic traffic within itself in the ens0 device using the Network Wrapper.
+    **IP** column refers to the ip address of the VM.
 
-    The third and fourth row mean that 1.0.0.92 is generating realistic traffic to 1.0.0.184’s ens1 interface using the Network Wrapper.
+    **SRC** column refers to the ip address of the source VM from which Network Traffic is being received.
 
-    The fifth row means that 1.0.0.188 is generating traffic within itself using D-ITG.
+    **DEST** column refers to the ip address of the destination VM to which Network Traffic is being sent.
 
-    The sixth and seventh rows mean that 1.0.0.50 is generating D-ITG traffic to 1.0.0.32.
+    **INTERFACE** column refers to the network interface where network traffic is being generated.
 
-    The eighth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
+    **METHOD** column refers to the component being used for Network Traffic generation. 
+         The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP
+    
+    The first row means that 1.0.0.22 is not generating any kind of traffic.
+    
+    The second row means that 1.0.0.30 is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
+
+    The third and fourth rows mean that 1.0.0.92 is generating realistic traffic (using tools) to 1.0.0.184’s ens1 interface using the Network Wrapper.
+
+    The fifth row means that 1.0.0.186 is generating realistic traffic (using PCAPs) within itself to the net0 interface using the Network Wrapper. 
+
+    The sixth row means that 1.0.0.188 is generating traffic within itself using D-ITG.
+
+    The seventh and eighth rows mean that 1.0.0.50 is generating D-ITG traffic to 1.0.0.32.
+
+    The ninth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
 
 </br>
 
