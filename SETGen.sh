@@ -1082,9 +1082,9 @@ function case9bc() {
   if [[ $choice == 1 ]]; then
     case9bca
   elif [[ $choice == 2 ]]; then
-    cat tmp/ITGRecvHelp
+    cat help/ITGRecvHelp
   elif [[ $choice == 3 ]]; then
-    cat tmp/ITGSendHelp
+    cat help/ITGSendHelp
   elif [[ $choice == 4 ]]; then
     return
   else
