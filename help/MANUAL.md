@@ -96,26 +96,76 @@ As of now, Ubuntu is the only supported operating system.
 
 ## Tutorial
 
-1.  Main menu options
+1. Main menu options
 
-    ![alt text](MMO.png "Main menu options")</br>
+   ![alt text](MMO.png "Main menu options")
+   </br>
+   Fig: SETGen main menu options
 
-    Fig: SETGen main menu options</br>
+   </br>
 
-    **01- Create Virtual Hard Disk(s)**
+   **01- Create Virtual Hard Disk(s)**
+   </br>
+   This option helps to create Virtual Hard Disk(s) using **VHDCreator**.
+   </br>
+   The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.
+   </br>
 
-    This option helps to create Virtual Hard Disks.
+   **02- Delete Virtual Hard Disk(s)**
+   </br>
+   This option lets you delete Virtual Hard Disk(s) created using SETGen.
+   </br>
+   **VHDDestroyer** is used here.
+   </br>
 
-    The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.&nbsp;
+   **03- Start Minimega**
+   </br>
+   This option starts a Minimega process using **tmux**.
+   </br>
+   The session name for tmux is "Minimega".
+   </br>
 
+   **04- Start Miniweb**
+   </br>
+   This option starts a Miniweb process in background.
+   </br>
 
-    **02- Delete Virtual Hard Disk(s)**
+   **05-Setup and Start VM(s)**
+   </br>
+   This option uses **VMgen** to create Minimega VM(s).
+   </br>
+   It also provides internet access to the VM(s).
+   </br>
 
-    This option lets you delete Virtual Hard Disks created using SETGen.
+   **06- Install SETGen requirements in the VM(s)**
+   </br>
+   This option uses **VMConnect** to connect to all running VMs and install all the required tools for SETGen.
+   </br>
+   This option is also useful to update **NetworkWrapper** in all VM(s) to the latest release.
+   </br>
 
-</br>
+   **07- Copy file to VM(s)**
+   </br>
+   This option uses **VMConnect** to copy file to a specific/all running VM(s).
+   </br>
 
-1. Creating Username and Password File for the VMs:
+   **08- Execute Script in VM(s)**
+   </br>
+   This option uses **VMConnect** to execute a script in a specific/all running VM(s).
+   </br>
+
+   **09- Network Traffic Generator Control Panel**
+   </br>
+   This option controls intra-VM/inter-VM Network Traffic Generation.
+   </br>
+   There are 4 ways of Generating Network Traffic.
+   </br> \_ Using **NetworkWrapper** with tools to generate intra-VM/inter-VM network traffic:
+   </br> In this option,
+   </br>
+
+   </br> \_ Using
+
+2) Creating Username and Password File for the VMs:
 
    To create username and password file for the running VMs, run
 
