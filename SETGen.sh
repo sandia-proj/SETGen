@@ -1834,7 +1834,7 @@ function case9cc() {
       tmux kill-session -t ITGRecv
     fi
 
-    a = $(cat out | grep "Try again")
+    a=$(cat out | grep "Try again")
 
     if [[ -z "$a" ]]; then
       echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
