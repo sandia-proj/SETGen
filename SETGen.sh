@@ -1698,7 +1698,7 @@ function case9cc() {
   read host
 
   #Re-prompt until valid input
-  while ! [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+  while ! [[ $host =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered! Please try again."
     echo
     echo "Please enter the HOST VM's IP address where you would like to run ITGSend:"
@@ -1710,7 +1710,7 @@ function case9cc() {
   read dest
 
   #Re-prompt until valid input
-  while ! [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+  while ! [[ $dest =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered! Please try again."
     echo
     echo "Please enter the DEST VM's IP address where you would like to run ITGRecv:"
