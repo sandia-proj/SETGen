@@ -1934,12 +1934,19 @@ function case9cd() {
   # Get State of VMs
   state=$(minimega -e vm info | grep $host | awk '{print $7}')
   state1=$(minimega -e vm info | grep $dest | awk '{print $7}')
+    
+  # Check if VM Exists or not
+  if [[ "$state" == "" || "$state1" == "" ]]
+  then
+    echo -e "${RED}One or more VMs don't exist!${NC} Exiting to main menu..."
 
-# Check if the VMs are generating traffic to each other or not
-    src="src"
-    dest="dest"
-    valid=0
-    valid1=0
+  # If not RUNNING, exit to main menu
+  elif [[ $state != "RUNNING" ||  $state1 != "RUNNING" ]]
+  then
+    echo -e "${RED}One or more VM(s) is/are not Running!${NC} Exiting to main menu..."
+  else
+  
+    # Check if the VMs are generating traffic to each other or not
     for (( i=1; i<3; i++ ))
     do
       val=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$3}')
@@ -1950,47 +1957,6 @@ function case9cd() {
         valid=1
       fi
       if [[ "$val1" == "---" && "$val" == $host && "$val2" == "D-ITG" ]]
-      then
-        valid1=1
-      fi
-    done
-   
-    
-  # Check if VM Exists or not
-  if [[ $valid == 1 && $valid1 == 1 ]]
-  then
-    echo -e "${RED}One or more VMs don't exist!${NC} Exiting to main menu..."
-
-  # If not RUNNING, exit to main menu
-  elif [[ $state != "RUNNING" ||  $state1 != "RUNNING" ]]
-  then
-    echo -e "${RED}One or more VM(s) is/are not Running!${NC} Exiting to main menu..."
-
-  else
-    # Check if VM  generating traffic
-    val=$(cat tmp/temp | grep $host | awk '{print $9}')
-    if [[ "$val" != "D-ITG" ]]; then
-      echo "$host is not generating D-ITG traffic. Exiting to main menu..."
-      return
-    fi
-
-    # Check if VM  generating traffic
-    val=$(cat tmp/temp | grep $dest | awk '{print $9}')
-    if [[ "$val" != "D-ITG" ]]; then
-      echo "$dest is not generating D-ITG traffic. Exiting to main menu..."
-      return
-    fi 
-
-    # Check if the VMs are generating traffic to each other or not
-    for (( i=1; i<3; i++ ))
-    do
-      val=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$3}')
-      val1=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$5}')
-      if [[ "$val" == "---" && "$val1" == $dest ]]
-      then
-        valid=1
-      fi
-      if [[ "$val1" == "---" && "$val" == $host ]]
       then
         valid1=1
       fi
@@ -2103,8 +2069,6 @@ function case9cd() {
     echo "Stopped"
   fi
 }
-
-
 
 # Function that handles Cross-VM Traffic Generation
 
@@ -2613,6 +2577,8 @@ do
     case10
   elif [[ "$input" == 11 ]]; then
     case11
+  elif [[ "$input" == 12 ]]; then
+    case12
   elif [[ "$input" == "clear" || "$input" == "Clear" ]]; then
     clear
   else
