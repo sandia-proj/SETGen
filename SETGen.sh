@@ -685,7 +685,7 @@ function case9ba() {
         # Update the tmp/temp file
         sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper (Tools)"
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper(Tools)"
         echo $str >> tmp/temp
 
         echo "Started"
@@ -736,7 +736,7 @@ function case9bb() {
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
     val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "NetworkWrapper (Tools)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    if [[ "$val" == "NetworkWrapperTools)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
@@ -1195,7 +1195,7 @@ function case9be() {
         # Update the tmp/temp file
         sed -i "/\b${HOST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper (PCAPs)"
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper(PCAPs)"
         echo $str >> tmp/temp
 
         echo "Started"
@@ -1244,7 +1244,7 @@ function case9bf() {
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
     val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "NetworkWrapper (PCAPs)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    if [[ "$val" == "NetworkWrapper(PCAPs)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
@@ -1505,10 +1505,10 @@ function case9ca() {
         sed -i "/\b${HOST}\b/d" tmp/temp
         sed -i "/\b${DEST}\b/d" tmp/temp
         str=$HOST
-        str+="		|		---		|		$DEST		|       ---       |       NetworkWrapper (Tools)      "
+        str+="		|		---		|		$DEST		|       ---       |       NetworkWrapper(Tools)      "
         echo $str >> tmp/temp
         str=$DEST
-        str+="		|		$HOST		|		---		|		$interface		|       NetworkWrapper (Tools)       "
+        str+="		|		$HOST		|		---		|		$interface		|       NetworkWrapper(Tools)       "
         echo $str >> tmp/temp
         echo "Started"
 
@@ -1577,11 +1577,12 @@ function case9cb() {
     do
       val=$(cat tmp/temp | grep $HOST | awk 'NR=='$i'{print$3}')
       val1=$(cat tmp/temp | grep $HOST | awk 'NR=='$i'{print$5}')
-      if [[ "$val" == "---" && "$val1" == $DEST ]]
+      val2=$(cat tmp/temp | grep $HOST | awk 'NR=='$i'{print$5}')
+      if [[ "$val" == "---" && "$val1" == $DEST && "$val2" == "NetworkWrapper(Tools)" ]]
       then
         valid=1
       fi
-      if [[ "$val1" == "---" && "$val" == $HOST ]]
+      if [[ "$val1" == "---" && "$val" == $HOST && "$val2" == "NetworkWrapper(Tools)" ]]
       then
         valid1=1
       fi
@@ -1934,8 +1935,29 @@ function case9cd() {
   state=$(minimega -e vm info | grep $host | awk '{print $7}')
   state1=$(minimega -e vm info | grep $dest | awk '{print $7}')
 
+# Check if the VMs are generating traffic to each other or not
+    src="src"
+    dest="dest"
+    valid=0
+    valid1=0
+    for (( i=1; i<3; i++ ))
+    do
+      val=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$3}')
+      val1=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$5}')
+      val2=$(cat tmp/temp | grep $host | awk 'NR=='$i'{print$9}')
+      if [[ "$val" == "---" && "$val1" == $dest && "$val2" == "D-ITG" ]]
+      then
+        valid=1
+      fi
+      if [[ "$val1" == "---" && "$val" == $host && "$val2" == "D-ITG" ]]
+      then
+        valid1=1
+      fi
+    done
+   
+    
   # Check if VM Exists or not
-  if [[ "$state" == "" || "$state1" == "" ]]
+  if [[ $valid == 1 && $valid1 == 1 ]]
   then
     echo -e "${RED}One or more VMs don't exist!${NC} Exiting to main menu..."
 
