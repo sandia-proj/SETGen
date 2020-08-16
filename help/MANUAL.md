@@ -84,6 +84,37 @@ As of now, Ubuntu is the only supported operating system.
 
 ---
 
+## Components of SETGen
+
+1. **VHDCreator**
+   
+   This is a bash script that deals with automating creation and mounting of Virtual Hard Disks at a large scale. 
+   </br>
+   The mount point is /mnt/.
+
+2. **VHDDestoryer**
+   
+    This is a bash script that deals with automating removal and unmounting of Virtual Hard Disks at a large scale. 
+   
+3. **VMConnect**
+   
+   This is a bash script that deals with connecting with the running Minimega VM(s).
+   </br>
+   This component mainly helps in copying file to VM(s), execute script in VM(s).
+
+4. **VMgen**
+   This is a bash script that automates the creation, running of Minimega VM(s).
+   </br>
+   It also creates a DNS for VM(s) to be able to connect to the internet and interact with each other.
+
+5. **WrapperInstaller**
+   This is a bash script that installs all required tools, scripts and PCAPs for all the different kinds of network traffic generation using SETGen.
+   
+6. **D-ITG**
+   D-ITG (Distributed Internet Traffic Generator) is a platform capable to produce traffic at packet level accurately replicating appropriate stochastic processes for both IDT (Inter Departure Time) and PS (Packet Size) random variables (exponential, uniform, cauchy, normal, pareto, etc.).
+
+   - **ITGRecv**: It is the receiver component of D-ITG, which acts like a server and receives network traffic. The help file is located [here](ITGRecvHelp).
+   - **ITGSend**: It is the sender component of D-ITG, which acts like a client and sends network traffic. The help file is located [here](ITGSendHelp).
 ## Notes
 
 1. To avoid network traffic conflicts in Cross-VM Traffic Generation, SETGen allows only a unique pair of Host/Dest VM to generate traffic. So, if host **A** is generating traffic to host **B**, both **B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.**
@@ -91,6 +122,10 @@ As of now, Ubuntu is the only supported operating system.
 2. It is strongly advised **NOT** to modify/create any files in tmp/ directory.
 
 3. In the main menu, typing “clear” will clear the screen.
+   
+4. Always run SETGen script from its directory.
+   
+5. SETGen does **not** check for the validity of D-ITG related commands.
 
 ---
 
