@@ -1664,7 +1664,7 @@ function case9cb() {
         sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStopD.sh $D_USERNAME@$DEST:
 
         echo "Stopping Network Traffic Generation from $HOST to $DEST"
-        SCRIPT="chmod +x NTGStopH.sh; echo $H_PASSWORD | sudo -S ./NTGStop.sh  "
+        SCRIPT="chmod +x NTGStopH.sh; echo $H_PASSWORD | sudo -S ./NTGStopH.sh  "
         sshpass -p "$H_PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${H_USERNAME} ${HOST} "${SCRIPT}"
 
         echo "Stopping the receiver in $DEST"
