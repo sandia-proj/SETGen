@@ -1387,7 +1387,7 @@ function case9ca() {
   read DEST
 
   # Re-prompt
-  while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+  while ! [[ $DEST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
     echo "Please enter the DEST VM's ip address you want to start Traffic Generation (using Tools) to:"
