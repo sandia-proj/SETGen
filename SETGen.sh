@@ -587,14 +587,14 @@ function case9ba() {
 
   # Prompt for IP Address of the VM
   echo
-  echo "Please enter the VM's ip address you want to start Traffic Generation in:"
+  echo "Please enter the VM's ip address you want to start Traffic Generation (using tools) in:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the VM's ip address you want to start Traffic Generation in:"
+    echo "Please enter the VM's ip address you want to start Traffic Generation (uing tools) in:"
     read HOST
   done
   
@@ -705,14 +705,14 @@ function case9bb() {
 
   # Prompt for IP Address of the VM
   echo
-  echo "Please enter the VM's ip address you want to stop Traffic Generation in:"
+  echo "Please enter the VM's ip address you want to stop Traffic Generation (using tools) in:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the VM's ip address you want to stop Traffic Generation in:"
+    echo "Please enter the VM's ip address you want to stop Traffic Generation (using tools) in:"
     read HOST
   done
   
@@ -795,7 +795,7 @@ function case9bb() {
         return
       fi
     else
-      echo "The VM is not generating NetworkWrapper traffic within itself. Exiting to main menu..."
+      echo "The VM is not generating NetworkWrapper traffic (using tools) within itself. Exiting to main menu..."
       return
     fi
   fi
@@ -902,6 +902,7 @@ function case9bca() {
   
     # Build Script
     echo "#!/bin/bash
+            cd NetworkWrapper/
             tmux new-session -d -s ITGRecv \; send-keys \"$ITGRecvCommand \" Enter
             " > tmp/ITGRecvStart.sh
     sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStart.sh $username@$ip:
@@ -939,6 +940,7 @@ function case9bca() {
     # Start ITGSend
     echo "Starting ITGSend in $ip"
     echo "#!/bin/bash
+            cd NetworkWrapper/
             tmux new-session -d -s ITGSend \; send-keys \"$ITGSendCommand \" Enter
             " > tmp/ITGSendStart.sh
     sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStart.sh $username@$ip:
@@ -1211,14 +1213,14 @@ function case9bf() {
   
   # Prompt for IP Address of the VM
   echo
-  echo "Please enter the VM's ip address you want to stop Traffic Generation(using PCAPs) in:"
+  echo "Please enter the VM's ip address you want to stop Traffic Generation (using PCAPs) in:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the VM's ip address you want to stop Traffic Generation(using PCAPs) in:"
+    echo "Please enter the VM's ip address you want to stop Traffic Generation (using PCAPs) in:"
     read HOST
   done
   
@@ -1477,12 +1479,14 @@ function case9ca() {
 
         # Build the script and copy to VM
         echo "#!/bin/bash
+            cd NetworkWrapper/
             sudo tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$H_USERNAME/NetworkWrapper/wrap.py $interface --dest $DEST \" Enter
             " > tmp/NTGStartH.sh
         sshpass -p "$H_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStartH.sh $H_USERNAME@$HOST:
         
         # Build the script and copy to VM
         echo "#!/bin/bash
+            cd NetworkWrapper/
             tmux new-session -d -s TrafficGen \; send-keys \"ITGRecv -l Traffic.log \" Enter
             " > tmp/NTGStartD.sh
         sshpass -p "$D_PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null tmp/NTGStartD.sh $D_USERNAME@$DEST:
@@ -1523,27 +1527,27 @@ function case9cb() {
 
   # Prompt for HOST IP
   echo
-  echo "Please enter the HOST VM's ip address you want to start Traffic Generation from:"
+  echo "Please enter the HOST VM's ip address you want to stop Traffic Generation (using tools) from:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the HOST VM's ip address you want to start Traffic Generation from:"
+    echo "Please enter the HOST VM's ip address you want to stop Traffic Generation (using tools) from:"
     read HOST
   done
 
  # Prompt for DEST IP
   echo
-  echo "Please enter the DEST VM's ip address you want to start Traffic Generation to:"
+  echo "Please enter the DEST VM's ip address you want to stop Traffic Generation (using tools) to:"
   read DeST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the DEST VM's ip address you want to start Traffic Generation to:"
+    echo "Please enter the DEST VM's ip address you want to stop Traffic Generation (using tools) to:"
     read DEST
   done
 
@@ -1560,7 +1564,7 @@ function case9cb() {
     count1=$(cat tmp/temp | grep $DEST | wc -l)
     if [[ $count != 2 || $count1 != 2 ]]
     then
-      echo -e "${RED}One of the VMs is not generating or is generating single traffic.${NC} Exiting to main menu..."
+      echo -e "${RED}One of the VMs is not generating NetworkWrapper traffic (using tools) or is generating single traffic.${NC} Exiting to main menu..."
       return
     fi
 
@@ -1681,7 +1685,7 @@ function case9cb() {
         echo -e "${RED}Invalid Username/Password for${NC} one of the VMs. Exiting to main menu..."
       fi
     else
-      echo -e "${RED}Doesn't look like $HOST is generating traffic to $DEST.${NC} Exiting to main menu..."
+      echo -e "${RED}Doesn't look like $HOST is generating traffic (using tools) to $DEST.${NC} Exiting to main menu..."
     fi
   fi
 }
@@ -1839,6 +1843,7 @@ function case9cc() {
 
     # Start ITGRecv in Dest
     echo "#!/bin/bash
+            cd NetworkWrapper/
             tmux new-session -d -s ITGRecv \; send-keys \"$ITGRecvCommand \" Enter
             " > tmp/ITGRecvStart.sh
     sshpass -p "$passwordD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGRecvStart.sh $usernameD@$dest:
@@ -1877,6 +1882,7 @@ function case9cc() {
     # Start ITGSend in Host
     echo "Starting ITGSend in $host"
     echo "#!/bin/bash
+            cd NetworkWrapper/
             tmux new-session -d -s ITGSend \; send-keys \"$ITGSendCommand \" Enter
             " > tmp/ITGSendStart.sh
     sshpass -p "$password" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/ITGSendStart.sh $username@$host:

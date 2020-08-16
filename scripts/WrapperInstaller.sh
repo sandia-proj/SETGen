@@ -33,6 +33,11 @@ echo
 echo "y" | pip3 install psutil
 
 echo
+echo "INSTALLING NUMPY"
+echo
+echo "y" | pip3 install numpy 
+
+echo
 echo "INSTALLING NET-TOOLS"
 echo
 echo "y" | apt install net-tools
@@ -70,7 +75,8 @@ touch ~/.megarc
 echo "[Login]
       Username = sandiaprojpcaps@gmail.com
       Password = SandiaProj12345!" > ~/.megarc
-
+rm -rf NetworkWrapper/src/src_pcaps
+mkdir NetworkWrapper/src/src_pcaps
 megacopy --download --local NetworkWrapper/src/src_pcaps --remote /PCAPs/
 
 
