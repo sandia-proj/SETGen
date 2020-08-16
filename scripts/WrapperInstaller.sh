@@ -83,7 +83,7 @@ echo "[default]
   region = us-east-1
   output = json" > .aws/config
 
-aws s3 cp s3://pcapsforsandiaproj/PCAPs.zip NetworkWrapper/src/src_pcaps
+aws s3 cp s3://pcapsforsandiaproj/PCAPs.zip NetworkWrapper/src/
 cd NetworkWrapper/src/
 unzip PCAPs.zip
 rm PCAPs.zip
