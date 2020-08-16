@@ -886,19 +886,19 @@ function case9bca() {
     done
     
     # Check if command is valid
-    tmux new-session -d -s ITGRecv "$ITGRecvCommand > out"
-    sleep 0.5
-    a=$(tmux ls | grep ITGRecv | wc -l)
-    if [[ $a != 0 ]]; then
-      tmux kill-session -t ITGRecv
-    fi
+    #tmux new-session -d -s ITGRecv "$ITGRecvCommand > out"
+    #sleep 0.5
+    #a=$(tmux ls | grep ITGRecv | wc -l)
+    #if [[ $a != 0 ]]; then
+     # tmux kill-session -t ITGRecv
+    #fi
 
-    a=$(cat out | grep 'for help' out | wc -l)
+    #a=$(cat out | grep 'for help' out | wc -l)
 
-    if [[ $a -gt 0 ]]; then
-      echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
-      return
-    fi
+    #if [[ $a -gt 0 ]]; then
+     # echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
+     # return
+    #fi
   
     # Build Script
     echo "#!/bin/bash
@@ -923,19 +923,19 @@ function case9bca() {
     done
 
     # Check if command is valid
-    tmux new-session -d -s ITGSend "$ITGSendCommand > out"
-    sleep 0.5
-    a=$(tmux ls | grep ITGSend | wc -l)
-    if [[ $a != 0 ]]; then
-      tmux kill-session -t ITGSend
-    fi
+    #tmux new-session -d -s ITGSend "$ITGSendCommand > out"
+    #sleep 0.5
+    #a=$(tmux ls | grep ITGSend | wc -l)
+    #if [[ $a != 0 ]]; then
+     # tmux kill-session -t ITGSend
+    #fi
 
-    a=$(cat out | grep 'for help' out | wc -l)
+    #a=$(cat out | grep 'for help' out | wc -l)
 
-    if [[ $a -gt 0 ]]; then
-      echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
-      return
-    fi
+    #if [[ $a -gt 0 ]]; then
+     # echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
+     # return
+    #fi
 
     # Start ITGSend
     echo "Starting ITGSend in $ip"
@@ -1826,20 +1826,20 @@ function case9cc() {
     done
     
     # Check if command is valid
-    tmux new-session -d -s ITGRecv '$ITGRecvCommand > out'
-    sleep 0.5
-    a=$(tmux ls | grep ITGRecv | wc -l)
+    #tmux new-session -d -s ITGRecv '$ITGRecvCommand > out'
+    #sleep 0.5
+    #a=$(tmux ls | grep ITGRecv | wc -l)
 
-    if [[ $a != 0 ]]; then
-      tmux kill-session -t ITGRecv
-    fi
+    #if [[ $a != 0 ]]; then
+     # tmux kill-session -t ITGRecv
+    #fi
 
-    a=$(cat out | grep "Try again")
+    #a=$(cat out | grep "Try again")
 
-    if [[ -z "$a" ]]; then
-      echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
-      return
-    fi
+    #if [[ -z "$a" ]]; then
+     # echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
+      #return
+    #fi
 
     # Start ITGRecv in Dest
     echo "#!/bin/bash
@@ -1865,19 +1865,19 @@ function case9cc() {
 
 
     # Check if command is valid
-    tmux new-session -d -s ITGSend "$ITGSendCommand > out"
-    sleep 0.5
-    a=$(tmux ls | grep ITGSend | wc -l)
-    if [[ $a != 0 ]]; then
-      tmux kill-session -t ITGSend
-    fi
+    #tmux new-session -d -s ITGSend "$ITGSendCommand > out"
+    #sleep 0.5
+    #a=$(tmux ls | grep ITGSend | wc -l)
+    #if [[ $a != 0 ]]; then
+    #  tmux kill-session -t ITGSend
+    #fi
 
-    a=$(cat out | grep 'for help' out | wc -l)
+    #a=$(cat out | grep 'for help' out | wc -l)
 
-    if [[ $a -gt 0 ]]; then
-      echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
-      return
-    fi
+    #if [[ $a -gt 0 ]]; then
+     # echo -e "${RED}Invalid command entered!${NC} Exiting to main menu..."  
+      #return
+    #fi
 
     # Start ITGSend in Host
     echo "Starting ITGSend in $host"
