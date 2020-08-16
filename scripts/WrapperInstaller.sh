@@ -84,7 +84,7 @@ echo "[default]
   output = json" > .aws/config
 
 aws s3 cp s3://pcapsforsandiaproj/PCAPs.zip NetworkWrapper/src/src_pcaps
-cd NetworkWrapper/src/src_pcaps
+cd NetworkWrapper/src/
 unzip PCAPs.zip
 rm PCAPs.zip
 
