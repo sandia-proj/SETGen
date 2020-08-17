@@ -9,15 +9,23 @@ SETGen is an all-in-one script that provides the ability to control Minimega VMs
 As of now, Ubuntu is the only supported operating system.
 
 **Prof. Beerkay Celik**
+</br>
 Assistant Professor,
+</br>
 Dept. of Computer Science, Purdue University
-
+</br>
+</br>
 **Basavesh Shivakumar**
+</br>
 Graduate Student,
+</br>
 Dept. of Computer Science, Purdue University
-
+</br>
+</br>
 **Sidhartha Agrawal**
+</br>
 Undergraduate Student,
+</br>
 Dept. of Computer Science, Purdue University
 
 ---
