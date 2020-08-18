@@ -11,7 +11,7 @@ As of now, Ubuntu is the only supported operating system.
 ---
 ## Contributors:
 
-**Prof. Beerkay Celik**
+**Prof. Berkay Celik**
 </br>
 Assistant Professor,
 </br>
