@@ -1,30 +1,7 @@
 # SETGen
 Last Updated: 12th Aug 2020
 
-SETGen is an all-in-one tool that interacts with Minimega VMs to generate System Events and Network Traffic.
-
-## Contributors:
-
-**Prof. Berkay Celik**
-</br>
-Assistant Professor,
-</br>
-Dept. of Computer Science, Purdue University
-</br>
-</br>
-**Basavesh Shivakumar**
-</br>
-Graduate Student,
-</br>
-Dept. of Computer Science, Purdue University
-</br>
-</br>
-**Sidhartha Agrawal**
-</br>
-Undergraduate Student,
-</br>
-Dept. of Computer Science, Purdue University
----
+SETGen is an all-in-one tool that allows the user to generate/delete Virtual Hard Disk(s), control Minimega VM(s), copy file to all Minimega VM(s), run a script in all Minimega VM(s), interact with Minimega VMs to generate both Intra-VM and Inter-VM (through multiple options) network traffic, interact with Minimega VMs to generate system events.
 
 The supported OS is Ubuntu.
 
