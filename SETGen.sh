@@ -7,6 +7,11 @@ GREEN=$'\e[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
+if [[ $# -gt 0 ]]
+then
+  cat help/help
+  exit
+fi
 
 echo
 echo "----------------------------------------------------------------------------------------------"
@@ -284,18 +289,6 @@ function case7b() {
   echo -n "---> "
   read choice
 
-  # Prompt for Path
-  echo "Please specify the path to the file you wish to copy:"
-  read path
-
-  # Re-prompt until valid path
-  while ! [[ -f $path ]]; do
-      echo "This is an invalid file/a directory. Please try again!"
-      echo
-      echo "Please specify the path to the file you wish to copy:"
-      read path
-  done
-
   # Get the count of RUNNING VMs
   count=$(minimega -e vm info | wc -l)
   let count=count-1
@@ -303,12 +296,33 @@ function case7b() {
   # Use Deafault Username|Password
   if [[ $choice == 1 ]]
   then
+    # Prompt for Path
+     echo "Please specify the path to the file you wish to copy:"
+     read path
+
+    # Re-prompt until valid path
+    while ! [[ -f $path ]]; do
+      echo "This is an invalid file/a directory. Please try again!"
+      echo
+      echo "Please specify the path to the file you wish to copy:"
+      read path
+    done
     ./scripts/VMconnect.sh $count -copy $path
 
   # Get Username and Password File
   elif [[ $choice == 2 ]]
   then
+    # Prompt for Path
+    echo "Please specify the path to the file you wish to copy:"
+    read path
 
+    # Re-prompt until valid path
+    while ! [[ -f $path ]]; do
+      echo "This is an invalid file/a directory. Please try again!"
+      echo
+      echo "Please specify the path to the file you wish to copy:"
+      read path
+    done
     # Prompt for Username File
     echo "Please enter the path to file containing the Username of the VM(s)"
     read Upath
@@ -333,10 +347,8 @@ function case7b() {
       read Ppath
       return
     fi
-
     # Calling the script with the arguments
     ./scripts/VMconnect.sh -copy $path $Upath $Ppath
-
   # Exit
   elif [[ $choice == 3 ]]
   then
@@ -488,6 +500,27 @@ function case8b() {
   echo -n "---> "
   read choice
 
+  # Count the number of VMs 
+  count=$(minimega -e vm info | wc -l)
+  let count=count-1
+
+  # Call the script with appropriate args
+  if [[ $choice == 1 ]]
+  then
+    # Prompt for Script
+  echo "Please specify the path to the script you wish to run:"
+  read path
+
+  # Re-prompt
+  while ! [[ -f $path ]]; do
+      echo "This is a directory/invalid file. Please try again!"
+      echo
+      echo "Please specify the path to the script you wish to run:"
+      read path 
+  done
+    ./scripts/VMconnect.sh $count -run $path
+  elif [[ $choice == 2 ]]
+  then
   # Prompt for Script
   echo "Please specify the path to the script you wish to run:"
   read path
@@ -499,18 +532,6 @@ function case8b() {
       echo "Please specify the path to the script you wish to run:"
       read path 
   done
-
-  # Count the number of VMs 
-  count=$(minimega -e vm info | wc -l)
-  let count=count-1
-
-  # Call the script with appropriate args
-  if [[ $choice == 1 ]]
-  then 
-    ./scripts/VMconnect.sh $count -run $path
-  elif [[ $choice == 2 ]]
-  then
-
     # Prompt for Username file
     echo "Please enter the path to file containing the Username of the VM(s)"
     read Upath 
@@ -2078,8 +2099,8 @@ function case9c() {
   echo 
   echo -e "${GREEN}OPTIONS:${NC}"
   echo "----------------------------------------"
-  echo "1- Start Traffic Generation from/to a VM"
-  echo "2- Stop Traffic Generation from/to a VM"
+  echo "1- Start Traffic Generation (using tools) between two VMs"
+  echo "2- Stop Traffic Generation (using tools) between two VMs"
   echo "3- Start D-ITG between VMs"
   echo "4- Stop D-ITG between VMs"
   echo "5- Exit to main menu"
@@ -2339,8 +2360,8 @@ function case9() {
   echo -e "${GREEN}OPTIONS:${NC}"
   echo "--------------------------------------"
   echo "1- Network Traffic Generation Status"
-  echo "2- VM Network Traffic Generation"
-  echo "3- Cross-VM Network Traffic Generation"
+  echo "2- Intra-VM Network Traffic Generation"
+  echo "3- Inter-VM Network Traffic Generation"
   echo "4- Start PCAP file replay in a VM"
   echo "5- Stop PCAP file replay in a VM"
   echo "6- Exit to main menu"

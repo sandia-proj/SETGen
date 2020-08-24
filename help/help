@@ -1,0 +1,181 @@
+##################################################################################################################################################################################
+#----------------------------------------------------------------- SETGen - System events and traffic generator -----------------------------------------------------------------#
+##################################################################################################################################################################################
+
+1. Create Virtual Hard Disk(s)
+
+	This option helps to create Virtual Hard Disk(s) using VHDCreator.
+	The minimum recommended size for each Virtual Hard Disk is 30720 bytes i.e. 30gb.
+
+2. Delete Virtual Hard Disk(s)
+	
+	This option lets you delete Virtual Hard Disk(s) created using SETGen.
+	VHDDestroyer is used here.
+
+3. Start Minimega
+
+	This option starts a Minimega process using tmux.
+	The session name for tmux is "Minimega".
+
+4. Start Miniweb
+	
+	This option starts a Miniweb process in background.
+
+5. Setup and Start VM(s)
+
+	This option uses VMgen to create Minimega VM(s).
+	It also provides internet access to the VM(s).
+
+6. Install SETGen requirements in the VM(s)
+
+	This option uses VMConnect to connect to all running VMs and install all the required tools for SETGen.
+	This option is also useful to update NetworkWrapper in all VM(s) to the latest release.
+
+	6.1. Run with default username/password i.e. vm<no.>/vm<no.>
+
+		Install the requirements by using the default credentials. 
+
+	6.2. Provide username file and password file
+	
+		Install the requirements by providing the username file and password file.
+
+	6.3. Exit to main menu
+
+7. Copy file to VM(s)
+
+	This option uses VMConnect to execute a script in a specific/all running VM(s).
+
+	7.1. Copy the file to a specific VM
+
+		Choosing this option lets you copy a file to a specific VM only.
+
+	7.2. Copy the file to all running VM(s)
+
+		This option automates the copying of the file to ALL RUNNING VM(s).
+
+		7.2.1. Run with default username/password i.e. vm<no.>/vm<no.>
+
+			Copy the file to all running VM(s) by using the default credentials.
+
+		7.2.2. Provide username file and password file
+
+			Copy the file to all running VM(s) by providing the username file and password file.
+
+		7.2.3. Exit to main menu
+
+	7.3. Exit to main menu
+
+8. Execute Script in VM(s)
+
+	This option uses VMConnect to execute a script in a specific/all running VM(s).
+
+	8.1. Run the script in a specific VM
+
+                Choosing this option lets you execute a script inside a specific VM only.
+
+        8.2. Run the script in all running VM(s)
+
+                This option automates the execution of the script in ALL RUNNING VM(s).
+
+                8.2.1. Run with default username/password i.e. vm<no.>/vm<no.>
+
+                        Execute the script to all running VM(s) by using the default credentials.
+
+                8.2.2. Provide username file and password file
+
+                        Execute the script to all running VM(s) by providing the username file and password file.
+
+                8.2.3. Exit to main menu
+
+        8.3. Exit to main menu
+
+9. Network Traffic Generator Control Panel
+	
+	This option controls intra-VM/inter-VM network traffic generation including viewing the status, starting/stopping traffic generation.
+
+	9.1. Network Traffic Generation Status
+
+		View the Network Traffic Generation Status across all VM(s)
+
+	9.2. Intra-VM Network Traffic Generation
+
+		This menu provides a variety of options to generate Intra-VM (within VM) Network Traffic Generation.
+
+		9.2.1. Start Traffic Generation (using tools) in a VM
+
+			This option starts Network Traffic Generation using Network Wrapper with Tools inside a VM.
+
+		9.2.2. Stop Traffic Generation (using tools) in a VM
+
+			This option stops Network Traffic Generation using Network Wrapper with Tools inside a VM.
+
+		9.2.3. Start D-ITG in a VM
+
+			This option allows to start Network Traffic Generation within a VM using D-ITG.
+
+		9.2.4. Stop D-ITG in a VM
+
+			This option stops the Network Traffic Generation within a VM using D-ITG.
+
+		9.2.5. Start Traffic Generation (using PCAPs) in a VM
+
+			This option starts Network Traffic Generation using Network Wrapper with PCAPs inside a VM.
+
+		9.2.6. Stop Traffic Generation (using PCAPs) in a VM
+			
+			This option stops Network Traffic Generation using Network Wrapper with PCAPs inside a VM.
+
+		9.2.7. Exit to main menu
+
+	9.3. Inter-VM Netowork Traffic Generation
+
+		This menu provides a variety of options to generate Inter-VM (cross-VM) Network Traffic Generation.
+
+		9.3.1. Start Traffic Generation (using tools) between two VMs
+
+			This option starts Network Traffic Generation using Network Wrapper with Tools between two VMs.
+
+		9.3.2. Stop Traffic Generation (using tools) between two VMs
+	
+			This option stops Network Traffic Generation using Network Wrapper with Tools between two VMs.
+
+		9.3.3. Start D-ITG between VMs
+
+			This option allows to start Network Traffic Generation between two VMs using D-ITG.
+
+		9.3.4. Stop D-ITG between VMs
+
+                        This option allows to stop Network Traffic Generation between two VMs using D-ITG.
+
+		9.3.5 Exit to main menu
+
+	9.4. Start PCAP file replay in a VM
+
+		Start generating network traffic inside a VM by replaying a PCAP file.
+
+	9.5. Stop PCAP file replay in a VM
+
+		Stop generating network traffic inside a VM by replaying a PCAP file.
+
+	9.6. Exit to main menu
+
+10. System Events Generator Control Panel
+
+	IN PROGRESS
+
+11. Kill Minimega
+	
+	WARNING: After using this option, it will be impossible to recover the current Minimega VM(s) and new VMs will have to be created!
+
+	This option will kill the tmux session "Minimega" created using SETGen option 3.
+
+12. Kill Miniweb
+
+	This option will kill the Miniweb process created using SETGen option 4.
+
+13. Exit
+
+	This option quits SETGen script.
+
+	NOTE: Quitting SETGen does not cause any damage to the running VMs.
+
