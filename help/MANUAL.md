@@ -4,7 +4,7 @@
 
 ---
 
-SETGen is an all-in-one script that provides the ability to control Minimega VMs, generate system events in VM(s), generate intra-VM/inter-VM network traffic, etc.
+SETGen (System events and traffic generator) is an all-in-one script that provides the ability to control Minimega VMs, generate system events in VM(s), generate intra-VM/inter-VM network traffic, etc.
 
 As of now, Ubuntu is the only supported operating system.
 
