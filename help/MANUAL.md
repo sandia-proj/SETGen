@@ -136,6 +136,8 @@ Dept. of Computer Science, Purdue University
 
    - **ITGRecv**: It is the receiver component of D-ITG, which acts like a server and receives network traffic. The help file is located [here](ITGRecvHelp).
    - **ITGSend**: It is the sender component of D-ITG, which acts like a client and sends network traffic. The help file is located [here](ITGSendHelp).
+
+   We had a couple of options for choosing a traffic generator
 ## Notes
 
 1. To avoid network traffic conflicts in Cross-VM Traffic Generation, SETGen allows only a unique pair of Host/Dest VM to generate traffic. So, if host **A** is generating traffic to host **B**, both **B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.**
@@ -344,3 +346,13 @@ Dept. of Computer Science, Purdue University
 
 
 ---
+
+## Consulted Papers
+
+Papers used to understand Applications of Protonuke
+1. [protonuke as a Tool to Support Industrial Control Systems]("https://www.osti.gov/servlets/purl/1507919")
+2. 
+
+Papers used to explore possible Network Traffic Generators
+1. [OpenAirInterface Traffic Generator (OTG): A Realistic Traffic Generation Tool for Emerging Application Scenarios]("http://www.eurecom.fr/en/publication/3721/download/cm-publi-3721.pdf")
+
