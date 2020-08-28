@@ -347,13 +347,41 @@ Dept. of Computer Science, Purdue University
 
 ---
 
-## Consulted Papers
+## Resources
 
-Papers used to understand Applications of Protonuke
+Resources used to understand Applications of Protonuke
 1. [protonuke as a Tool to Support Industrial Control Systems](https://www.osti.gov/servlets/purl/1507919)
 
-Papers used to explore possible Network Traffic Generators
+Resources used to explore possible Network Traffic Generators and understand how they generate network traffic
 1. [OpenAirInterface Traffic Generator (OTG): A Realistic Traffic Generation Tool for Emerging Application Scenarios](http://www.eurecom.fr/en/publication/3721/download/cm-publi-3721.pdf)
 2. [Realistic and Responsive Network Traffic Generation](http://cseweb.ucsd.edu/~kvishwanath/papers/swing-sigcomm06.pdf)
 3. [A tool for the generation of realistic network workload for emerging networking scenarios](http://wpage.unina.it/a.botta/pub/COMNET_WORKLOAD.pdf)
-4. 
+4. [D-ITG Distributed Internet Traffic Generator](https://www.researchgate.net/publication/221406698_D-ITG_Distributed_Internet_Traffic_Generator/link/09e41509ba1c1cf0d3000000/download)
+5. [A Distributed Multiplatform Architecture For Traffic Generation](https://pdfs.semanticscholar.org/375e/2603833cf06e40708bfa04f151130326bae1.pdf)
+6. [protonuke](https://minimega.org/articles/protonuke.article)
+7. [Generating Realistic TCP Workloads](https://www.researchgate.net/profile/Kevin_Jeffay/publication/221447952_Generating_Realistic_TCP_Workloads/links/00b7d530cd8501d3e5000000.pdf)
+8. [Harpoon: A Flow-Level Traffic Generator for Router and Network Tests](http://pages.cs.wisc.edu/~pb/harpoon_poster.pdf)
+9. [Self-Configuring Network Traffic Generation](http://pages.cs.wisc.edu/~pb/selfconfig_final.pdf)
+10. [TRex](https://trex-tgn.cisco.com/)
+11. [Toward Comprehensive Traffic Generation for Online IDS Evaluation](http://pages.cs.wisc.edu/~pb/trident_final.pdf)
+12. [LegoTG: Composable Traffic Generation with a Custom Blueprint](https://steel.isi.edu/Projects/legoTG/tr-699.pdf)
+13. [Towards a Flexible and Extensible Framework for Realistic Traffic Generation on Emerging Networking Scenarios](https://pdfs.semanticscholar.org/0c25/504a9a78ceca227b95e775e3cf9735c83fec.pdf)
+14. [Traffic flow (computer networking)](https://en.wikipedia.org/wiki/Traffic_flow_(computer_networking))
+
+Resources used to Model the Network Traffic
+1. [Traffic analysis and characterization of Internet user behavior](https://ieeexplore.ieee.org/document/5676633)
+2. [On the Feasibility of Profiling Internet Users based on Volume and Time of Usage](https://www.csee.usf.edu/~sriramc/17_Latincom_SLC.pdf)
+
+
+Resources used to get/capture Real-World Network Captures
+1. [LBNL/ICSI Enterprise Tracing Project](http://www.icir.org/enterprise-tracing/)
+2. [CSE-CIC-IDS2018 on AWS](https://www.unb.ca/cic/datasets/ids-2018.html)
+3. [Chris Sanders PCAPs](https://github.com/chrissanders/packets/)
+4. [Tcpreplay](https://tcpreplay.appneta.com/wiki/captures.html#smallflows-pcap)
+5. [Aposemat IoT-23](https://www.stratosphereips.org/datasets-iot23)
+6. [FIRMA: Malware Clustering and Network Signature Generation with Mixed Network Behaviors](https://software.imdea.org/~juanca/papers/firma_raid13.pdf)
+
+Resources used to understand/model Benign User behaviour
+1. [5 Levels of User Behavior Monitoring](https://www.ekransystem.com/en/blog/5-levels-user-behavior-monitoring)
+2. [Data Gathering and User Behavior Analysis System](http://syrcose.ispras.ru/2007/files/2007_06_paper.pdf)
+3. [LibreOffice - Source Code](https://www.libreoffice.org/about-us/source-code/)
