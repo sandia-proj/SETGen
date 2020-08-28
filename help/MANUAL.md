@@ -141,19 +141,19 @@ Dept. of Computer Science, Purdue University
 
    ![alt text](DvsO.png "D-ITG v/s Iperf v/s NetPerf v/s IP Traffic")
    </br>
-   Fig: D-ITG v/s Iperf v/s NetPerf v/s IP Traffic
+   Fig: D-ITG v/s Iperf v/s NetPerf v/s IP Traffic (Features)
 
    </br>
 
    ![alt text](DvsP1.png "Features: D-ITG v/s Protonuke")
    </br>
-   Fig: Features: D-ITG v/s Protonuke
+   Fig: D-ITG v/s Protonuke (Features)
 
    </br>
    
    ![alt text](DvsP2.png "Supported Protocols: D-ITG v/s Protonuke")
    </br>
-   Fig: Features: D-ITG v/s Protonuke
+   Fig: D-ITG v/s Protonuke (Supported Protocols)
 
    </br>
 
