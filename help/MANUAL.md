@@ -350,8 +350,10 @@ Dept. of Computer Science, Purdue University
 ## Consulted Papers
 
 Papers used to understand Applications of Protonuke
-1. [protonuke as a Tool to Support Industrial Control Systems]("https://www.osti.gov/servlets/purl/1507919")
+1. [protonuke as a Tool to Support Industrial Control Systems](https://www.osti.gov/servlets/purl/1507919)
 
 Papers used to explore possible Network Traffic Generators
-1. [OpenAirInterface Traffic Generator (OTG): A Realistic Traffic Generation Tool for Emerging Application Scenarios]("http://www.eurecom.fr/en/publication/3721/download/cm-publi-3721.pdf")
-
+1. [OpenAirInterface Traffic Generator (OTG): A Realistic Traffic Generation Tool for Emerging Application Scenarios](http://www.eurecom.fr/en/publication/3721/download/cm-publi-3721.pdf)
+2. [Realistic and Responsive Network Traffic Generation](http://cseweb.ucsd.edu/~kvishwanath/papers/swing-sigcomm06.pdf)
+3. [A tool for the generation of realistic network workload for emerging networking scenarios](http://wpage.unina.it/a.botta/pub/COMNET_WORKLOAD.pdf)
+4. 
