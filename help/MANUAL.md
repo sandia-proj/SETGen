@@ -351,7 +351,6 @@ Dept. of Computer Science, Purdue University
 
 Papers used to understand Applications of Protonuke
 1. [protonuke as a Tool to Support Industrial Control Systems]("https://www.osti.gov/servlets/purl/1507919")
-2. 
 
 Papers used to explore possible Network Traffic Generators
 1. [OpenAirInterface Traffic Generator (OTG): A Realistic Traffic Generation Tool for Emerging Application Scenarios]("http://www.eurecom.fr/en/publication/3721/download/cm-publi-3721.pdf")
