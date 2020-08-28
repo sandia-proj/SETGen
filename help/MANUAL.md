@@ -137,7 +137,26 @@ Dept. of Computer Science, Purdue University
    - **ITGRecv**: It is the receiver component of D-ITG, which acts like a server and receives network traffic. The help file is located [here](ITGRecvHelp).
    - **ITGSend**: It is the sender component of D-ITG, which acts like a client and sends network traffic. The help file is located [here](ITGSendHelp).
 
-   We had a couple of options for choosing a traffic generator
+   We had a couple of options to choose a traffic generator to integrate with SETGen. We referred to some resources and found that D-ITG was the most-configurable and had a fairly simple easy-to-understand documentation.
+
+   ![alt text](DvsO.png "D-ITG v/s Iperf v/s NetPerf v/s IP Traffic")
+   </br>
+   Fig: D-ITG v/s Iperf v/s NetPerf v/s IP Traffic
+
+   </br>
+
+   ![alt text](DvsP1.png "Features: D-ITG v/s Protonuke")
+   </br>
+   Fig: Features: D-ITG v/s Protonuke
+
+   </br>
+   
+   ![alt text](DvsP2.png "Supported Protocols: D-ITG v/s Protonuke")
+   </br>
+   Fig: Features: D-ITG v/s Protonuke
+
+   </br>
+
 ## Notes
 
 1. To avoid network traffic conflicts in Cross-VM Traffic Generation, SETGen allows only a unique pair of Host/Dest VM to generate traffic. So, if host **A** is generating traffic to host **B**, both **B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.**
@@ -385,3 +404,4 @@ Resources used to understand/model Benign User behaviour
 1. [5 Levels of User Behavior Monitoring](https://www.ekransystem.com/en/blog/5-levels-user-behavior-monitoring)
 2. [Data Gathering and User Behavior Analysis System](http://syrcose.ispras.ru/2007/files/2007_06_paper.pdf)
 3. [LibreOffice - Source Code](https://www.libreoffice.org/about-us/source-code/)
+
