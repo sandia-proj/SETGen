@@ -2495,23 +2495,23 @@ function case10ba() {
         # Build the script
 
         echo "#!/bin/bash
-            cd NetworkWrapper/
-            tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface\" Enter
-            " > tmp/NTGStart.sh
+            cd SysEventsGen/
+            tmux new-session -d -s SysEventsGen \; send-keys \"python3 /home/$USERNAME/SysEventsGen/SysGen.py --random\" Enter
+            " > tmp/SGStart.sh
 
         # Copy the script to the VM
 
-        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStart.sh $USERNAME@$HOST:
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/SGStart.sh $USERNAME@$HOST:
 
-        echo "Starting Network Traffic Generation in $HOST"
-        SCRIPT="chmod +x NTGStart.sh; echo $PASSWORD | sudo -S ./NTGStart.sh"
+        echo "Starting System Events Generation in $HOST"
+        SCRIPT="chmod +x SGStart.sh; echo $PASSWORD | sudo -S ./SGStart.sh"
         sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
 
         # Update the tmp/temp file
-        sed -i "/\b${HOST}\b/d" tmp/temp
+        sed -i "/\b${HOST}\b/d" tmp/temp1
         str=$HOST
-        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper(Tools)"
-        echo $str >> tmp/temp
+        str+="		| SysGen(Default)"
+        echo $str >> tmp/temp1
 
         echo "Started"
       else
@@ -2519,7 +2519,7 @@ function case10ba() {
         return
       fi
     else
-      echo "The VM is already generating traffic"
+      echo "The VM is already generating system events"
     fi
   fi
 }
