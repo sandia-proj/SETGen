@@ -2409,6 +2409,150 @@ function case10a() {
   echo
 }
 
+function case10ba() {
+  # Prompt for IP Address of the VM
+  echo
+  echo "Please enter the VM's ip address you want to start Traffic Generation (using tools) in:"
+  read HOST
+
+  # Re-prompt
+  while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered. Please try again!"
+    echo
+    echo "Please enter the VM's ip address you want to start Traffic Generation (uing tools) in:"
+    read HOST
+  done
+  
+  
+  state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
+  
+  # Check if VM exists
+  if [[ "$state" == ""  ]]
+  then
+    echo "Such VM doesn't exist! Exiting to main menu..."
+
+  # Check if VM in RUNNING state
+
+  elif [[ "$state" != "RUNNING" ]]
+  then
+    echo "The VM is not running. Exiting to main menu..."
+
+  else
+   
+    # Check if VM generating traffic
+    val=$(cat tmp/temp | grep $HOST | awk '{print $9}')
+
+    if [[ "$val" == "N/A" ]]
+    then
+
+      # Prompt for Username
+      echo "Please enter the VM's username:"
+      read USERNAME
+
+      # If Username empty, re-prompt
+      while [[ -z "$USERNAME" ]]; do
+        echo "Username can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's username:"
+        read USERNAME
+      done
+
+      # Prompt for Password
+      echo "Please enter the VM's password:"
+      read PASSWORD
+
+      # If Password empty, re-prompt
+      while [[ -z "$PASSWORD" ]]; do
+        echo "Password can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's password:"
+        read PASSWORD
+      done
+    
+      # Check SSH connection
+      sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "exit"
+
+      # If SSH invalid, exit to main menu
+      if [[ $? -eq 0 ]]
+      then
+       
+        # Print the interfaces and prompt
+        echo "The VM has the following network interfaces:"
+        echo
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "ifconfig"
+        echo
+        echo "Please enter the interface: "
+        read interface
+
+        # If Interface empty, re-prompt
+        while [[ -z "$interface" ]]; do
+          echo "Password can't be empty! Please try again."
+          echo
+          echo "Please enter the interface: "
+          read interface
+        done
+
+        # Build the script
+
+        echo "#!/bin/bash
+            cd NetworkWrapper/
+            tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface\" Enter
+            " > tmp/NTGStart.sh
+
+        # Copy the script to the VM
+
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStart.sh $USERNAME@$HOST:
+
+        echo "Starting Network Traffic Generation in $HOST"
+        SCRIPT="chmod +x NTGStart.sh; echo $PASSWORD | sudo -S ./NTGStart.sh"
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
+        str=$HOST
+        str+="		|		$HOST		|		$HOST		|		$interface		|   NetworkWrapper(Tools)"
+        echo $str >> tmp/temp
+
+        echo "Started"
+      else
+        echo -e "${RED}Invalid Username/Password for${NC} $HOST. Exiting to main menu..."
+        return
+      fi
+    else
+      echo "The VM is already generating traffic"
+    fi
+  fi
+}
+
+# Function that displays system events generation options
+function case10b() {
+ # Prompt
+  echo 
+  echo -e "${GREEN}OPTIONS:${NC}"
+  echo "--------------------------------------------------------------"
+  echo "1- Start System Events generation using the default parameters"
+  echo "2- Start System Events generation by specifying parameters"
+  echo "3- Exit to main menu"
+  echo "--------------------------------------------------------------"
+  echo "Please enter your choice:"
+  echo -n "---> "
+  read choice
+  if [[ $choice == 1 ]]
+  then
+    case10ba
+  elif [[ $choice == 2 ]]
+  then
+    case10bb
+  elif [[ $choice == 3 ]]
+  then
+    echo "Exiting to main menu..."
+    return
+  else
+    echo -e "${RED}Invalid choice entered!${NC} Exiting to Main Menu..."
+  fi
+
+}
+
 # Function that deals with System Events Generation
 function case10(){
   cd $dir
