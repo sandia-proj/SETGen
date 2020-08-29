@@ -2668,7 +2668,7 @@ function case10c() {
   else
    
     # Check if VM generating traffic
-    val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
+    val1=$(cat tmp/temp1 | grep $HOST | awk '{print $3}')
 
     if [[ "$val1" == "SysGen" || "$val1" == "SysGen(Default)" ]]
     then
@@ -2729,7 +2729,7 @@ function case10c() {
         return
       fi
     else
-      echo "The VM is not generating System Events within itself. Exiting to main menu..."
+      echo "The VM is not generating System Events. Exiting to main menu..."
       return
     fi
   fi
