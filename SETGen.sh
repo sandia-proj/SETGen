@@ -2476,22 +2476,6 @@ function case10ba() {
       if [[ $? -eq 0 ]]
       then
        
-        # Print the interfaces and prompt
-        echo "The VM has the following network interfaces:"
-        echo
-        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "ifconfig"
-        echo
-        echo "Please enter the interface: "
-        read interface
-
-        # If Interface empty, re-prompt
-        while [[ -z "$interface" ]]; do
-          echo "Interface can't be empty! Please try again."
-          echo
-          echo "Please enter the interface: "
-          read interface
-        done
-
         # Build the script
 
         echo "#!/bin/bash
