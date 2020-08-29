@@ -295,7 +295,7 @@ function case7b() {
   count=$(minimega -e vm info | wc -l)
   let count=count-1
 
-  # Use Deafault Username|Password
+  # Use Default Username|Password
   if [[ $choice == 1 ]]
   then
     # Prompt for Path
@@ -2670,7 +2670,7 @@ function case10c() {
     # Check if VM generating traffic
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
 
-    if [[ "$val1" == "NetworkWrapperTools)" && "$val1" == "" && "$val2" == "$HOST" ]]
+    if [[ "$val1" == "SysGen" || "$val1" == "SysGen(Default)" ]]
     then
 
       # Prompt for Username
@@ -2706,22 +2706,22 @@ function case10c() {
         # Build the script
 
         echo "#!/bin/bash
-            tmux kill-session -t TrafficGen
-            " > tmp/NTGStop.sh
+            tmux kill-session -t SysEventsGen
+            " > tmp/SGStop.sh
 
         # Copy the script to ehte VM
 
-        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStop.sh $USERNAME@$HOST:
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/SGStop.sh $USERNAME@$HOST:
 
-        echo "Stopping Network Traffic Generation in $HOST"
-        SCRIPT="chmod +x NTGStop.sh; echo $PASSWORD | sudo -S ./NTGStop.sh"
+        echo "Stopping System Events Generation in $HOST"
+        SCRIPT="chmod +x SGStop.sh; echo $PASSWORD | sudo -S ./SGStop.sh"
         sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
 
-        # Update the tmp/temp file
-        sed -i "/\b${HOST}\b/d" tmp/temp
+        # Update the tmp/temp1 file
+        sed -i "/\b${HOST}\b/d" tmp/temp1
         str=$HOST
-        str+="		|		N/A		|		N/A		|		N/A		|   N/A"
-        echo $str >> tmp/temp
+        str+="		|		N/A	"
+        echo $str >> tmp/temp1
 
         echo "Stopped"
       else
@@ -2729,7 +2729,7 @@ function case10c() {
         return
       fi
     else
-      echo "The VM is not generating NetworkWrapper traffic (using tools) within itself. Exiting to main menu..."
+      echo "The VM is not generating System Events within itself. Exiting to main menu..."
       return
     fi
   fi
