@@ -113,8 +113,10 @@ function case6() {
     return
   fi
 
-  # Populate the temporary file with the VM names and IP addresses
+  # Populate the temporary files with the VM names and IP addresses
   init_status
+  init_temp1
+
   
   # Checking the number of VMs
   count=$(minimega -e vm info | grep RUNNING | wc -l)
@@ -2396,14 +2398,51 @@ function case9() {
   cd $dir
 }
 
-# Function that deals with System Events Generation
+# Function that displays the System events generation status
 
+function case10a() {
+  echo -e "${YELLOW}========================================================================================"
+  echo -e "==========================${CYAN} VM SYSTEM EVENTS GENERATION STATUS ${YELLOW}=========================="
+  echo -e "========================================================================================${NC}"
+  echo
+  column -t -s ' ' tmp/temp1
+  echo
+}
+
+# Function that deals with System Events Generation
 function case10(){
-  echo
-  echo
-  echo -e "${YELLOW}########################## WORK IN PROGRESS ##########################${NC}"
-  echo
-  echo
+  cd $dir
+  # Prompt
+  echo 
+  echo -e "${GREEN}OPTIONS:${NC}"
+  echo "-----------------------------------------"
+  echo "1- System Events Generation Status"
+  echo "2- Start System Events generation in a VM"
+  echo "3- Stop System Events generation in a VM"
+  echo "4- Exit to main menu"
+  echo "-----------------------------------------"
+  echo "Please enter your choice:"
+  echo -n "---> "
+  read choice
+  if [[ $choice == 1 ]]
+  then
+    case10a
+  elif [[ $choice == 2 ]]
+  then
+    case10b
+  elif [[ $choice == 3 ]]
+  then
+    case10c
+  elif [[ $choice == 4 ]]
+  then
+    echo "Exiting to main menu..."
+    return
+  else
+    echo -e "${RED}Invalid choice entered!${NC} Exiting to Main Menu..."
+  fi
+
+  # Reverting to the current directory
+  cd $dir
 }
 
 # Function that deals with Killing Minimega Process
@@ -2476,8 +2515,6 @@ function case12() {
 # Initialize the tmp/temp File that will help in Traffic Generation
 
 function init_status() {
-
-
   if [ ! -f tmp/temp ]
   then
     count=$(minimega -e vm info | wc -l)
@@ -2501,6 +2538,35 @@ function init_status() {
     done
   fi
 }
+
+# Initialize the tmp/temp1 File that will help in System Events Generation
+function init_temp1() {
+
+  if [ ! -f tmp/temp1 ]
+  then
+    count=$(minimega -e vm info | wc -l)
+    bar=$(minimega -e vm info | awk '{print $2}')
+    str="   IP    |   SysGen    "
+    echo -e "$str" >> tmp/temp1
+    echo >> tmp/temp1
+    echo >> tmp/temp1
+    for (( i=1; i < $count; i++ ))
+    do
+      let row=$i+1
+      state=$(minimega -e vm info | awk 'NR=='$row'{print $7}')
+      if [[ "$state" != "RUNNING" ]] 
+      then
+        continue
+      fi 
+      str="	"
+      str+=$(minimega -e vm info | awk 'NR=='$row'{print $27}')
+      str+="    |   N/A		"
+      echo $str >> tmp/temp1
+    done
+  fi
+}
+
+
 
 function update_temp() {
     
