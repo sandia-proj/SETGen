@@ -759,7 +759,7 @@ function case9bb() {
     val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
     val2=$(cat tmp/temp | grep $HOST | awk '{print $5}')
 
-    if [[ "$val" == "NetworkWrapperTools)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
+    if [[ "$val" == "NetworkWrapper(Tools)" && "$val1" == "$HOST" && "$val2" == "$HOST" ]]
     then
 
       # Prompt for Username
@@ -2635,6 +2635,104 @@ function case10b() {
     echo -e "${RED}Invalid choice entered!${NC} Exiting to Main Menu..."
   fi
 
+}
+
+# Function that stops system events generation
+function case10c() {
+  # Prompt for IP Address of the VM
+  echo
+  echo "Please enter the VM's ip address you want to stop System Events Generation in:"
+  read HOST
+
+  # Re-prompt
+  while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
+    echo "Invaid IP address entered. Please try again!"
+    echo
+    echo "Please enter the VM's ip address you want to stop System Events Generation in:"
+    read HOST
+  done
+  
+  state=$(minimega -e vm info | grep $HOST | awk '{print $7}')
+  
+  # Check if VM exists
+  if [[ "$state" == "" ]]
+  then
+    echo "Such VM doesn't exist! Exiting to main menu..."
+
+  # Check if VM in RUNNING state
+
+  elif [[ "$state" != "RUNNING" ]]
+  then
+    echo "The VM is not running. Exiting to main menu..."
+
+  else
+   
+    # Check if VM generating traffic
+    val1=$(cat tmp/temp | grep $HOST | awk '{print $3}')
+
+    if [[ "$val1" == "NetworkWrapperTools)" && "$val1" == "" && "$val2" == "$HOST" ]]
+    then
+
+      # Prompt for Username
+      echo "Please enter the VM's username:"
+      read USERNAME
+
+      # If Username empty, re-prompt
+      while [[ -z "$USERNAME" ]]; do
+        echo "Username can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's username:"
+        read USERNAME
+      done
+
+      # Prompt for Password
+      echo "Please enter the VM's password:"
+      read PASSWORD
+
+      # If Password empty, re-prompt
+      while [[ -z "$PASSWORD" ]]; do
+        echo "Password can't be empty! Please try again."
+        echo
+        echo "Please enter the VM's password:"
+        read PASSWORD
+      done
+    
+      # Check SSH connection
+      sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "exit"
+
+      # If SSH invalid, exit to main menu
+      if [[ $? -eq 0 ]]
+      then
+        # Build the script
+
+        echo "#!/bin/bash
+            tmux kill-session -t TrafficGen
+            " > tmp/NTGStop.sh
+
+        # Copy the script to ehte VM
+
+        sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStop.sh $USERNAME@$HOST:
+
+        echo "Stopping Network Traffic Generation in $HOST"
+        SCRIPT="chmod +x NTGStop.sh; echo $PASSWORD | sudo -S ./NTGStop.sh"
+        sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "${SCRIPT}"
+
+        # Update the tmp/temp file
+        sed -i "/\b${HOST}\b/d" tmp/temp
+        str=$HOST
+        str+="		|		N/A		|		N/A		|		N/A		|   N/A"
+        echo $str >> tmp/temp
+
+        echo "Stopped"
+      else
+        echo -e "${RED}Invalid Username/Password for${NC} $HOST. Exiting to main menu..."
+        return
+      fi
+    else
+      echo "The VM is not generating NetworkWrapper traffic (using tools) within itself. Exiting to main menu..."
+      return
+    fi
+  fi
 }
 
 # Function that deals with System Events Generation
