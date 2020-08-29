@@ -684,7 +684,7 @@ function case9ba() {
 
         # If Interface empty, re-prompt
         while [[ -z "$interface" ]]; do
-          echo "Password can't be empty! Please try again."
+          echo "Interface can't be empty! Please try again."
           echo
           echo "Please enter the interface: "
           read interface
@@ -1194,7 +1194,7 @@ function case9be() {
 
         # If Interface empty, re-prompt
         while [[ -z "$interface" ]]; do
-          echo "Password can't be empty! Please try again."
+          echo "Interface can't be empty! Please try again."
           echo
           echo "Please enter the interface: "
           read interface
@@ -2412,14 +2412,14 @@ function case10a() {
 function case10ba() {
   # Prompt for IP Address of the VM
   echo
-  echo "Please enter the VM's ip address you want to start Traffic Generation (using tools) in:"
+  echo "Please enter the VM's ip address you want to start default system events generation in:"
   read HOST
 
   # Re-prompt
   while ! [[ $HOST =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
     echo "Invaid IP address entered. Please try again!"
     echo
-    echo "Please enter the VM's ip address you want to start Traffic Generation (uing tools) in:"
+    echo "Please enter the VM's ip address you want to start default system events generation in:"
     read HOST
   done
   
@@ -2486,7 +2486,7 @@ function case10ba() {
 
         # If Interface empty, re-prompt
         while [[ -z "$interface" ]]; do
-          echo "Password can't be empty! Please try again."
+          echo "Interface can't be empty! Please try again."
           echo
           echo "Please enter the interface: "
           read interface
