@@ -73,6 +73,16 @@ echo "INSTALLING TCPREPLAY"
 echo
 echo "y" | apt-get install tcpreplay
 
+echo 
+echo "INSTALLING PYGAME"
+echo
+echo "y" | pip3 install pygame
+
+echo
+echo "INSTALLING FFMPEG"
+echo
+echo "y" | apt install ffmpeg
+
 echo
 echo "INSTALLING D-ITG"
 echo
