@@ -93,8 +93,18 @@ echo "INSTALLING AWS CLI"
 echo
 echo "y" | apt install awscli
 
+echo
+echo "INSTALLING NetworkWrapper"
+echo
 rm -rf NetworkWrapper
 git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/NetworkWrapper.git
+
+
+echo
+echo "INSTALLING SysEventsGen"
+echo
+rm -rf SysEventsGen
+git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/SysEventsGen.git
 
 rm -rf .aws
 mkdir .aws
