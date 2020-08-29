@@ -43,6 +43,32 @@ echo
 echo "y" | apt install net-tools
 
 echo
+echo "INSTALLING SETUP-TOOLS"
+echo
+echo "y" | pip3 install ez_setup
+
+
+echo
+echo "INSTALLING MOVIEPY"
+echo
+echo "y" | pip3 install moviepy
+
+echo
+echo "INSTALLING PYTHON-DOCX"
+echo
+echo "y" | pip3 install python-docx
+
+echo
+echo "INSTALLING PYTHON-PPTX"
+echo
+echo "y" | pip3 install python-pptx
+
+echo
+echo "INSTALLING PYPDF2"
+echo
+echo "y" | pip3 install PyPDF2
+
+echo
 echo "INSTALLING TCPREPLAY"
 echo
 echo "y" | apt-get install tcpreplay
