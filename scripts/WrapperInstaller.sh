@@ -116,6 +116,9 @@ echo
 rm -rf SysEventsGen
 git clone https://sandia-proj:SandiaProj12345!@github.com/sandia-proj/SysEventsGen.git
 
+echo
+echo "Configuring AWS"
+echo
 rm -rf .aws
 mkdir .aws
 touch .aws/credentials
@@ -129,11 +132,17 @@ echo "[default]
   region = us-east-1
   output = json" > .aws/config
 
+echo
+echo "Downloading the latest PCAP archive"
+echo
 aws s3 cp s3://pcapsforsandiaproj/PCAPs.zip NetworkWrapper/src/
 cd NetworkWrapper/src/
 unzip PCAPs.zip
 rm PCAPs.zip
 
+echo "DONE"
+echo
+echo
 #rm -rf ~/.megarc
 #touch ~/.megarc
 #echo "[Login]
