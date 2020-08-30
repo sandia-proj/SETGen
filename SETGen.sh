@@ -2567,7 +2567,32 @@ function case10bb() {
         echo "Please enter the VM's password:"
         read PASSWORD
       done
-    
+      
+      echo "Enter the probability distribution for the 13 tasks:"
+      echo "The sum of the probabilities should equal to 1. Refer to the manual for further details."
+      echo
+      param="["
+      sum=0
+      for (( i=1 ; i <= 13; i++ ))
+      do
+        echo "Enter the probability for task $i:"
+        read input
+        while ! [[ $input =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; do
+          echo "Invalid Input. Only floating point numbers are allowed. Please try again!"
+          echo
+          echo "Enter the probability for task $i:"
+          read input
+        done
+        param=$(echo "$param$input,")
+        sum=$(echo "$sum + $input" | bc)
+      done
+      
+      if ! [[ $sum -eq 1 ]]; then
+        echo "The probability distribution doesn't sum up to 1. Exiting to main menu..."
+      fi
+      param=$(echo "${x%?}")
+      param="$param]"
+      echo $param
       # Check SSH connection
       sshpass -p "$PASSWORD" ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -t -l ${USERNAME} ${HOST} "exit"
 
@@ -2579,7 +2604,7 @@ function case10bb() {
 
         echo "#!/bin/bash
             cd SysEventsGen/
-            tmux new-session -d -s SysEventsGen \; send-keys \"python3 /home/$USERNAME/SysEventsGen/SysGen.py --random\" Enter
+            tmux new-session -d -s SysEventsGen \; send-keys \"python3 /home/$USERNAME/SysEventsGen/SysGen.py --random $list\" Enter
             " > tmp/SGStart.sh
 
         # Copy the script to the VM
