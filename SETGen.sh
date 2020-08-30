@@ -2587,7 +2587,7 @@ function case10bb() {
         sum=$(echo "$sum + $input" | bc)
       done
       
-      if ! [[ $sum -eq 1 ]]; then
+      if ! (( $(echo "$sum == 1.0" | bc -l) )); then
         echo "The probability distribution doesn't sum up to 1. Exiting to main menu..."
       fi
       param=$(echo "${x%?}")
