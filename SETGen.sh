@@ -2591,7 +2591,7 @@ function case10bb() {
         echo "The probability distribution doesn't sum up to 1. Exiting to main menu..."
         return
       fi
-      param=$(echo "${$param%?}")
+      param=$(echo "${param%?}")
       param="$param]"
       echo $param
       # Check SSH connection
@@ -2605,7 +2605,7 @@ function case10bb() {
 
         echo "#!/bin/bash
             cd SysEventsGen/
-            tmux new-session -d -s SysEventsGen \; send-keys \"python3 /home/$USERNAME/SysEventsGen/SysGen.py --random $list\" Enter
+            tmux new-session -d -s SysEventsGen \; send-keys \"python3 /home/$USERNAME/SysEventsGen/SysGen.py --random $param\" Enter
             " > tmp/SGStart.sh
 
         # Copy the script to the VM
