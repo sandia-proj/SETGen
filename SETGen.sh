@@ -2586,11 +2586,12 @@ function case10bb() {
         param=$(echo "$param$input,")
         sum=$(echo "$sum + $input" | bc)
       done
-      
+      echo $param
       if ! (( $(echo "$sum == 1.0" | bc -l) )); then
         echo "The probability distribution doesn't sum up to 1. Exiting to main menu..."
+        return
       fi
-      param=$(echo "${x%?}")
+      param=$(echo "${$param%?}")
       param="$param]"
       echo $param
       # Check SSH connection
