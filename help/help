@@ -145,7 +145,7 @@
 
 		9.3.4. Stop D-ITG between VMs
 
-                        This option allows to stop Network Traffic Generation between two VMs using D-ITG.
+            This option allows to stop Network Traffic Generation between two VMs using D-ITG.
 
 		9.3.5 Exit to main menu
 
@@ -169,9 +169,17 @@
 
 	10.2. Start System Events generation in a VM
 
-		10.2.1.
+		10.2.1. Start System Events generation using the default parameters
 
-		10.2.2.
+			Start generating system events within a VM using the default probability distribution.
+
+			For more details on this, refer to the Manual.
+
+		10.2.2. Start System Events generation by specifying parameters
+
+			Start generating system events within a VM using a custom probability distribution.
+
+		10.2.3. Exit to main menu
 
 	10.3. Stop System Events generation in a VM
 
