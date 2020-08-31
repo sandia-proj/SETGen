@@ -279,6 +279,7 @@ Dept. of Computer Science, Purdue University
    - 8. Playing video
    - 9. Opening a PDF file
    - 10. Cropping photo
+   - 11. Opening photo
 
    There are 2 ways of generating system events:
    </br>
