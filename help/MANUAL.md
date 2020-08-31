@@ -343,17 +343,17 @@ Dept. of Computer Science, Purdue University
 
    The first row means that **1.0.0.22** is not generating any kind of traffic.
 
-   The second row means that 1.0.0.30 is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
+   The second row means that **1.0.0.30** is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
 
-   The third and fourth rows mean that 1.0.0.92 is generating realistic traffic (using tools) to 1.0.0.184’s ens1 interface using the Network Wrapper.
+   The third and fourth rows mean that **1.0.0.92** is generating realistic traffic (using tools) to 1.0.0.184’s ens1 interface using the Network Wrapper.
 
-   The fifth row means that 1.0.0.186 is generating realistic traffic (using PCAPs) within itself to the net0 interface using the Network Wrapper.
+   The fifth row means that **1.0.0.186** is generating realistic traffic (using PCAPs) within itself to the net0 interface using the Network Wrapper.
 
-   The sixth row means that 1.0.0.188 is generating traffic within itself using D-ITG.
+   The sixth row means that **1.0.0.188** is generating traffic within itself using D-ITG.
 
-   The seventh and eighth rows mean that 1.0.0.50 is generating D-ITG traffic to 1.0.0.32.
+   The seventh and eighth rows mean that **1.0.0.50** is generating D-ITG traffic to 1.0.0.32.
 
-   The ninth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
+   The ninth row means that **1.0.0.15** is replaying a PCAP file in eth1 interface.
 
 4. Understanding VM System Events Generation Status
 
