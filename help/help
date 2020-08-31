@@ -161,7 +161,11 @@
 
 10. System Events Generator Control Panel
 
-	
+	This option controls system events generation inside VM(s) including viewing the status, starting/stopping system events generation.
+
+	10.1.  Traffic Generation Status
+
+		View the Network Traffic Generation Status across all VM(s)
 
 11. Kill Minimega
 	
