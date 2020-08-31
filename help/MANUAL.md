@@ -366,7 +366,7 @@ Dept. of Computer Science, Purdue University
    **SysGen** column refers to the method of SysGen being used (if any).
    The possible values are **SysGen(Default)**, **SysGen(Custom)**, and **N/A**
 
-   The first row means that 1.0.0.210 is not generating any kind of System Events.
+   The first row means that **1.0.0.210** is not generating any kind of System Events.
 
    The second row means that 1.0.0.30 is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
 
