@@ -333,6 +333,7 @@ Dept. of Computer Science, Purdue University
    The possible values are **IP address**, **---**, and **N/A**.
 
    **DEST** column refers to the ip address of the destination VM to which Network Traffic is being sent.
+   The possible values are **IP address**, **---**, and **N/A**.
 
    **INTERFACE** column refers to the network interface where network traffic is being generated.
 
