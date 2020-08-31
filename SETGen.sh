@@ -2621,7 +2621,7 @@ function case10bb() {
         # Update the tmp/temp file
         sed -i "/\b${HOST}\b/d" tmp/temp1
         str=$HOST
-        str+="		| SysGen(Default)"
+        str+="		| SysGen(Custom)"
         echo $str >> tmp/temp1
 
         echo "Started"
