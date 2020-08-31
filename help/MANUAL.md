@@ -161,7 +161,7 @@ Dept. of Computer Science, Purdue University
 
    It is the component of SETGen that handles both Inter-VM and Intra-VM traffic generation.
 
-8. **SysEventsGen**
+8. **SysGen**
 
    It is the component of SETGen that handles system events generation for the VM(s).
 
@@ -266,6 +266,13 @@ Dept. of Computer Science, Purdue University
    **10- System Events Generator Control Panel**
    </br>
    This option controls system events generation inside VM(s) including viewing the status, starting/stopping event generation.
+   </br>
+   There are 2 ways of generating system events:
+   </br>
+
+   - Using **SysGen** with tools to generate/stop intra-VM/inter-VM network traffic:
+     </br> In this option, **NetworkWrapper** uses tools like protonuke, D-ITG, ping, etc. to generate random intra-VM/inter-VM network traffic based on the statistics gathered by analyzing real-world network traffic captures.
+     </br>
 
    </br>
 
@@ -316,7 +323,7 @@ Dept. of Computer Science, Purdue University
                     Fig: Sample Username File
 
 
-    In a similar way, create the password file containing the passwords for all VMs.
+    In the similar way, create the password file containing the passwords for all VMs.
 
 **Note:** Make sure to include username and password of all VMs, irrespective of their VM status. Also, make sure that both username and password file **don’t have a trailing new line at the end.**
 
