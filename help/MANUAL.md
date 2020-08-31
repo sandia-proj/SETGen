@@ -287,7 +287,7 @@ Dept. of Computer Science, Purdue University
    There are 2 ways of generating system events:
    </br>
 
-   - Using **SysGen** with the default probability distribution:
+   - Using **SysGen** with the **default** probability distribution:
      </br> In this option, **SysGen** generates system events by doing tasks 1 through 12 8% of the times each and doing task 13 4% of the time. 
 
      So, the default probability distribution is [0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.4].
