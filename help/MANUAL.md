@@ -368,9 +368,9 @@ Dept. of Computer Science, Purdue University
 
    The first row means that **1.0.0.210** is not generating any kind of System Events.
 
-   The second row means that **1.0.0.32** is generating System Events with the default probability distribution using **SysGen**.
+   The second row means that **1.0.0.32** is generating System Events with the **default** probability distribution using **SysGen**.
 
-   The third and fourth rows mean that 1.0.0482 is generating realistic traffic (using tools) to 1.0.0.184’s ens1 interface using the Network Wrapper.
+   The third row means that **1.0.0.48** is generating System Events with the **custom** probability distribution using **SysGen**.
 
 
 </br>
