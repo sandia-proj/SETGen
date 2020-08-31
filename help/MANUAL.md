@@ -288,7 +288,7 @@ Dept. of Computer Science, Purdue University
    </br>
 
    - Using **SysGen** with the default probability distribution:
-     </br> In this option, **NetworkWrapper** uses tools like protonuke, D-ITG, ping, etc. to generate random intra-VM/inter-VM network traffic based on the statistics gathered by analyzing real-world network traffic captures.
+     </br> In this option, **SysGen** generates system events by doing tasks
      </br>
 
    </br>
