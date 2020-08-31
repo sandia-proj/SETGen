@@ -173,7 +173,7 @@ Dept. of Computer Science, Purdue University
 
 3. In the main menu, typing “clear” will clear the screen.
    
-4. Always run SETGen script from its directory.
+4. **Always** run SETGen script from its directory.
    
 5. SETGen does **not** check for the validity of D-ITG related commands.
 
