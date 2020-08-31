@@ -271,6 +271,8 @@ Dept. of Computer Science, Purdue University
    The currently supported tasks are:
    - 1. Writing to a PPTX presentation file
    - 2. Writing to a text document file
+   - 3. Writing to a word DOCX document
+   
 
    There are 2 ways of generating system events:
    </br>
