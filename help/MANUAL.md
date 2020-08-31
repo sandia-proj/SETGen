@@ -267,6 +267,11 @@ Dept. of Computer Science, Purdue University
    </br>
    This option controls system events generation inside VM(s) including viewing the status, starting/stopping event generation.
    </br>
+
+   The currently supported tasks are:
+   - 1. Writing to a PPTX presentation file
+   
+
    There are 2 ways of generating system events:
    </br>
 
