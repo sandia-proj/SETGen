@@ -270,7 +270,7 @@ Dept. of Computer Science, Purdue University
 
    The currently supported tasks are:
    - 1. Write to a PPTX presentation file
-   - 2. Writing to a text document file at human speed i.e. 25-40 words per min
+   - 2. Write to a text document file at human speed i.e. 25-40 words per min
    - 3. Writing to a word DOCX document at human speed i.e. 25-40 words per min
    - 4. Creating a PPTX presentation file
    - 5. Creating a text document file
