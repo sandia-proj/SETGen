@@ -2698,7 +2698,7 @@ function case10c() {
     # Check if VM generating traffic
     val1=$(cat tmp/temp1 | grep $HOST | awk '{print $3}')
 
-    if [[ "$val1" == "SysGen" || "$val1" == "SysGen(Default)" ]]
+    if [[ "$val1" == "SysGen(Custom)" || "$val1" == "SysGen(Default)" ]]
     then
 
       # Prompt for Username
