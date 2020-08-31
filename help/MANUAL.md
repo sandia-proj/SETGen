@@ -272,6 +272,7 @@ Dept. of Computer Science, Purdue University
    - 1. Writing to a PPTX presentation file
    - 2. Writing to a text document file
    - 3. Writing to a word DOCX document
+   - 4. Creating a PPTX presentation file
    
 
    There are 2 ways of generating system events:
