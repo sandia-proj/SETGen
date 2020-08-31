@@ -341,7 +341,7 @@ Dept. of Computer Science, Purdue University
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
    The possible values are: **NetworkWrapper (Tools)**, **NetworkWrapper (PCAPs)**, **D-ITG**, **ReplayPCAP**, and **N/A**.**
 
-   The first row means that 1.0.0.22 is not generating any kind of traffic.
+   The first row means that **1.0.0.22** is not generating any kind of traffic.
 
    The second row means that 1.0.0.30 is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
 
@@ -364,8 +364,13 @@ Dept. of Computer Science, Purdue University
    **IP** column refers to the ip address of the VM.
 
    **SysGen** column refers to the method of SysGen being used (if any).
-
    The possible values are **SysGen(Default)**, **SysGen(Custom)**, and **N/A**
+
+   The first row means that 1.0.0.210 is not generating any kind of System Events.
+
+   The second row means that 1.0.0.30 is generating realistic traffic (using tools) within itself to the ens0 interface using the Network Wrapper.
+
+   The third and fourth rows mean that 1.0.0.92 is generating realistic traffic (using tools) to 1.0.0.184’s ens1 interface using the Network Wrapper.
 
 
 </br>
