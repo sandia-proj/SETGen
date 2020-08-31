@@ -167,6 +167,12 @@
 
 		View the System Events Generation status across all VM(s)
 
+	10.2. Start System Events generation in a VM
+
+	10.3. Stop System Events generation in a VM
+
+	10.4. Exit to main menu
+
 11. Kill Minimega
 	
 	WARNING: After using this option, it will be impossible to recover the current Minimega VM(s) and new VMs will have to be created!
