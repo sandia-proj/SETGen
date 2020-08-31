@@ -353,9 +353,12 @@ Dept. of Computer Science, Purdue University
 
    The ninth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
 
+4. Understanding VM system events generation Status
+
+
 </br>
 
-4.  Manually installing required tools for SETGen in the VMs:
+5.  Manually installing required tools for SETGen in the VMs:
 
     After creating the VMs in Minimega using option 5, you are required to install ubuntu and manually install some tools in **all running VMs.**
 
