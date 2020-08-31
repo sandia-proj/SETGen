@@ -287,7 +287,7 @@ Dept. of Computer Science, Purdue University
    There are 2 ways of generating system events:
    </br>
 
-   - Using **SysGen** with tools to generate/stop intra-VM/inter-VM network traffic:
+   - Using **SysGen** with the default probability distribution:
      </br> In this option, **NetworkWrapper** uses tools like protonuke, D-ITG, ping, etc. to generate random intra-VM/inter-VM network traffic based on the statistics gathered by analyzing real-world network traffic captures.
      </br>
 
