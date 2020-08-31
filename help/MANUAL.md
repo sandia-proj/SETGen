@@ -157,6 +157,12 @@ Dept. of Computer Science, Purdue University
 
    </br>
 
+7. **NetworkWrapper**
+
+   It is the component of SETGen that handles both Inter-VM and Intra-VM traffic generation.
+
+
+
 ## Notes
 
 1. To avoid network traffic conflicts in Cross-VM Traffic Generation, SETGen allows only a unique pair of Host/Dest VM to generate traffic. So, if host **A** is generating traffic to host **B**, both **B and A can’t receive/send traffic from/to a different VM as long as A is generating traffic to B.**
