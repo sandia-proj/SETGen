@@ -279,7 +279,7 @@ Dept. of Computer Science, Purdue University
    - 8. Play video
    - 9. Open a PDF file
    - 10. Crop photo
-   - 11. Opening photo
+   - 11. Open photo
    - 12. Staying idle for 
 
    There are 2 ways of generating system events:
