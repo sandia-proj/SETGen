@@ -336,6 +336,7 @@ Dept. of Computer Science, Purdue University
    The possible values are **IP address**, **---**, and **N/A**.
 
    **INTERFACE** column refers to the network interface where network traffic is being generated.
+   The possible values are **network interface(s) of the VM(s)**.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
    The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP, and N/A.
