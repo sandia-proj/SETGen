@@ -269,7 +269,7 @@ Dept. of Computer Science, Purdue University
    </br>
 
    The currently supported tasks are:
-   - 1. Writing to a PPTX presentation file
+   - 1. Write to a PPTX presentation file
    - 2. Writing to a text document file at human speed i.e. 25-40 words per min
    - 3. Writing to a word DOCX document at human speed i.e. 25-40 words per min
    - 4. Creating a PPTX presentation file
@@ -280,6 +280,7 @@ Dept. of Computer Science, Purdue University
    - 9. Opening a PDF file
    - 10. Cropping photo
    - 11. Opening photo
+   - 12. Staying idle for 
 
    There are 2 ways of generating system events:
    </br>
