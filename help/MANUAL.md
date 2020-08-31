@@ -280,7 +280,8 @@ Dept. of Computer Science, Purdue University
    - 9. Open a PDF file
    - 10. Crop photo
    - 11. Open photo
-   - 12. Staying idle for 
+   - 12. Stay idle for a random time between 5 and 15 secs
+   - 13.  
 
    There are 2 ways of generating system events:
    </br>
