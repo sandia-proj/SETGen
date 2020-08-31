@@ -274,7 +274,7 @@ Dept. of Computer Science, Purdue University
    - 3. Write to a word DOCX document at human speed i.e. 25-40 words per min
    - 4. Create a PPTX presentation file
    - 5. Create a text document file
-   - 6. Creating a word DOCX document
+   - 6. Create a word DOCX document
    - 7. Playing music
    - 8. Playing video
    - 9. Opening a PDF file
