@@ -330,14 +330,14 @@ Dept. of Computer Science, Purdue University
    **IP** column refers to the ip address of the VM.
 
    **SRC** column refers to the ip address of the source VM from which Network Traffic is being received.
+   
 
    **DEST** column refers to the ip address of the destination VM to which Network Traffic is being sent.
 
    **INTERFACE** column refers to the network interface where network traffic is being generated.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
-   
-   The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP
+   The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP or N/A
 
    The first row means that 1.0.0.22 is not generating any kind of traffic.
 
@@ -353,7 +353,17 @@ Dept. of Computer Science, Purdue University
 
    The ninth row means that 1.0.0.15 is replaying a PCAP file in eth1 interface.
 
-4. Understanding VM system events generation Status
+4. Understanding VM System Events Generation Status
+
+   ![alt text](SSEGS.png "Sample System Events Generation Status") </br>
+   Fig: Sample System Events Generation Status
+   </br>
+ 
+   **IP** column refers to the ip address of the VM.
+
+   **SysGen** column refers to the method of SysGen being used (if any).
+
+   The possible 
 
 
 </br>
