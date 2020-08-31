@@ -93,7 +93,7 @@
 	
 	This option controls intra-VM/inter-VM network traffic generation including viewing the status, starting/stopping traffic generation.
 
-	9.1. Network Traffic Generation Status
+	9.1. Network Traffic Generation status
 
 		View the Network Traffic Generation Status across all VM(s)
 
@@ -163,9 +163,9 @@
 
 	This option controls system events generation inside VM(s) including viewing the status, starting/stopping system events generation.
 
-	10.1.  Traffic Generation Status
+	10.1. System Events Generation Status 
 
-		View the Network Traffic Generation Status across all VM(s)
+		View the System Events Generation status across all VM(s)
 
 11. Kill Minimega
 	
