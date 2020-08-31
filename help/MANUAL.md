@@ -265,7 +265,8 @@ Dept. of Computer Science, Purdue University
 
    **10- System Events Generator Control Panel**
    </br>
-      **WORK IN PROGRESS**
+   This option controls system events generation inside VM(s) including viewing the status, starting/stopping event generation.
+
    </br>
 
    **11- Kill Minimega**
