@@ -275,7 +275,7 @@ Dept. of Computer Science, Purdue University
    - 4. Create a PPTX presentation file
    - 5. Create a text document file
    - 6. Create a word DOCX document
-   - 7. Playing music
+   - 7. Play music
    - 8. Playing video
    - 9. Opening a PDF file
    - 10. Cropping photo
