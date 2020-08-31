@@ -288,7 +288,7 @@ Dept. of Computer Science, Purdue University
    </br>
 
    - Using **SysGen** with the default probability distribution:
-     </br> In this option, **SysGen** generates system events by doing tasks
+     </br> In this option, **SysGen** generates system events by doing tasks 1 through 12 8% of the times each and doing task 13 4% of the time. 
      </br>
 
    </br>
