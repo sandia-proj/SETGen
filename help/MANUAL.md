@@ -161,7 +161,9 @@ Dept. of Computer Science, Purdue University
 
    It is the component of SETGen that handles both Inter-VM and Intra-VM traffic generation.
 
+8. **SysEventsGen**
 
+   It is the component of SETGen that handles system events generation for the VM(s).
 
 ## Notes
 
