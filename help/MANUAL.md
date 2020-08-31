@@ -330,14 +330,14 @@ Dept. of Computer Science, Purdue University
    **IP** column refers to the ip address of the VM.
 
    **SRC** column refers to the ip address of the source VM from which Network Traffic is being received.
-   
+   The possible values are **IP address**, **---**, and **N/A**.
 
    **DEST** column refers to the ip address of the destination VM to which Network Traffic is being sent.
 
    **INTERFACE** column refers to the network interface where network traffic is being generated.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
-   The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP or N/A
+   The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP, and N/A.
 
    The first row means that 1.0.0.22 is not generating any kind of traffic.
 
