@@ -296,6 +296,7 @@ Dept. of Computer Science, Purdue University
    - Using **SysGen** with **custom** probability distribution:
      </br> In this option, **SysGen** generates system events by following a custom probability distribution for the tasks.
 
+      **Please ensure that the probabilities sum up to 1**
      </br>
 
    </br>
