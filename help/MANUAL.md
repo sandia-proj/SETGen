@@ -278,7 +278,7 @@ Dept. of Computer Science, Purdue University
    - 7. Play music
    - 8. Play video
    - 9. Open a PDF file
-   - 10. Cropping photo
+   - 10. Crop photo
    - 11. Opening photo
    - 12. Staying idle for 
 
