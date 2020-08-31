@@ -75,6 +75,10 @@ This video goes over the various Inter-VM traffic generation options in SETGen. 
     1. NetworkWrapper with Tools
     2. D-ITG
 
+[10-Generating System Events inside VM(s) using SETGen.mp4](help/VideoTutorials/10-Generating System Events inside VM(s) using SETGen.mp4)
+
+This video goes over the different options for system events generation in VM(s) using SETGen.
+
 [11-Killing Minimega Session created using SETGen.mp4](help/VideoTutorials/11-Killing%20Minimega%20Session%20created%20using%20SETGen.mp4)
 
 This video demonstrates on how to kill the Minimega session created using SETGen. 
