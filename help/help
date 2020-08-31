@@ -171,6 +171,8 @@
 
 	10.3. Stop System Events generation in a VM
 
+		Stop generating system events inside a VM.
+
 	10.4. Exit to main menu
 
 11. Kill Minimega
