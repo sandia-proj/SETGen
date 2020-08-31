@@ -276,7 +276,7 @@ Dept. of Computer Science, Purdue University
    - 5. Create a text document file
    - 6. Create a word DOCX document
    - 7. Play music
-   - 8. Playing video
+   - 8. Play video
    - 9. Opening a PDF file
    - 10. Cropping photo
    - 11. Opening photo
