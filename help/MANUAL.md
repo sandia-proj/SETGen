@@ -296,7 +296,6 @@ Dept. of Computer Science, Purdue University
    - Using **SysGen** with **custom** probability distribution:
      </br> In this option, **SysGen** generates system events by following a custom probability distribution for the tasks.
 
-     So, the default probability distribution is [0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.4].
      </br>
 
    </br>
