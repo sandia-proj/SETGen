@@ -339,7 +339,7 @@ Dept. of Computer Science, Purdue University
    The possible values are **network interface(s) of the VM(s)**.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
-   The possible values are: NetworkWrapper (Tools), NetworkWrapper (PCAPs), D-ITG, ReplayPCAP, and N/A.
+   The possible values are: **NetworkWrapper (Tools)**, **NetworkWrapper (PCAPs)**, **D-ITG**, **ReplayPCAP**, and **N/A**.**
 
    The first row means that 1.0.0.22 is not generating any kind of traffic.
 
@@ -365,7 +365,7 @@ Dept. of Computer Science, Purdue University
 
    **SysGen** column refers to the method of SysGen being used (if any).
 
-   The possible 
+   The possible values are **SysGen(Default)**, **SysGen(Custom)**, and **N/A**
 
 
 </br>
