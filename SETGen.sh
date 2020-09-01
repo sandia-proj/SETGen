@@ -1208,7 +1208,6 @@ function case9be() {
             " > tmp/NTGStart.sh
 
         # Copy the script to the VM
-
         sshpass -p "$PASSWORD" scp -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  tmp/NTGStart.sh $USERNAME@$HOST:
 
         echo "Starting Network Traffic Generation in $HOST"
