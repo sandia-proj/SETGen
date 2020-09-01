@@ -1204,7 +1204,7 @@ function case9be() {
 
         echo "#!/bin/bash
             cd NetworkWrapper/
-            tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface --realistic\" Enter
+            tmux new-session -d -s TrafficGen \; send-keys \"python3 /home/$USERNAME/NetworkWrapper/wrap.py $interface --realistic 2>/dev/null\" Enter
             " > tmp/NTGStart.sh
 
         # Copy the script to the VM
