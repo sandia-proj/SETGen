@@ -464,5 +464,4 @@ Resources used to get/capture Real-World Network Captures
 Resources used to understand/model Benign User behaviour
 1. [5 Levels of User Behavior Monitoring](https://www.ekransystem.com/en/blog/5-levels-user-behavior-monitoring)
 2. [Data Gathering and User Behavior Analysis System](http://syrcose.ispras.ru/2007/files/2007_06_paper.pdf)
-3. [LibreOffice - Source Code](https://www.libreoffice.org/about-us/source-code/)
 
