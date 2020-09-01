@@ -33,7 +33,7 @@ done
 count=$(ls $path | grep "$name[0-9]*.img" | wc -l)
 
 if [[ $count -lt 1 ]]; then
-  echo "There are no VHD(s) with prefix as $name"
+  echo "There are no VHD(s) with prefix as $name in $path"
   echo
   sleep 0.5
   echo "Exiting to main menu..."
