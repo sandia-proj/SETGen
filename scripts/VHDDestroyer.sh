@@ -70,7 +70,7 @@ while ! [[ "$st" =~ ^[0-9]+$ ]]; do
 done
 
 cd $path
-
+let en=num+st
 
 for (( i=$st; i<$en; i++ ))
 do
