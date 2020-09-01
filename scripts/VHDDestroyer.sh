@@ -70,27 +70,30 @@ while ! [[ "$st" =~ ^[0-9]+$ ]]; do
 done
 
 cd $path
-let en=num+st
-let en1=en-1
-
-if [[ $en1 -gt $count ]]; then
-  echo
-  echo "The Starting Point can't be $st!"
-  sleep 0.5
-  echo "Exiting to main menu..."
-  exit
-fi
-echo
-
 
 
 for (( i=$st; i<$en; i++ ))
 do
+  echo
 	echo "Deleting VHD $name$i"
-        str=$(echo $name$i)
-        umount /mnt/$str
-        rm $str.img
-        rm -rf /mnt/$str
+  echo
+  str=$(echo $name$i)
+  if [[ -d /mnt/$str ]]; then
+    umount /mnt/$str
+    rm -rf /mnt/$str
+  else
+    echo "VHD named $str doesn't exist!"
+    echo
+    continue
+  fi
+ 
+  if [[ -f $str.img ]]; then
+     rm $str.img
+  else
+    echo "VHD named $str doesn't exist!"
+    echo
+    continue
+  fi
 done
 
 echo
