@@ -73,7 +73,7 @@ Dept. of Computer Science, Purdue University
 
 6)  Root User Permissions
 
-    In-order to use the Wrapper, root permissions are required.
+    In-order to use SETGen, root permissions are required.
 
     To login as the root user, run the following command:
 
@@ -85,13 +85,13 @@ Dept. of Computer Science, Purdue University
 
 0.  **Make sure that the pre-requisites are installed**
 
-1.  Unzip the installation file to the desired director
+1.  Unzip the installation file to the desired directory
 
-2.  Change directory to the MinimegaWrapper directory
+2.  Change directory to the SETGen directory
 
 3.  To change the permissions of the script, run
 
-         chmod +x MinimegaWrapper.sh
+         chmod +x SETGen.sh
 
 4.  To change the permissions of all dependencies, run
 
@@ -101,7 +101,7 @@ Dept. of Computer Science, Purdue University
 
 6.  With root user permissions, run
 
-         ./MinimegaWrapper.sh
+         ./SETGen.sh
 
 ---
 
