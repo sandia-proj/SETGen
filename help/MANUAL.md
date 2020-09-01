@@ -73,7 +73,7 @@ Dept. of Computer Science, Purdue University
 
 6)  Root User Permissions
 
-    In-order to use the Wrapper, root permissions are required.
+    In-order to use SETGen, root permissions are required.
 
     To login as the root user, run the following command:
 
@@ -85,13 +85,13 @@ Dept. of Computer Science, Purdue University
 
 0.  **Make sure that the pre-requisites are installed**
 
-1.  Unzip the installation file to the desired director
+1.  Unzip the installation file to the desired directory
 
-2.  Change directory to the MinimegaWrapper directory
+2.  Change directory to the SETGen directory
 
 3.  To change the permissions of the script, run
 
-         chmod +x MinimegaWrapper.sh
+         chmod +x SETGen.sh
 
 4.  To change the permissions of all dependencies, run
 
@@ -101,7 +101,7 @@ Dept. of Computer Science, Purdue University
 
 6.  With root user permissions, run
 
-         ./MinimegaWrapper.sh
+         ./SETGen.sh
 
 ---
 
@@ -369,10 +369,10 @@ Dept. of Computer Science, Purdue University
    The possible values are **IP address**, **---**, and **N/A**.
 
    **INTERFACE** column refers to the network interface where network traffic is being generated.
-   The possible values are **network interface(s) of the VM(s)**.
+   The possible values are **network interface(s) of the VM(s)**, **---** and **N/A**.
 
    **METHOD** column refers to the component being used for Network Traffic generation. </br>
-   The possible values are: **NetworkWrapper (Tools)**, **NetworkWrapper (PCAPs)**, **D-ITG**, **ReplayPCAP**, and **N/A**.**
+   The possible values are: **NetworkWrapper (Tools)**, **NetworkWrapper (PCAPs)**, **D-ITG**, **ReplayPCAP**, and **N/A**.
 
    The first row means that **1.0.0.22** is not generating any kind of traffic.
 
@@ -464,5 +464,4 @@ Resources used to get/capture Real-World Network Captures
 Resources used to understand/model Benign User behaviour
 1. [5 Levels of User Behavior Monitoring](https://www.ekransystem.com/en/blog/5-levels-user-behavior-monitoring)
 2. [Data Gathering and User Behavior Analysis System](http://syrcose.ispras.ru/2007/files/2007_06_paper.pdf)
-3. [LibreOffice - Source Code](https://www.libreoffice.org/about-us/source-code/)
 
