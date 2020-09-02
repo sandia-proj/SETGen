@@ -75,7 +75,7 @@ This video goes over the various Inter-VM traffic generation options in SETGen. 
     1. NetworkWrapper with Tools
     2. D-ITG
 
-[10-Generating System Events inside VM(s) using SETGen.mp4](help/VideoTutorials/10-Generating System Events inside VM(s) using SETGen.mp4)
+[10-Generating System Events inside VM(s) using SETGen.mp4](help/VideoTutorials/10-Generating%20System%20Events%20inside%20VM(s)%20using%20SETGen.mp4)
 
 This video goes over the different options for system events generation in VM(s) using SETGen.
 
