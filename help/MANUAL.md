@@ -132,7 +132,7 @@ Dept. of Computer Science, Purdue University
    This is a bash script that installs all required tools, scripts and PCAPs for all the different kinds of network traffic generation using SETGen.
    
 6. **D-ITG**
-   D-ITG (Distributed Internet Traffic Generator) is a platform capable to produce traffic at packet level accurately replicating appropriate stochastic processes for both IDT (Inter Departure Time) and PS (Packet Size) random variables (exponential, uniform, cauchy, normal, pareto, etc.).
+  (Distributed Internet Traffic Generator) is a platform capable to produce traffic at packet level accurately replicating appropriate stochastic processes for both IDT (Inter Departure Time) and PS (Packet Size) random variables (exponential, uniform, cauchy, normal, pareto, etc.).
 
    - **ITGRecv**: It is the receiver component of D-ITG, which acts like a server and receives network traffic. The help file is located [here](ITGRecvHelp).
    - **ITGSend**: It is the sender component of D-ITG, which acts like a client and sends network traffic. The help file is located [here](ITGSendHelp).
