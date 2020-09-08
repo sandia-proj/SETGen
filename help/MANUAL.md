@@ -31,6 +31,7 @@ Undergraduate Student,
 </br>
 Dept. of Computer Science, Purdue University
 
+---
 ## Testing and Validation:
 
 **Ozgur Ozmen**
