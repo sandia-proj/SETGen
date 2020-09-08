@@ -7,9 +7,10 @@ SETGen is an all-in-one tool that allows the user to generate/delete Virtual Har
 
 * To get started, run ./SETGen.sh with root previleges.
 
-For details and further help with SETGen, refer to the [Manual](help/MANUAL.md) inside the help/ directory.
+* For details and further help with SETGen, refer to the [Manual](help/MANUAL.md) inside the help/ directory.
 
-For video tutorials, in-depth video tutorials are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
+* For **in-depth video tutorials** are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
+---
 
 [Getting Started with SETGen.mp4](help/VideoTutorials/Getting%20Started%20with%20SETGen.mp4)
    
