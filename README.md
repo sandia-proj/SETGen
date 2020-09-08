@@ -1,15 +1,18 @@
 # SETGen
 Last Updated: 12th Aug 2020
 
-SETGen is an all-in-one tool that allows the user to generate/delete Virtual Hard Disk(s), control Minimega VM(s), copy file to all Minimega VM(s), run a script in all Minimega VM(s), interact with Minimega VMs to generate both Intra-VM and Inter-VM (through multiple options) network traffic, interact with Minimega VMs to generate system events, etc.
+SETGen is an all-in-one tool that allows the user to generate/delete [Minimega](https://github.com/sandia-minimega/minimega) Virtual Hard Disk(s), to control Minimega VM(s), copy file to all Minimega VM(s), to run a script in all Minimega VM(s), to interact with Minimega VMs to generate both Intra-VM, and  to generate Inter-VM realistic network traffic (through multiple options) and system events by interacting with Minimega VMs.
 
-The supported OS is Ubuntu.
+**The supported OS is Ubuntu.**
 
-To get started, run ./SETGen.sh with root previleges.
+* To get started, run ./SETGen.sh with root previleges.
 
-For details and further help with SETGen, refer to the [Manual](help/MANUAL.md) inside the help/ directory.
+* For details and further help with SETGen, refer to the [Manual](help/MANUAL.md) inside the help/ directory.
 
-For video tutorials, in-depth video tutorials are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
+* For **in-depth video tutorials** are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
+---
+**VIDEO TUTORIALS**
+---
 
 [00-Getting Started with SETGen.mp4](help/VideoTutorials/00-Getting%20Started%20with%20SETGen.mp4)
    
