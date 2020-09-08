@@ -20,7 +20,7 @@ Dept. of Computer Science, Purdue University
 </br>
 **Basavesh Shivakumar**
 </br>
-Graduate Student,
+PhD Student,
 </br>
 Dept. of Computer Science, Purdue University
 </br>
@@ -31,6 +31,22 @@ Undergraduate Student,
 </br>
 Dept. of Computer Science, Purdue University
 
+## Testing and Validation:
+
+**Ozgur Ozmen**
+</br>
+PhD Student,
+</br>
+Dept. of Computer Science, Purdue University
+</br>
+</br>
+**Yi-Shan Lin**
+</br>
+PhD Student,
+</br>
+Dept. of Computer Science, Purdue University
+</br>
+</br>
 ---
 
 ## Pre-requisites
