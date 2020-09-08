@@ -11,6 +11,8 @@ SETGen is an all-in-one tool that allows the user to generate/delete Virtual Har
 
 * For **in-depth video tutorials** are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
 ---
+**VIDEO TUTORIALS**
+---
 
 [Getting Started with SETGen.mp4](help/VideoTutorials/Getting%20Started%20with%20SETGen.mp4)
    
