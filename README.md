@@ -11,7 +11,7 @@ For details and further help with SETGen, refer to the [Manual](help/MANUAL.md) 
 
 For video tutorials, in-depth video tutorials are available inside the [help/VideoTutorials](help/VideoTutorials/) directory.
 
-[Getting Started with SETGen.mp4](help/VideoTutorials/Getting%20Started%20with%20SETGen.mp4)
+[00-Getting Started with SETGen.mp4](help/VideoTutorials/00-Getting%20Started%20with%20SETGen.mp4)
    
 This video explains the first steps of using SETGen. 
 
