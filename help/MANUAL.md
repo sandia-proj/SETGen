@@ -11,6 +11,13 @@ As of now, Ubuntu is the only supported operating system.
 ---
 ## Contributors:
 
+**Sidhartha Agrawal**
+</br>
+Undergraduate Student,
+</br>
+Dept. of Computer Science, Purdue University
+</br>
+</br>
 **Prof. Berkay Celik**
 </br>
 Assistant Professor,
@@ -25,11 +32,6 @@ PhD Student,
 Dept. of Computer Science, Purdue University
 </br>
 </br>
-**Sidhartha Agrawal**
-</br>
-Undergraduate Student,
-</br>
-Dept. of Computer Science, Purdue University
 
 ## Testing and Validation:
 
