@@ -31,24 +31,27 @@ Undergraduate Student,
 </br>
 Dept. of Computer Science, Purdue University
 
----
-## Testing and Validation:
+## Contributors:
 
-**Ozgur Ozmen**
+**Prof. Berkay Celik**
+</br>
+Assistant Professor,
+</br>
+Dept. of Computer Science, Purdue University
+</br>
+</br>
+**Basavesh Shivakumar**
 </br>
 PhD Student,
 </br>
 Dept. of Computer Science, Purdue University
 </br>
 </br>
-**Yi-Shan Lin**
+**Sidhartha Agrawal**
 </br>
-PhD Student,
+Undergraduate Student,
 </br>
 Dept. of Computer Science, Purdue University
-</br>
-</br>
----
 
 ## Pre-requisites
 
